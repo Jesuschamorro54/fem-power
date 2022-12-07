@@ -1,0 +1,137 @@
+.icon-cross {
+  font-size: 16px !important;
+  font-weight: bolder !important;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../assets/fonts/MaterialIcons-Regular.eot'); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('../../assets/fonts/MaterialIcons-Regular.woff2') format('woff2'),
+    url('../../assets/fonts/MaterialIcons-Regular.woff') format('woff'),
+    url('../../assets/fonts/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+.google-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Material Icons' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  margin-right: 3px;
+  direction: ltr;
+  transition: all 100ms;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.icon-home:before {
+  content: "home";
+}
+
+.icon-payment:before {
+  content: "payments";
+}
+
+.icon-users:before {
+  content: "group";
+}
+
+.icon-user:before {
+  content: "person";
+}
+
+.icon-school:before {
+  content: "school";
+}
+
+.icon-arrow-expand-more:before {
+  content: "expand_more";
+}
+
+.icon-arrow-expand-less:before {
+  content: "expand_less";
+}
+
+.icon-check-circle::before {
+  content: "check_circle";
+}
+
+.icon-check::before {
+  content: "check";
+}
+
+.icon-check-done::before {
+  content: "beenhere";
+}
+
+.icon-stand::before {
+  content: "mode_standby";
+}
+
+.icon-error::before {
+  content: "error";
+}
+
+.icon-warning::before {
+  content: "warning";
+  color: #e0a904 !important;
+}
+
+.icon-login::before {
+  content: "login";
+}
+
+.icon-logout::before {
+  content: "logout";
+}
+
+.icon-arrow-drop-down::before {
+  content: "arrow_drop_down";
+}
+
+
+
