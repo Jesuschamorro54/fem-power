@@ -1,1 +1,23 @@
 @import './colors';
+
+input[type=submit],
+button, .button{
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    width: fit-content;
+    min-width: 40px;
+    min-height: 30px;
+    background-color: $dark-fucsia;
+    transition: background-color 200ms;
+    border-radius: 8px;
+    margin: 5px;
+    padding: 2px 5px;
+    align-items: center;
+    color: white;
+    border: 1px solid $dark-fucsia;
+
+    &:hover {
+        background-color: rgba($color: rgb(185, 0, 114), $alpha: 1);
+    }
+}

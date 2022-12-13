@@ -10,7 +10,9 @@
   justify-content: center;
 
   &:not(.dotted) {
-    position: absolute;
+    position: initial;
+    width: 20px;
+    height: 20px;
 
     div {
       box-sizing: border-box;
@@ -57,13 +59,13 @@
 
     &.dark {
       div {
-        background: $p-blue-dark;
+        background: $dark-fucsia;
       }
     }
 
     &:not(.dark) {
       div {
-        background: #ddd;
+        background: white;
       }
     }
 
@@ -105,7 +107,7 @@
       width: 22px;
       border-radius: 100px;
       padding: 6px 1px 6px 3px;
-      background-color: #f5f5f5;
+      background-color: white;
 
       top: -12px;
       right: 3px;
@@ -123,7 +125,7 @@
         max-width: $size;
         max-height: $size;
         margin: 0 1px 0 0;
-        background-color: #9aa4b8;
+        background-color: white;
 
 
         &:nth-child(1) {
@@ -150,7 +152,7 @@
 
 
       &:not(.transparent) {
-        background-color: #e9ebed;
+        background-color: white;
 
       }
 
@@ -261,7 +263,7 @@
     }
 
     &:not(.white) div {
-      border-color: $gray transparent transparent transparent;
+      border-color: white transparent transparent transparent;
     }
 
   }
