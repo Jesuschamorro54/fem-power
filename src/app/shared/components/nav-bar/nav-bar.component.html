@@ -1,0 +1,42 @@
+<nav id="nav-bar">
+    <div class="content-nav">
+
+        <!-- HEADER -->
+        <header class="logo">
+            <span class="item">
+                <img src="../../../../favicon.ico" alt="Icon" width="35">
+            </span>
+            <span class="item">
+                <a class="logo-label" [routerLink]="['/']">Fem Power</a>
+            </span>
+        </header>
+
+        <!-- OPTIONS -->
+        <ul *ngIf="_appService.user_session == 1" class="nav-options">
+        </ul>
+
+        <ul *ngIf="_appService.user_session == -1" class="nav-options">
+            <li class="nav-link">
+                <a [routerLink]="['/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
+            </li>
+            <li class="nav-link">
+                <a [routerLink]="['/women']" [routerLinkActive]="['active']">Mujeres</a>
+            </li>
+            <hr>
+            <li class="nav-link">
+                <a [routerLink]="['/user/sign']" [routerLinkActive]="['active']">Únete</a>
+            </li>
+            <li class="nav-link">
+                <a [routerLink]="['/user/login']" [routerLinkActive]="['active']">Iniciar session</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div *ngIf="_appService.user_session==0" class="btn-group">
+        <a [routerLink]="['/user/login']" class="login cta outline blue">Acceder</a>
+        <a [routerLink]="['/user/add']" class="add cta outline red">Crear cuenta</a>
+    </div>
+
+
+</nav>
