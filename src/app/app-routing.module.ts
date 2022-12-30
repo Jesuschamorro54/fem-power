@@ -7,7 +7,7 @@ import { StaticWomenComponent } from './landing-pages/static-women/static-women.
 const routes: Routes = [
   
   // Modules
-  { path: 'user', data: { preload: true, loadAfterSeconds: 1 }, loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule), canActivate: [] },
+  { path: 'auth', data: { preload: true, loadAfterSeconds: 1 }, loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule), canActivate: [] },
   
   
   // Components

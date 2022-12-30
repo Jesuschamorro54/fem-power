@@ -6,10 +6,24 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
-  { path: '', component: AuthComponent },
-  { path: 'login', component: LoginComponent, canActivate: [] },
-  { path: 'sign', component: SignUpComponent },
-  { path: 'confirm', component: ConfirmRegistrationComponent },
+  {
+    path: '', redirectTo: '/auth/login', pathMatch: 'full'
+  },
+
+  {
+    path: '', component: AuthComponent,
+    children: [
+      { path: 'login', component: LoginComponent, canActivate: [] },
+      { path: 'sign', component: SignUpComponent },
+      { path: 'confirm', component: ConfirmRegistrationComponent },
+    ]
+  },
+
+  {
+    path: '**', redirectTo: '/auth/login', pathMatch: 'full'
+  },
+
+  
 
 ];
 

@@ -16,6 +16,7 @@ button, .button{
     align-items: center;
     color: white;
     border: 1px solid $dark-fucsia;
+    max-width: -webkit-fill-available;
 
     &:hover {
         background-color: rgba($color: rgb(185, 0, 114), $alpha: 1);
