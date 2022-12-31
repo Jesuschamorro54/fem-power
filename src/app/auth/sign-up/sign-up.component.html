@@ -1,1 +1,61 @@
-<p>sign-up works!</p>
+<div class="content-sign-up">
+
+
+    <div class="box-container">
+
+        <div class="container">
+
+            <h2 class="sign-up-title">Registrate</h2>
+
+            <form>
+
+                <input type="text" placeholder="Nombres">
+                <input type="email" placeholder="Correo electronico" autocomplete="off">
+                <input type="text" placeholder="Télefono">
+
+                <input type="password" placeholder="Contraseña">
+
+                <input type="password" placeholder="Confirmar contraseña">
+
+
+                <label class="select_list_2 dropdown" [ngClass]="{'active': ddownMonth1.checked}"
+                    (click)="ddownMonth1.checked = !ddownMonth1.checked;"
+                    (clickOutsideDdown)="ddownMonth1.checked = false;">
+
+                    <span>
+                        Elije un elemento
+                    </span>
+                    <i class="icon-play3"></i>
+                    <input type="checkbox" #ddownMonth1>
+
+                    <ul class="dropdown-list date" *ngIf="ddownMonth1.checked">
+                        <li class="item" *ngFor="let number of ['uno', 'dos']">{{number}}
+                        </li>
+                    </ul>
+                </label>
+
+
+                <button class="btn-sign-up">Registrar</button>
+
+                <div class="separator">
+                    <p>o</p>
+                </div>
+
+                <button class="btn-facebook">
+                    <i class="icon-facebook"></i>
+                    Facebook
+                </button>
+
+
+                <button class="btn-google">
+                    <img src="../../../assets/images/google.svg" width="24">
+                    Google
+                </button>
+
+            </form>
+
+
+        </div>
+    </div>
+
+</div>

@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -21,6 +22,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     CommonModule,
     AuthRoutingModule,
     FormsModule, ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class AuthModule { }

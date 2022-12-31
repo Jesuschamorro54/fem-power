@@ -25,6 +25,9 @@ export class AppService {
   /** -1: No autenticado 0: No en sessión 1: En session */
   public user_session: number = -1;
 
+  /** Contiene los datos de la sessión del usuario autenticado -> line 18 */
+  public cognitoUserAuthenticated: any;
+
   /**Cargar los headers de la petición */
   private getHeaders(): any {
     let headers = new HttpHeaders({
@@ -33,6 +36,43 @@ export class AppService {
     })
 
     return ({ headers: headers });
+  }
+
+  public getUserData() {
+    if (this.cognitoUserAuthenticated) {
+        if (this.cognitoUserAuthenticated.hasOwnProperty('signInUserSession')) {
+            // User with session    
+            return { valid: true, print: this.user_data, session: this.user_session };
+        } else {
+            // User without session              
+            return { valid: true, print: null, session: this.user_session };
+        }
+    } else {
+        // Error cognitoUserAuthenticated
+        return { valid: false, print: null, session: this.user_session };
+    }
+  }
+
+  public setUserData(user) {
+    this.cognitoUserAuthenticated = user;
+
+    if (this.cognitoUserAuthenticated){
+
+      if(this.cognitoUserAuthenticated.hasOwnProperty('signInUserSession')){
+        
+        this.token = user.signInUserSession.idToken.jwtToken;
+
+        this.user_data = JSON.parse(JSON.stringify(this.cognitoUserAuthenticated.signInUserSession.idToken.payload));
+        // User in session
+        this.user_session = 1;
+      }else{
+        this.user_session = 0;
+        this.user_data = []
+      }
+    }else{
+      this.token = null
+    }
+    console.log("Session: ", this.user_session)
   }
 
 

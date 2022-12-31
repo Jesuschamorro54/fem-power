@@ -4,13 +4,15 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ClickOutsideDdownDirective } from './directives/clickOutsideDdown.directive';
 
 
 
 @NgModule({
   declarations: [
     NavBarComponent,
-    FooterComponent
+    FooterComponent,
+    ClickOutsideDdownDirective
   ],
   
   imports: [
@@ -22,6 +24,7 @@ import { FormsModule } from '@angular/forms';
   exports: [
     NavBarComponent,
     FooterComponent,
+    ClickOutsideDdownDirective,
   ]
 })
 export class SharedModule { }
