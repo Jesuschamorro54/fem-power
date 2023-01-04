@@ -36,11 +36,12 @@
 
                 <!-- SUBIR DOCUMENTO -->
                 <label class="upload-input" for="certificate-input-file">
-                    <span>Adjuntar Certificado</span>
 
-                    <span class="icon-upload"></span> 
+                    <span id="input-upload-label">Adjuntar Certificado</span>
 
-                    <div class="spinner spinner--button" *ngIf="false" style="position: relative; margin: 0 15px; width: auto;">
+                    <span id="icon-input-upload" class="icon-upload" [ngStyle]="{'display': uploading_file ? 'none' : 'inherit'}"></span> 
+
+                    <div class="spinner spinner--button" *ngIf="uploading_file" style="position: relative; margin: 0 15px; width: auto;">
                       <div></div>
                       <div></div>
                       <div></div>

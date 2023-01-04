@@ -1,5 +1,7 @@
-import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataRegister } from 'src/app/models/auth.models';
+import { AwsS3Service } from 'src/app/shared/services/awsS3.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -10,7 +12,9 @@ import { AuthService } from '../auth.service';
 export class SignUpComponent implements OnInit {
 
   constructor(
-    private _authService: AuthService
+    private _router: Router,
+    private _authService: AuthService,
+    private _awsS3Service: AwsS3Service
   ) { }
 
   user_types = [
@@ -25,12 +29,112 @@ export class SignUpComponent implements OnInit {
   uploading_file = false;
 
   // Message
-  alert = {error: null, sucess: null
-  }
+  alert = {error: null, sucess: null}
 
+  // Auth
+  isConfirmed: boolean =  false;
+  addUserData = {} as DataRegister;
 
   ngOnInit(): void {    
   }
+
+  verifyData(form): void {
+    console.log(form.value)
+    
+    let valid = true;
+
+    this.alert.error = this.cleanObject(this.alert.error)
+    let e = ""
+
+    if (form.value.name == "" || form.value.name == undefined){
+      this.alert.error.text = "Please write your name"
+      valid = false;
+    }
+
+    if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.value.email))){
+      e = e + " email"
+      this.alert.error.text = "Verify your email"
+      valid = false;
+    }
+
+    if (form.value.password == undefined || form.value.password?.length < 8) {
+      this.alert.error.text = "Your password must have at least 8 characters"
+      valid = false;
+    }
+    
+
+    this.addUserData.email = form.value.email;
+    this.addUserData.password = form.value.password;
+    this.addUserData.name = form.value.name;
+    this.addUserData.code = "";
+
+    if (valid) this.signUp();
+
+  }
+
+  checkMandatoryFields(){}
+
+
+  cleanObject(obj): Object {
+    let result = {}
+    
+    for (const key in obj){
+
+      switch (typeof obj[key]) {
+        case "number":
+          result[key] = 0
+          break;
+        case "string":
+          result[key] = "";
+          break;
+        case "boolean":
+          result[key] = false;
+          break;
+
+        case "object":
+          result[key] = this.cleanObject(obj[key])
+          break;
+        default:
+          break;
+      }
+    }
+    return result
+  }
+
+  sending = false;
+  signUp(): void {
+
+    if (!this.sending) {
+      this.sending = true;
+
+      this._authService.signUp(this.addUserData).subscribe(signUpResponse => {
+        
+        this.sending = false;
+        // console.log("signUp() data: ", signUpResponse);
+
+        if(signUpResponse != null){
+          if (signUpResponse.status == 'ok'){
+            this.addUserData['type'] = signUpResponse.user.type;
+            this.isConfirmed = signUpResponse.user.userConfirmed;
+
+            if (!this.isConfirmed) {
+
+              let username_encrypt = window.btoa(JSON.stringify({ 
+                username: this.addUserData.email, 
+                type: this.addUserData.type, 
+                password: this.addUserData.password
+              }));
+
+              this._router.navigate(['user/confirm'], {queryParams: {token: username_encrypt}})
+
+            }
+          }
+        }
+      })
+    }
+  }
+
+
 
   addFile(event){
 
@@ -54,6 +158,8 @@ export class SignUpComponent implements OnInit {
 
     else {
 
+      this.uploading_file = true;
+
       const { size, name, type } = fileList[0];
       
       let file: any;
@@ -62,7 +168,10 @@ export class SignUpComponent implements OnInit {
         //valida que el size del file sea <= 250mb
         if ((size <= (1024 * 1024 * 250))){
 
-          let extension = 'jpg' //name.toLowerCase().split('.').pop();
+          let icon = document.getElementById("icon-input-upload");
+          let label = document.getElementById('input-upload-label');
+
+          let extension = name.toLowerCase().split('.').pop();
           let tokenhash = this._authService.generateRandomString();
 
           file = {
@@ -73,10 +182,11 @@ export class SignUpComponent implements OnInit {
           }
 
           // Se toma el Id del usuario que está logueado
-          const { User } = this._authService.userData;
+          
+          // const { User } = this._authService.userData;
 
           // Ruta del archivo donde se va a guardar el archivo
-          let fileKey = `Users/${User.id}/` + file.file_name;
+          let fileKey = `Certificates/` + file.file_name;
 
           // Preparamos el objeto para subir en s3
           const params = {
@@ -86,6 +196,20 @@ export class SignUpComponent implements OnInit {
             ContentType: file.file_type
           };
           let options = { partSize: 5 * 1024 * 1024, queueSize: 1 };
+
+          this._awsS3Service.getS3Bucket().upload(params, options, (error, data) => {
+
+            if (error) {
+              // ('There was an error uploading your file: ', err);
+              this.alert.error = 'Ocurrió un error al subir el documento. Por favor recargue y vuelva intentarlo'
+              return false;
+            } 
+          
+            label.innerHTML = name;
+            icon.className = 'icon-checkmark'
+            this.uploading_file = false;
+            return true
+          });
 
           
 

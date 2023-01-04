@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { from, Observable } from 'rxjs';
 import { AppService } from '../app.service';
-import { UserData } from '../models/auth.models';
+import { DataRegister, UserData } from '../models/auth.models';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class AuthService {
    * ___
    * @returns  - En caso de ser exitoso retorna {'ok', user} si no {'error', error}
    */
-  public signUp(addData): Observable<any> {
+  public signUp(addData: DataRegister): Observable<any> {
 
     let token = window.btoa(addData.password)
     let type;
@@ -42,14 +42,12 @@ export class AuthService {
       username: addData.email,
       password: addData.password,
       clientMetadata: {
-        // 'address':addData.address
+        role: addData.type,
+        cellphone: addData.cellphone,
+        certificate: addData.certificate
       },
       attributes:{
-        name:addData.name,
-        'custom:city':addData.city,
-        'custom:identification':addData.identification,
-        'address':addData.address
-        
+        name:addData.name,        
       }
     }
 

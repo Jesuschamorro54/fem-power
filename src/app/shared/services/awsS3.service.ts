@@ -16,10 +16,11 @@ export class AwsS3Service {
   ) { }
 
 
-  public getS3Bucket(): any {
-    const bucket = new S3(s3Access);
+  public getS3Bucket(): S3 {
 
+    const bucket = new S3(s3Access);
     return bucket;
+    
   }
 
 }

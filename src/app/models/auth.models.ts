@@ -49,3 +49,20 @@ export interface User {
     fuente: string,
     active: number
 }
+
+export interface DataRegister {
+    email: string;
+    password: string;
+    name: string;
+    code?: string;
+    fundation_code: string;
+    type?: string;
+    cellphone?: string;
+    certificate: string;
+}
+
+export interface DataLogin {
+    email: string,
+    password: string,
+    country?: string
+}
