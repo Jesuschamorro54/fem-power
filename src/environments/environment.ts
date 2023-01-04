@@ -2,13 +2,12 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { userPool } from "src/credentials";
+
 export const environment = {
   production: false,
   
-  cognito: {
-    userPoolId: 'us-east-2_eJl3dujck',
-    userPoolWebClientId: '455b29opqr01agcrvv326u0isf ',
-  },
+  cognito: userPool,
 
   // For dev
   urlAPI: '',

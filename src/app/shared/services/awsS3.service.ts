@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import * as S3 from 'aws-sdk/clients/s3';
+import { s3Access } from 'src/credentials';
 
 
 @Injectable({
@@ -16,14 +17,7 @@ export class AwsS3Service {
 
 
   public getS3Bucket(): any {
-    const bucket = new S3(
-      {
-        //  User: s3AngularAccess
-        accessKeyId: 'AKIA2MZZSFAOOBKXJZ2K',
-        secretAccessKey: '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',
-        region: 'us-east-1'
-      }
-    );
+    const bucket = new S3(s3Access);
 
     return bucket;
   }
