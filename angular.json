@@ -34,7 +34,19 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "uuid",
+              "@aws-crypto/sha256-js",
+              "isomorphic-unfetch",
+              "buffer",
+              "@aws-crypto/crc32",
+              "fast-xml-parser",
+              "@aws-crypto/sha256-browser",
+              "camelcase-keys",
+              "ulid"
+           ]
           },
           "configurations": {
             "production": {

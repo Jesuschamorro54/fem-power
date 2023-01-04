@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { from, Observable } from 'rxjs';
 import { AppService } from '../app.service';
+import { UserData } from '../models/auth.models';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,9 @@ export class AuthService {
 
   /** Token del usuario logueado*/
   public token;
+
+  /** Contiene los datos del usuario logueado */
+  public userData: UserData
 
   /** Contiene los datos de la sessión del usuario autenticado */
   public userLogged: any
@@ -209,6 +213,13 @@ export class AuthService {
     return from(Auth.currentUserInfo().then(user => {
       console.log("Current user: ", user)
     }));
+  }
+
+  public generateRandomString() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (var i = 0; i < 12; i++)text += possible.charAt(Math.floor(Math.random() * possible.length));
+    return text;
   }
 
 

@@ -17,22 +17,41 @@
 
                 <input type="password" placeholder="Confirmar contraseña">
 
-
+                <!-- SELECT -->
                 <label class="select_list_2 dropdown" [ngClass]="{'active': ddownMonth1.checked}"
                     (click)="ddownMonth1.checked = !ddownMonth1.checked;"
                     (clickOutsideDdown)="ddownMonth1.checked = false;">
 
-                    <span>
-                        Elije un elemento
-                    </span>
+                    <span>{{type_select.label}}</span>
                     <i class="icon-play3"></i>
                     <input type="checkbox" #ddownMonth1>
 
                     <ul class="dropdown-list date" *ngIf="ddownMonth1.checked">
-                        <li class="item" *ngFor="let number of ['uno', 'dos']">{{number}}
-                        </li>
+                        <li class="item" *ngFor="let type of user_types" (click)="type_select = type">{{type.label}}</li>
                     </ul>
                 </label>
+                <!-- FIN SELECT -->
+
+                <input type="text" placeholder="Escriba su código">
+
+                <!-- SUBIR DOCUMENTO -->
+                <label class="upload-input" for="certificate-input-file">
+                    <span>Adjuntar Certificado</span>
+
+                    <span class="icon-upload"></span> 
+
+                    <div class="spinner spinner--button" *ngIf="false" style="position: relative; margin: 0 15px; width: auto;">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                    
+    
+                    <input id="certificate-input-file" type="file" accept="application/pdf, application/msword"
+                    [disabled]="false" style="display: none;" (change)="addFile($event)"/>
+                </label>
+                <!-- FIN INPUT UPLOAD -->
 
 
                 <button class="btn-sign-up">Registrar</button>
