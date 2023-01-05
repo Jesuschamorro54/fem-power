@@ -7,13 +7,15 @@
 
             <h2 class="sign-up-title">Registrate</h2>
 
-            <form>
+            <span class="message">{{alert.error}}</span>
 
-                <input type="text" placeholder="Nombres">
-                <input type="email" placeholder="Correo electronico" autocomplete="off">
-                <input type="text" placeholder="Télefono">
+            <form #loginForm="ngForm" (ngSubmit)="verifyData(loginForm)">
 
-                <input type="password" placeholder="Contraseña">
+                <input type="text" name="name" placeholder="Nombres" [(ngModel)]="addUserData.name">
+                <input type="email" name="email" placeholder="Correo electronico" autocomplete="off" [(ngModel)]="addUserData.email">
+                <input type="text" name="cellphone"  placeholder="Télefono" [(ngModel)]="addUserData.cellphone">
+
+                <input type="password" name="password" placeholder="Contraseña" [(ngModel)]="addUserData.password">
 
                 <input type="password" placeholder="Confirmar contraseña">
 
@@ -27,12 +29,12 @@
                     <input type="checkbox" #ddownMonth1>
 
                     <ul class="dropdown-list date" *ngIf="ddownMonth1.checked">
-                        <li class="item" *ngFor="let type of user_types" (click)="type_select = type">{{type.label}}</li>
+                        <li class="item" *ngFor="let type of user_types" (click)="type_select = type; addUserData.type = type.value">{{type.label}}</li>
                     </ul>
                 </label>
                 <!-- FIN SELECT -->
 
-                <input type="text" placeholder="Escriba su código">
+                <input type="text" name="fundation_code" placeholder="Escriba su código" [(ngModel)]="addUserData.fundation_code">
 
                 <!-- SUBIR DOCUMENTO -->
                 <label class="upload-input" for="certificate-input-file">
@@ -55,7 +57,7 @@
                 <!-- FIN INPUT UPLOAD -->
 
 
-                <button class="btn-sign-up">Registrar</button>
+                <button type="submit" class="btn-sign-up" >Registrar</button>
 
                 <div class="separator">
                     <p>o</p>

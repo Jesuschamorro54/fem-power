@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { S3Client } from '@aws-sdk/client-s3';
 import { AppService } from 'src/app/app.service';
-import * as S3 from 'aws-sdk/clients/s3';
+
 import { s3Access } from 'src/credentials';
 
 
@@ -16,9 +17,9 @@ export class AwsS3Service {
   ) { }
 
 
-  public getS3Bucket(): S3 {
+  public getS3Bucket(): S3Client {
 
-    const bucket = new S3(s3Access);
+    const bucket = new S3Client (s3Access);
     return bucket;
     
   }

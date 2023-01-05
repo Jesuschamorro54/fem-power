@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { DataRegister } from 'src/app/models/auth.models';
 import { AwsS3Service } from 'src/app/shared/services/awsS3.service';
 import { AuthService } from '../auth.service';
@@ -44,22 +45,23 @@ export class SignUpComponent implements OnInit {
     let valid = true;
 
     this.alert.error = this.cleanObject(this.alert.error)
-    let e = ""
 
     if (form.value.name == "" || form.value.name == undefined){
-      this.alert.error.text = "Please write your name"
+      this.alert.error = "Por favor escribe tu nombre"
       valid = false;
+      return
     }
 
     if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.value.email))){
-      e = e + " email"
-      this.alert.error.text = "Verify your email"
+      this.alert.error = "Verifica la dirección de correo electronico"
       valid = false;
+      return
     }
 
     if (form.value.password == undefined || form.value.password?.length < 8) {
-      this.alert.error.text = "Your password must have at least 8 characters"
+      this.alert.error = "La contraseña debe tener minimo 8 digitos"
       valid = false;
+      return
     }
     
 
@@ -110,7 +112,7 @@ export class SignUpComponent implements OnInit {
       this._authService.signUp(this.addUserData).subscribe(signUpResponse => {
         
         this.sending = false;
-        // console.log("signUp() data: ", signUpResponse);
+        console.log("signUp() data: ", signUpResponse);
 
         if(signUpResponse != null){
           if (signUpResponse.status == 'ok'){
@@ -125,7 +127,9 @@ export class SignUpComponent implements OnInit {
                 password: this.addUserData.password
               }));
 
-              this._router.navigate(['user/confirm'], {queryParams: {token: username_encrypt}})
+              console.log("Registrado")
+
+              // this._router.navigate(['user/confirm'], {queryParams: {token: username_encrypt}})
 
             }
           }
@@ -133,7 +137,6 @@ export class SignUpComponent implements OnInit {
       })
     }
   }
-
 
 
   addFile(event){
@@ -197,7 +200,9 @@ export class SignUpComponent implements OnInit {
           };
           let options = { partSize: 5 * 1024 * 1024, queueSize: 1 };
 
-          this._awsS3Service.getS3Bucket().upload(params, options, (error, data) => {
+          const command = new PutObjectCommand(params)
+
+          this._awsS3Service.getS3Bucket().send( command, (error, data) => {
 
             if (error) {
               // ('There was an error uploading your file: ', err);
