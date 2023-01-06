@@ -11,6 +11,8 @@ export const environment = {
 
   // For dev
   urlAPI: '',
+  redirectSignIn: 'http://127.0.0.1:4000/auth/sign',
+  redirectSignOut: 'http://127.0.0.1:4000/auth/login',
 };
 
 /*

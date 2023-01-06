@@ -1,0 +1,18 @@
+{
+  "trigger": true,
+  "modules": [
+    "captcha-verify"
+  ],
+  "parentResource": "fempowere9ab6d5c",
+  "functionName": "fempowere9ab6d5cVerifyAuthChallengeResponse",
+  "resourceName": "fempowere9ab6d5cVerifyAuthChallengeResponse",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "C:\\snapshot\\repo\\build\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\VerifyAuthChallengeResponse",
+  "triggerTemplate": "VerifyAuthChallengeResponse.json.ejs",
+  "triggerEventPath": "VerifyAuthChallengeResponse.event.json",
+  "roleName": "fempowere9ab6d5cVerifyAuthChallengeResponse",
+  "skipEdit": true,
+  "RECAPTCHASECRET": "",
+  "enableCors": false
+}

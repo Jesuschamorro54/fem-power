@@ -1,0 +1,17 @@
+{
+  "trigger": true,
+  "modules": [
+    "captcha-define-challenge"
+  ],
+  "parentResource": "fempowere9ab6d5c",
+  "functionName": "fempowere9ab6d5cDefineAuthChallenge",
+  "resourceName": "fempowere9ab6d5cDefineAuthChallenge",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "C:\\snapshot\\repo\\build\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\DefineAuthChallenge",
+  "triggerTemplate": "DefineAuthChallenge.json.ejs",
+  "triggerEventPath": "DefineAuthChallenge.event.json",
+  "roleName": "fempowere9ab6d5cDefineAuthChallenge",
+  "skipEdit": true,
+  "enableCors": false
+}

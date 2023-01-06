@@ -1,15 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Auth } from 'aws-amplify';
+import { Amplify, Auth } from 'aws-amplify';
 import { from, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppService } from '../app.service';
 import { DataRegister, UserData } from '../models/auth.models';
+import awsconfig from '../../aws-exports';
 
-
-Auth.configure({
-  Auth: environment.cognito,
-});
+Amplify.configure(awsconfig);
 
 @Injectable({
   providedIn: 'root'

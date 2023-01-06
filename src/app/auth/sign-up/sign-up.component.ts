@@ -207,6 +207,7 @@ export class SignUpComponent implements OnInit {
             if (error) {
               // ('There was an error uploading your file: ', err);
               this.alert.error = 'Ocurrió un error al subir el documento. Por favor recargue y vuelva intentarlo'
+              console.log(error);
               return false;
             } 
           
