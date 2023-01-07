@@ -1,4 +1,4 @@
-<div class="content-sign-up">
+<div class="content-auth">
 
 
     <div class="box-container">
@@ -34,10 +34,10 @@
                 </label>
                 <!-- FIN SELECT -->
 
-                <input type="text" name="fundation_code" placeholder="Escriba su código" [(ngModel)]="addUserData.fundation_code">
+                <input type="text" *ngIf="type_select.value == 'natural' " name="fundation_code" placeholder="Escriba su código" [(ngModel)]="addUserData.fundation_code">
 
                 <!-- SUBIR DOCUMENTO -->
-                <label class="upload-input" for="certificate-input-file">
+                <label class="upload-input" for="certificate-input-file" *ngIf="['fundation', 'company'].includes(addUserData.type)">
 
                     <span id="input-upload-label">Adjuntar Certificado</span>
 
@@ -57,19 +57,19 @@
                 <!-- FIN INPUT UPLOAD -->
 
 
-                <button type="submit" class="btn-sign-up" >Registrar</button>
+                <button type="submit" class="button" >Registrar</button>
 
                 <div class="separator">
                     <p>o</p>
                 </div>
 
-                <button class="btn-facebook">
+                <button class="button btn-facebook">
                     <i class="icon-facebook"></i>
                     Facebook
                 </button>
 
 
-                <button class="btn-google">
+                <button class="button btn-google">
                     <img src="../../../assets/images/google.svg" width="24">
                     Google
                 </button>

@@ -63,7 +63,18 @@ export class SignUpComponent implements OnInit {
       valid = false;
       return
     }
-    
+
+    if (form.value.fundation_code == '' || form.value.fundation_code == null ){
+      this.alert.error = "Debe escribir el código proporcionado por la fundación"
+      valid = false
+      return
+    }
+
+    if (this.addUserData.type == 'company' && (this.addUserData.certificate == '' || this.addUserData.certificate == null)){
+      this.alert.error = "Por favor adjunte el certificado"
+      valid = false;
+      return
+    }
 
     this.addUserData.email = form.value.email;
     this.addUserData.password = form.value.password;
@@ -129,7 +140,7 @@ export class SignUpComponent implements OnInit {
 
               console.log("Registrado")
 
-              // this._router.navigate(['user/confirm'], {queryParams: {token: username_encrypt}})
+              this._router.navigate(['auth/confirm'], {queryParams: {token: username_encrypt}})
 
             }
           }
@@ -147,8 +158,6 @@ export class SignUpComponent implements OnInit {
 
     let fileInput = event.target;
     let filePath = event.target.value;
-
-    console.log(filePath)
 
     var allowedImageExtensions = /(\.pdf|\.docx|\.doc|\.odt)$/i;
 
@@ -183,6 +192,8 @@ export class SignUpComponent implements OnInit {
             file_ext: extension,
             file_name:  `certificate-${tokenhash}.${extension}` //asigna el nombre file
           }
+
+          this.addUserData.certificate = file.file_name;
 
           // Se toma el Id del usuario que está logueado
           
