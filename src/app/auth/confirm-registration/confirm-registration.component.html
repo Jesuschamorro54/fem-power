@@ -11,12 +11,12 @@
                 a tu correo electronico con el cual te registraste
             </p>
 
-            <form>
+            <form #verifyForm="ngForm" (ngSubmit)="verifyEmail(verifyForm)">
                 <span class="message">{{message.text}}</span>
 
-                <input type="text" placeholder="Codigo de verificación">
+                <input type="text" name="code" [(ngModel)]="dataConfirm.code" placeholder="Codigo de verificación">
 
-                <button class="button">Confirmar</button>
+                <button class="button" type="submit">Confirmar</button>
 
                 <span><a>Reenviar código de verificación</a></span>
             </form>

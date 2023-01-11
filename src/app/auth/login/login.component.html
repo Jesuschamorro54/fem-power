@@ -7,9 +7,9 @@
 
             <h2 class="login-title">Iniciar Sessión</h2>
 
-            <form>
-                <input type="text" placeholder="Correo electronico" autocomplete="off">
-                <input type="password" placeholder="Contraseña">
+            <form #loginForm="ngForm" (ngSubmit)="verifyData(loginForm)">
+                <input type="text" name="email" [(ngModel)]="dataLogin.email" placeholder="Correo electronico" autocomplete="off">
+                <input type="password" name="password" [(ngModel)]="dataLogin.pass" placeholder="Contraseña">
 
                 <button class="button">Ingresar</button>
 

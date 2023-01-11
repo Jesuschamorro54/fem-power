@@ -157,6 +157,7 @@ export class AuthService {
       })
 
     }).catch(err => { 
+      console.log(err)
       this._appService.cognitoUserAuthenticated = [];
       this._appService.setUserData([]);
     }));

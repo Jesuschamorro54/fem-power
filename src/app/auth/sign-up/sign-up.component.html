@@ -9,7 +9,7 @@
 
             <span class="message">{{alert.error}}</span>
 
-            <form #loginForm="ngForm" (ngSubmit)="verifyData(loginForm)">
+            <form #singUpForm="ngForm" (ngSubmit)="verifyData(singUpForm)">
 
                 <input type="text" name="name" placeholder="Nombres" [(ngModel)]="addUserData.name">
                 <input type="email" name="email" placeholder="Correo electronico" autocomplete="off" [(ngModel)]="addUserData.email">

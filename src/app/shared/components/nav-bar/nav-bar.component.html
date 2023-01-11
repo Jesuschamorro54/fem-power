@@ -15,7 +15,7 @@
         <ul *ngIf="_appService.user_session == 1" class="nav-options">
         </ul>
 
-        <ul *ngIf="_appService.user_session == -1" class="nav-options">
+        <ul *ngIf="_appService.user_session == 0" class="nav-options">
             <li class="nav-link">
                 <a [routerLink]="['/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
             </li>
@@ -33,10 +33,10 @@
     </div>
 
 
-    <div *ngIf="_appService.user_session==0" class="btn-group">
+    <!-- <div *ngIf="_appService.user_session==0" class="btn-group">
         <a [routerLink]="['/user/login']" class="login cta outline blue">Acceder</a>
         <a [routerLink]="['/user/add']" class="add cta outline red">Crear cuenta</a>
-    </div>
+    </div> -->
 
 
 </nav>

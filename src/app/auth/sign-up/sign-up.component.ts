@@ -64,7 +64,7 @@ export class SignUpComponent implements OnInit {
       return
     }
 
-    if (form.value.fundation_code == '' || form.value.fundation_code == null ){
+    if (this.addUserData.type == 'natural' && (form.value.fundation_code == '' || form.value.fundation_code == null) ){
       this.alert.error = "Debe escribir el código proporcionado por la fundación"
       valid = false
       return

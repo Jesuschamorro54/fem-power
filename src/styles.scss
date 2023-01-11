@@ -126,12 +126,12 @@ input[type="date"] {
     -moz-appearance: textfield;
     max-width: -webkit-fill-available;
 
-    border: 1px solid $dark-fucsia;
+    border: 1px solid rgba($color: $dark-fucsia, $alpha: 0.2);
     // box-shadow: rgba($color: $fucsia, $alpha: 0.2) 0px 7px 20px 0px;
 
     &:focus {
         box-shadow: rgba($color: $fucsia, $alpha: 0.2) 0px 0px 3px 1px;
-        border: 1px solid $dark-fucsia;
+        //border: 1px solid $dark-fucsia;
     }
 
     &.error {

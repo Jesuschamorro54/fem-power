@@ -72,7 +72,7 @@ export class AppService {
     }else{
       this.token = null
     }
-    console.log("Session: ", this.user_session)
+    console.log("user_session: ", this.user_session)
   }
 
 
