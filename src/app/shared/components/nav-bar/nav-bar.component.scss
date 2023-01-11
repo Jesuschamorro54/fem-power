@@ -60,34 +60,146 @@
             .nav-link a.active {
                 color: $dark-fucsia;
             }
+
+            .profile {
+                position: relative;
+
+                .item {
+                    padding: 0px;
+                    position: relative;
+                    cursor: pointer;
+                    height: 40px;
+                    width: 40px;
+                    display: flex;
+                    text-align: center;
+
+                    img {
+                        border-radius: 50%;
+                        height: 30px;
+                        width: 30px;
+                        margin: auto;
+                        margin-right: 0;
+                    }
+                }
+
+                .menu {
+
+                    position: absolute;
+                    top: 55px;
+                    right: 0px;
+                    width: 300px;
+                    padding: 0;
+                    border-radius: 0px 0px 4px 4px;
+                    border: 1px solid rgba(45, 45, 45, .15);
+                    background-color: white;
+                    box-shadow: 0 2px 4px 0 #ddd;
+
+                    li {
+
+                        transition: all 400ms;
+
+                        &:first-child {
+                            border-bottom: 1px solid var(--color-border);
+                            margin-bottom: 10px;
+
+                            &>a {
+                                padding: 20px;
+                            }
+
+                            &>a:active {
+                                color: #1e4590;
+                            }
+
+                            .row {
+                                display: flex;
+
+                                &>img {
+                                    width: 50px;
+                                    height: 50px;
+                                    border-radius: 50%;
+                                }
+
+                                h3 {
+                                    color: var(--color-font);
+                                    margin: 4px 0 0 12px;
+                                    font-weight: 600;
+                                    font-size: 18px;
+                                }
+
+                                h4 {
+                                    font-weight: 400;
+                                    margin: 4px 0 0 12px;
+                                    color: var(--color-font-gray);
+                                    // color: rgba(3, 27, 78, 0.6);
+                                }
+                            }
+                        }
+
+                        &>a {
+                            width: 100%;
+                            padding: 10px 20px;
+                            color: var(--color-font);
+
+                            &>:active {
+                                color: $text-color;
+                            }
+                        }
+
+                        &:last-child {
+                            margin-bottom: 10px;
+                        }
+
+                        &:hover {
+                            background-color: rgba($color: #ccc, $alpha: 0.5);
+                        }
+                    }
+
+                }
+            }
+
+            .dropdown {
+
+                .menu {
+                  display: none;
+                }
+          
+                .item.open {
+                  &+.menu {
+                    display: block;
+                  }
+                }
+              }
         }
     }
 
     @media (max-width: 620px) {
         .content-nav .logo .item .logo-label {
-           display: none;
-       }
+            display: none;
+        }
 
-       .content-nav .nav-options {
+        .content-nav .nav-options {
             justify-content: center;
             width: 100%;
             margin: 0;
             padding: 0;
-       }
-   }
-
-   @media (max-width: 522px) {
-    .content-nav .nav-options {
-
-        li {
-            a {display: none;}
-    
-            i {font-size: 20px;}
         }
+    }
 
-        
-   }
+    @media (max-width: 522px) {
+        .content-nav .nav-options {
+
+            li {
+                a {
+                    display: none;
+                }
+
+                i {
+                    font-size: 20px;
+                }
+            }
+
+
+        }
+    }
+
 }
-
-}
-

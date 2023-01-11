@@ -6,14 +6,24 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ClickOutsideDdownDirective } from './directives/clickOutsideDdown.directive';
 import { AwsS3Service } from './services/awsS3.service';
+import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase, UserClassName } from './pipes/shared.pipe';
 
 
 
 @NgModule({
   declarations: [
+    // Components
     NavBarComponent,
     FooterComponent,
-    ClickOutsideDdownDirective
+    ClickOutsideDdownDirective,
+    
+    // Pipes
+    RoleName, 
+    UserClassName, 
+    CutUserNamePipe, 
+    notificationsDate, 
+    messageDate, 
+    ToLowerCase
   ],
   
   imports: [

@@ -12,7 +12,42 @@
         </header>
 
         <!-- OPTIONS -->
+
+        <!-- Usuario con Session -->
         <ul *ngIf="_appService.user_session == 1" class="nav-options">
+            <div (clickOutsideDdown)="showProfile=false" class="profile dropdown">
+
+                <div (click)="toggleProfile()" [ngClass]="{'open':showProfile}" class="item">
+                    <img #userAvatar [src]="_appService.user_data.picture"
+                    (error)="userAvatar.src='https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg' ">
+                </div>
+
+
+                <ul class="menu">
+                    <li>
+                        <a>
+                            <div class="row">
+                                <img [src]="_appService.user_data.picture" #menuUserAvatar
+                                    [className]="_appService.user_data.role | userClassName"
+                                    (error)="menuUserAvatar.src='https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'">
+                                <div class="name">
+                                    <h3>{{_appService.user_data.name | cutUserName: '2'}}</h3>
+                                    <h4>{{_appService.user_data.role | roleName}}</h4>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a>Mi Perfil</a>
+                    </li>
+
+                    <li>
+                        <a (click)="logout(0)">Cerrar sesión</a>
+                    </li>
+                </ul>
+
+            </div>
         </ul>
 
         <ul *ngIf="_appService.user_session == 0" class="nav-options">
