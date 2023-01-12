@@ -30,7 +30,7 @@ export class SignUpComponent implements OnInit {
   uploading_file = false;
 
   // Message
-  alert = {error: null, sucess: null}
+  alert: any = {error: null, sucess: null}
 
   // Auth
   isConfirmed: boolean =  false;
@@ -44,7 +44,7 @@ export class SignUpComponent implements OnInit {
     
     let valid = true;
 
-    this.alert.error = this.cleanObject(this.alert.error)
+    this.alert = this.cleanObject(this.alert)
 
     if (form.value.name == "" || form.value.name == undefined){
       this.alert.error = "Por favor escribe tu nombre"
@@ -64,13 +64,18 @@ export class SignUpComponent implements OnInit {
       return
     }
 
+    if (!this.addUserData.type) {
+      this.alert.error = "Seleccione el tipo de usuario"
+      valid = false
+    }
+
     if (this.addUserData.type == 'natural' && (form.value.fundation_code == '' || form.value.fundation_code == null) ){
       this.alert.error = "Debe escribir el código proporcionado por la fundación"
       valid = false
       return
     }
 
-    if (this.addUserData.type == 'company' && (this.addUserData.certificate == '' || this.addUserData.certificate == null)){
+    if (['company', 'fundation'].includes(this.addUserData.type) && (this.addUserData.certificate == '' || this.addUserData.certificate == null)){
       this.alert.error = "Por favor adjunte el certificado"
       valid = false;
       return
@@ -123,7 +128,7 @@ export class SignUpComponent implements OnInit {
       this._authService.signUp(this.addUserData).subscribe(signUpResponse => {
         
         this.sending = false;
-        console.log("signUp() data: ", signUpResponse);
+        console.log("signUp data: ", signUpResponse);
 
         if(signUpResponse != null){
           if (signUpResponse.status == 'ok'){
@@ -137,8 +142,6 @@ export class SignUpComponent implements OnInit {
                 type: this.addUserData.type, 
                 password: this.addUserData.password
               }));
-
-              console.log("Registrado")
 
               this._router.navigate(['auth/confirm'], {queryParams: {token: username_encrypt}})
 

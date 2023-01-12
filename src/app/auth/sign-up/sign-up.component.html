@@ -7,7 +7,7 @@
 
             <h2 class="sign-up-title">Registrate</h2>
 
-            <span class="message">{{alert.error}}</span>
+            <span class="message" *ngIf="alert.error != '' ">{{alert.error}}</span>
 
             <form #singUpForm="ngForm" (ngSubmit)="verifyData(singUpForm)">
 

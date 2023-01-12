@@ -48,7 +48,8 @@ export class AuthService {
       clientMetadata: {
         role: addData.type,
         cellphone: addData.cellphone,
-        certificate: addData.certificate
+        certificate: addData.certificate,
+        fundation_code: addData.fundation_code
       },
       attributes:{
         name:addData.name,        
