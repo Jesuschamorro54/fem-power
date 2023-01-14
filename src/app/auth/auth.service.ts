@@ -213,6 +213,18 @@ export class AuthService {
     )
   }
 
+  public federatedSignIn(customProvider) {
+
+    localStorage.setItem('federated_signin', 'true');
+    
+    return from(Auth.federatedSignIn({ customProvider }).then((response: any) => {
+      return { status: 'ok', response }
+    }).catch(error => {
+      localStorage.removeItem('federated_signin');
+      return { status: 'error', error }
+    }))
+  }
+
   public getUser(): Observable<any> {
     return from(Auth.currentUserInfo().then(user => {
       console.log("Current user: ", user)

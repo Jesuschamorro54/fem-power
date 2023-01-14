@@ -243,4 +243,20 @@ export class SignUpComponent implements OnInit {
 
   }
 
+  federatedLogin = {
+    Facebook: false,
+    Google: false
+  };
+
+  federatedSignIn(customProvider) {
+    if (!this.federatedLogin[customProvider]) {
+      this.federatedLogin[customProvider] = true;
+      console.log('federatedLogin: ', this.federatedLogin);    
+      this._authService.federatedSignIn(customProvider).subscribe(response => {
+        // this.federatedLogin[customProvider] = false;
+        console.log('response: ', response);
+      });
+    }
+  }
+
 }
