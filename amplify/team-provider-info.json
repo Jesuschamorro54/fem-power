@@ -1,35 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-fempower-dev-202439-authRole",
-      "UnauthRoleArn": "arn:aws:iam::714695911452:role/amplify-fempower-dev-202439-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::714695911452:role/amplify-fempower-dev-202439-authRole",
+      "AuthRoleName": "amplify-fempower-dev-202059-authRole",
+      "UnauthRoleArn": "arn:aws:iam::714695911452:role/amplify-fempower-dev-202059-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::714695911452:role/amplify-fempower-dev-202059-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-fempower-dev-202439-deployment",
-      "UnauthRoleName": "amplify-fempower-dev-202439-unauthRole",
-      "StackName": "amplify-fempower-dev-202439",
-      "StackId": "arn:aws:cloudformation:us-east-1:714695911452:stack/amplify-fempower-dev-202439/e4cc3b40-8d60-11ed-a4ea-1255ca2e1ccd",
-      "AmplifyAppId": "d3odkbnsv8jcnu",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-fempower-dev-202439-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "DeploymentBucketName": "amplify-fempower-dev-202059-deployment",
+      "UnauthRoleName": "amplify-fempower-dev-202059-unauthRole",
+      "StackName": "amplify-fempower-dev-202059",
+      "StackId": "arn:aws:cloudformation:us-east-1:714695911452:stack/amplify-fempower-dev-202059/b413c3f0-9860-11ed-8451-121ea4522005",
+      "AmplifyAppId": "d35sfyzbpga9d0"
     },
     "categories": {
       "auth": {
-        "fempowere9ab6d5c": {}
-      },
-      "function": {
-        "fempowere9ab6d5cDefineAuthChallenge": {
-          "deploymentBucketName": "amplify-fempower-dev-202439-deployment",
-          "s3Key": "amplify-builds/fempowere9ab6d5cDefineAuthChallenge-72703161734b696d3847-build.zip"
-        },
-        "fempowere9ab6d5cCreateAuthChallenge": {
-          "deploymentBucketName": "amplify-fempower-dev-202439-deployment",
-          "s3Key": "amplify-builds/fempowere9ab6d5cCreateAuthChallenge-5476633456673941524a-build.zip"
-        },
-        "fempowere9ab6d5cVerifyAuthChallengeResponse": {
-          "RECAPTCHASECRET": "",
-          "deploymentBucketName": "amplify-fempower-dev-202439-deployment",
-          "s3Key": "amplify-builds/fempowere9ab6d5cVerifyAuthChallengeResponse-444e5437393534444d73-build.zip"
-        }
+        "fempower": {}
       }
     }
   }

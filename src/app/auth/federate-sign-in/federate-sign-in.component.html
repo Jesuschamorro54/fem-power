@@ -5,19 +5,11 @@
 
         <div class="container">
 
-            <h2 class="sign-up-title">Registrate</h2>
+            <h2 class="sign-up-title">Elije el tipo de usuario</h2>
 
             <span class="message" *ngIf="alert.error != '' ">{{alert.error}}</span>
 
             <form #singUpForm="ngForm" (ngSubmit)="verifyData(singUpForm)">
-
-                <input type="text" name="name" placeholder="Nombres" [(ngModel)]="addUserData.name">
-                <input type="email" name="email" placeholder="Correo electronico" autocomplete="off" [(ngModel)]="addUserData.email">
-                <input type="text" name="cellphone"  placeholder="Télefono" [(ngModel)]="addUserData.cellphone">
-
-                <input type="password" name="password" placeholder="Contraseña" [(ngModel)]="addUserData.password">
-
-                <input type="password" placeholder="Confirmar contraseña">
 
                 <!-- SELECT -->
                 <label class="select_list_2 dropdown" [ngClass]="{'active': ddownMonth1.checked}"
@@ -57,22 +49,11 @@
                 <!-- FIN INPUT UPLOAD -->
 
 
-                <button type="submit" class="button" >Registrar</button>
+                <button type="submit" class="button" >Continuar</button>
 
                 <div class="separator">
                     <p>o</p>
                 </div>
-                
-                <button class="button btn-facebook" (click)="federatedSignIn('Facebook')">
-                    <i class="icon-facebook"></i>
-                    Facebook
-                </button>
-
-
-                <button class="button btn-google" (click)="federatedSignIn('Google')">
-                    <img src="../../../assets/images/google.svg" width="24">
-                    Google
-                </button>
             </form>
 
 

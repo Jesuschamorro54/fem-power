@@ -1,19 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { DataRegister } from 'src/app/models/auth.models';
+import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { AwsS3Service } from 'src/app/shared/services/awsS3.service';
 import { AuthService } from '../auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+  selector: 'app-federate-sign-in',
+  templateUrl: './federate-sign-in.component.html',
+  styleUrls: ['./federate-sign-in.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class FederateSignInComponent implements OnInit {
+
+  //Uploading variables
+  uploading_file = false;
+
+  // Message
+  alert: any = {error: null, sucess: null}
+
+  // Auth
+  addUserData = {} as DataRegister;
 
   constructor(
-    private _router: Router,
+    private _route: ActivatedRoute,
     private _authService: AuthService,
     private _awsS3Service: AwsS3Service
   ) { }
@@ -26,42 +35,19 @@ export class SignUpComponent implements OnInit {
   ]
   type_select = {label: this.user_types[0].label, value: this.user_types[0].value}
 
-  //Uploading variables
-  uploading_file = false;
+  ngOnInit(): void {
 
-  // Message
-  alert: any = {error: null, sucess: null}
+    this._route.queryParams.subscribe(params => {
+      console.log("params: ", params)
+      this.customProvider = params['provider']
+    })
 
-  // Auth
-  isConfirmed: boolean =  false;
-  addUserData = {} as DataRegister;
 
-  ngOnInit(): void {    
   }
 
   verifyData(form): void {
     
     let valid = true;
-
-    this.alert = this.cleanObject(this.alert)
-
-    if (form.value.name == "" || form.value.name == undefined){
-      this.alert.error = "Por favor escribe tu nombre"
-      valid = false;
-      return
-    }
-
-    if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.value.email))){
-      this.alert.error = "Verifica la dirección de correo electronico"
-      valid = false;
-      return
-    }
-
-    if (form.value.password == undefined || form.value.password?.length < 8) {
-      this.alert.error = "La contraseña debe tener minimo 8 digitos"
-      valid = false;
-      return
-    }
 
     if (!this.addUserData.type) {
       this.alert.error = "Seleccione el tipo de usuario"
@@ -80,76 +66,34 @@ export class SignUpComponent implements OnInit {
       return
     }
 
-    this.addUserData.email = form.value.email;
-    this.addUserData.password = form.value.password;
-    this.addUserData.name = form.value.name;
+    this.addUserData.email = "";
+    this.addUserData.password = "";
+    this.addUserData.name = "";
     this.addUserData.code = "";
     
     console.log(this.addUserData)
 
-    if (valid) this.signUp();
+    if (valid) this.federatedSignIn();
 
   }
 
-  checkMandatoryFields(){}
+  customProvider
+  federatedLogin = {
+    Facebook: false,
+    Google: false
+  };
 
-
-  cleanObject(obj): Object {
-    let result = {}
-    
-    for (const key in obj){
-
-      switch (typeof obj[key]) {
-        case "number":
-          result[key] = 0
-          break;
-        case "string":
-          result[key] = "";
-          break;
-        case "boolean":
-          result[key] = false;
-          break;
-
-        case "object":
-          result[key] = this.cleanObject(obj[key])
-          break;
-        default:
-          break;
-      }
-    }
-    return result
-  }
-
-  sending = false;
-  signUp(): void {
-
-    if (!this.sending) {
-      this.sending = true;
-
-      this._authService.signUp(this.addUserData).subscribe(signUpResponse => {
-        
-        this.sending = false;
-        console.log("signUp data: ", signUpResponse);
-
-        if(signUpResponse != null){
-          if (signUpResponse.status == 'ok'){
-            this.addUserData['type'] = signUpResponse.user.type;
-            this.isConfirmed = signUpResponse.user.userConfirmed;
-
-            if (!this.isConfirmed) {
-
-              let username_encrypt = window.btoa(JSON.stringify({ 
-                username: this.addUserData.email, 
-                type: this.addUserData.type, 
-                password: this.addUserData.password
-              }));
-
-              this._router.navigate(['auth/confirm'], {queryParams: {token: username_encrypt}})
-
-            }
-          }
-        }
-      })
+  federatedSignIn() {
+    if (!this.federatedLogin[this.customProvider]) {
+      this.federatedLogin[this.customProvider] = true;
+      console.log('federatedLogin3: ', this.federatedLogin);
+      
+      console.log(this.customProvider);
+      
+      this._authService.federatedSignIn(this.customProvider).subscribe(response => {
+        // this.federatedLogin[customProvider] = false;
+        console.log('response: ', response);
+      });
     }
   }
 
@@ -243,12 +187,5 @@ export class SignUpComponent implements OnInit {
     }
 
   }
-
-
-  federatedSignIn(customProvider) {
-    this._router.navigate(["auth/federate-sign-up"], {queryParams: { provider: customProvider }})
-  }
-
-  
 
 }

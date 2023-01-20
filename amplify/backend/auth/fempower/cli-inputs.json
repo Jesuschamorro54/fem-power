@@ -1,10 +1,8 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "fempowere9ab6d5c_identitypool_e9ab6d5c",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "fempowe9ab6d5c",
-    "userPoolName": "fempowere9ab6d5c_userpool_e9ab6d5c",
+    "resourceNameTruncated": "fempow2d6095bf",
+    "userPoolName": "FemPower",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,31 +29,23 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "fempowe9ab6d5c_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "fempow2d6095bf_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "e9ab6d5c",
-    "resourceName": "fempowere9ab6d5c",
-    "authSelections": "identityPoolAndUserPool",
-    "useDefault": "defaultSocial",
-    "hostedUI": true,
+    "sharedId": "2d6095bf",
+    "resourceName": "fempower",
+    "authSelections": "userPoolOnly",
+    "useDefault": "manual",
     "usernameAttributes": [
       "email"
     ],
-    "triggers": {
-      "DefineAuthChallenge": [
-        "captcha-define-challenge"
-      ],
-      "CreateAuthChallenge": [
-        "captcha-create-challenge"
-      ],
-      "VerifyAuthChallengeResponse": [
-        "captcha-verify"
-      ]
-    },
-    "hostedUIDomainName": "fempowere9ab6d5c-e9ab6d5c",
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "triggers": {},
+    "hostedUI": true,
+    "hostedUIDomainName": "fempower-domain",
     "authProvidersUserPool": [],
     "hostedUIProviderMeta": "[]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4000/auth/sign/\"],\"LogoutURLs\":[\"http://localhost:4000/auth/sign/\"]}",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4000/\"],\"LogoutURLs\":[\"http://localhost:4000/\"]}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,

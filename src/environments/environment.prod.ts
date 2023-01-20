@@ -1,3 +1,12 @@
+import { userPool } from "src/credentials";
+
 export const environment = {
-  production: true
+  production: true,
+
+  cognito: userPool,
+
+  // For dev
+  urlAPI: '',
+  redirectSignIn: 'http://127.0.0.1:4000/auth/sign',
+  redirectSignOut: 'http://127.0.0.1:4000/auth/login',
 };

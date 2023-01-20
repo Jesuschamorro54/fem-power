@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SharedModule } from '../shared/shared.module';
+import { FederateSignInComponent } from './federate-sign-in/federate-sign-in.component';
 
 
 
@@ -16,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
     LoginComponent,
     ConfirmRegistrationComponent,
     SignUpComponent,
+    FederateSignInComponent,
     
   ],
   imports: [

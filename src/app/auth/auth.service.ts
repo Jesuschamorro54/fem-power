@@ -49,7 +49,7 @@ export class AuthService {
         role: addData.type,
         cellphone: addData.cellphone,
         certificate: addData.certificate,
-        fundation_code: addData.fundation_code
+        // fundation_code: addData.fundation_code
       },
       attributes:{
         name:addData.name,        
@@ -97,6 +97,13 @@ export class AuthService {
    */
   public signOut(): Observable<any> {
     return from(Auth.signOut().then(() => {
+
+      if (navigator.credentials && navigator.credentials.preventSilentAccess) {
+        // Turn on the mediation mode so auto sign-in won't happen
+        // until next time user intended to do so.
+        navigator.credentials.preventSilentAccess();
+      }
+
       this.userLogged = null;
       this.token = null;
 
