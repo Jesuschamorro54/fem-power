@@ -1,11 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Amplify, Auth } from 'aws-amplify';
-import { from, Observable } from 'rxjs';
+import { catchError, from, map, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppService } from '../app.service';
 import { DataRegister, UserData } from '../models/auth.models';
 import awsconfig from '../../aws-exports';
+import { Route, Router } from '@angular/router';
 
 Amplify.configure(awsconfig);
 
@@ -15,6 +16,10 @@ Amplify.configure(awsconfig);
 export class AuthService {
 
   public dataLogin = { email: '', password: '', }
+
+  UrlLambdaApi = environment.urlAPI;
+
+  toVerifyUser = false;
 
   /** Token del usuario logueado*/
   public token;
@@ -28,8 +33,20 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private _appService: AppService
+    private _appService: AppService,
+    private _route: Router
   ) { }
+
+
+  private getHeaders(): any {
+    let headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.token
+    })
+
+    return ({ headers: headers });
+  }
+
 
   /**
    * 
@@ -218,6 +235,22 @@ export class AuthService {
 
       })
     )
+  }
+
+  sendUserType(body, username) : Observable<any> {
+    return this.http.post(`${this.UrlLambdaApi}/user?username=${username}`, body, this.getHeaders()).pipe(
+      
+      map((response: any) => {
+
+        const {status, data} = response;;
+        
+        return {valid: status, data: data}
+        
+      }),
+      catchError(error => {
+        return of(error)
+      })
+    );
   }
 
   public federatedSignIn(customProvider) {

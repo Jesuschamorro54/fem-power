@@ -19,7 +19,7 @@ export class FederateSignInComponent implements OnInit {
   alert: any = {error: null, sucess: null}
 
   // Auth
-  addUserData = {} as DataRegister;
+  addUserData: any = { type: null, fundation_code: null, certificate: null };
 
   constructor(
     private _route: ActivatedRoute,
@@ -65,15 +65,10 @@ export class FederateSignInComponent implements OnInit {
       valid = false;
       return
     }
-
-    this.addUserData.email = "";
-    this.addUserData.password = "";
-    this.addUserData.name = "";
-    this.addUserData.code = "";
     
     console.log(this.addUserData)
 
-    if (valid) this.federatedSignIn();
+    if (valid) this.confirmUserRegisterData() 
 
   }
 
@@ -83,18 +78,15 @@ export class FederateSignInComponent implements OnInit {
     Google: false
   };
 
-  federatedSignIn() {
-    if (!this.federatedLogin[this.customProvider]) {
-      this.federatedLogin[this.customProvider] = true;
-      console.log('federatedLogin3: ', this.federatedLogin);
-      
-      console.log(this.customProvider);
-      
-      this._authService.federatedSignIn(this.customProvider).subscribe(response => {
-        // this.federatedLogin[customProvider] = false;
-        console.log('response: ', response);
-      });
-    }
+  confirmUserRegisterData() {
+
+    // let username = localStorage.getItem()
+
+    // this._authService.sendUserType(this.addUserData).subscribe(response => {
+    //   const {valid, data} = response;
+
+    //   console.log("Validado")
+    // })
   }
 
 

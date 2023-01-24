@@ -244,9 +244,26 @@ export class SignUpComponent implements OnInit {
 
   }
 
+  federatedLogin = {
+    Facebook: false,
+    Google: false
+  };
 
   federatedSignIn(customProvider) {
-    this._router.navigate(["auth/federate-sign-up"], {queryParams: { provider: customProvider }})
+
+    if (!this.federatedLogin[customProvider]) {
+      this.federatedLogin[customProvider] = true;
+
+      this._authService.federatedSignIn(customProvider).subscribe(response => {
+
+        if (response.status == 'ok'){
+          localStorage.setItem("verifyUser", "true")
+        }
+
+      });
+    }
+
+    
   }
 
   

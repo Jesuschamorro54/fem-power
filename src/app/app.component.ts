@@ -18,6 +18,8 @@ export class AppComponent {
     public _router: Router,
   ) {
     
+    if (localStorage.getItem('verifyUser')) this._router.navigate(["/auth/federate-sign-up"]);
+
     // Verificar si hay un usuario con la sessión abierta
     this._authService.isUserAuthenticated().subscribe();
   }
