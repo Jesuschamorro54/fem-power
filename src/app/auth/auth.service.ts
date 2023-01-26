@@ -69,6 +69,7 @@ export class AuthService {
         // fundation_code: addData.fundation_code
       },
       attributes:{
+        token,
         name:addData.name,        
       }
     }

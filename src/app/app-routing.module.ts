@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './landing-pages/home/home.component';
 import { StaticFundationComponent } from './landing-pages/static-fundation/static-fundation.component';
 import { StaticWomenComponent } from './landing-pages/static-women/static-women.component';
+import { DefauldGuard } from './shared/guards/defauld.guard';
 import { HomeGuard } from './shared/guards/home.guard';
 
 const routes: Routes = [
@@ -12,7 +13,7 @@ const routes: Routes = [
   
   
   // Components
-  { path: '', component: HomeComponent},
+  { path: '', component: HomeComponent, canActivate: [DefauldGuard] },
   { path: 'home', component: HomeComponent, canActivate: [HomeGuard] },
   { path: 'fundations', component: StaticFundationComponent},
   { path: 'women', component: StaticWomenComponent},

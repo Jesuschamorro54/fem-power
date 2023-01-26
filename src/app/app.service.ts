@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 
 
 
@@ -25,8 +25,13 @@ export class AppService {
   /** -1: No autenticado 0: No en sessión 1: En session */
   public user_session: number = -1;
 
+  /** Comprobar si el usuario está verificado */
+  public user_confirmed_account = false;
+
   /** Contiene los datos de la sessión del usuario autenticado -> line 18 */
   public cognitoUserAuthenticated: any;
+  
+  public loadingApp: Boolean = false;
 
   /**Cargar los headers de la petición */
   private getHeaders(): any {
@@ -53,8 +58,10 @@ export class AppService {
     }
   }
 
+  userAuthenticate: Subject<any> = new Subject();
   public setUserData(user) {
     this.cognitoUserAuthenticated = user;
+    this.userAuthenticate.next(user);
 
     if (this.cognitoUserAuthenticated){
 

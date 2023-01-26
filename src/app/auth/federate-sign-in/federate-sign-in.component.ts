@@ -37,11 +37,6 @@ export class FederateSignInComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._route.queryParams.subscribe(params => {
-      console.log("params: ", params)
-      this.customProvider = params['provider']
-    })
-
 
   }
 
@@ -78,16 +73,7 @@ export class FederateSignInComponent implements OnInit {
     Google: false
   };
 
-  confirmUserRegisterData() {
-
-    // let username = localStorage.getItem()
-
-    // this._authService.sendUserType(this.addUserData).subscribe(response => {
-    //   const {valid, data} = response;
-
-    //   console.log("Validado")
-    // })
-  }
+  confirmUserRegisterData() { }
 
 
   addFile(event){

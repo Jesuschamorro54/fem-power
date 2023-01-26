@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent, canActivate: [] },
       { path: 'sign', component: SignUpComponent },
       { path: 'confirm', component: ConfirmRegistrationComponent },
-      { path: 'federate-sign-up', component: FederateSignInComponent },
+      { path: 'confirm-registration', component: FederateSignInComponent },
     ]
   },
 

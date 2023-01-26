@@ -14,11 +14,9 @@ export class AppComponent {
 
   constructor (
     private _authService: AuthService,
-    private _appservice: AppService,
-    public _router: Router,
+    public _appService: AppService,
   ) {
     
-    if (localStorage.getItem('verifyUser')) this._router.navigate(["/auth/federate-sign-up"]);
 
     // Verificar si hay un usuario con la sessión abierta
     this._authService.isUserAuthenticated().subscribe();

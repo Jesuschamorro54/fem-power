@@ -1,7 +1,18 @@
 
 <div class="fem-power">
 
-  <div class="app-content">
+  <div class="app-content" *ngIf="_appService.loadingApp">
+
+    <div class="spinner" style="display: flex; height: inherit; width: inherit;">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div>
+
+  <div class="app-content" *ngIf="!_appService.loadingApp">
 
     <nav-bar></nav-bar>
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
+import { AppService } from 'src/app/app.service';
 import { DataRegister } from 'src/app/models/auth.models';
 import { AwsS3Service } from 'src/app/shared/services/awsS3.service';
 import { AuthService } from '../auth.service';
@@ -13,6 +14,7 @@ import { AuthService } from '../auth.service';
 export class SignUpComponent implements OnInit {
 
   constructor(
+    private _appService: AppService,
     private _router: Router,
     private _authService: AuthService,
     private _awsS3Service: AwsS3Service
@@ -257,6 +259,7 @@ export class SignUpComponent implements OnInit {
       this._authService.federatedSignIn(customProvider).subscribe(response => {
 
         if (response.status == 'ok'){
+          this._appService.loadingApp = true;
           localStorage.setItem("verifyUser", "true")
         }
 
