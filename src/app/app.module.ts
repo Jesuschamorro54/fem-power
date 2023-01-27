@@ -8,14 +8,15 @@ import { AuthComponent } from './auth/auth.component';
 import { SharedModule } from './shared/shared.module';
 import { StaticFundationComponent } from './landing-pages/static-fundation/static-fundation.component';
 import { StaticWomenComponent } from './landing-pages/static-women/static-women.component';
-import { HomeComponent } from './landing-pages/home/home.component';
+import { StaticHomeComponent } from './landing-pages/static-home/static-home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StaticFundationComponent,
     StaticWomenComponent,
-    HomeComponent,
+    StaticHomeComponent,
+    StaticHomeComponent,
   ],
   imports: [
     BrowserModule,
