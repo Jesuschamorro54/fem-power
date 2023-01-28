@@ -17,7 +17,14 @@
         <ul *ngIf="_appService.user_session == 1" class="nav-options">
 
             <li class="nav-link" *ngIf="!_appService.user_confirmed_account">
-                <a [routerLink]="['/auth/confirm-registration']">Verificar cuenta</a>
+                <a [routerLink]="['/fem/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
+            </li>
+            <li class="nav-link" *ngIf="!_appService.user_confirmed_account">
+                <a [routerLink]="['/fem/women']" [routerLinkActive]="['active']">Mujeres</a>
+            </li>
+            <hr>
+            <li class="nav-link" *ngIf="!_appService.user_confirmed_account">
+                <a [routerLink]="['/auth/confirm-registration']" [routerLinkActive]="['active']">Verificar cuenta</a>
             </li>
 
             <div (clickOutsideDdown)="showProfile=false" class="profile dropdown">
@@ -58,10 +65,10 @@
         <!-- Usuario fuera de la session -->
         <ul *ngIf="_appService.user_session == 0" class="nav-options">
             <li class="nav-link">
-                <a [routerLink]="['/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
+                <a [routerLink]="['/fem/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
             </li>
             <li class="nav-link">
-                <a [routerLink]="['/women']" [routerLinkActive]="['active']">Mujeres</a>
+                <a [routerLink]="['/fem/women']" [routerLinkActive]="['active']">Mujeres</a>
             </li>
             <hr>
             <li class="nav-link">
@@ -71,6 +78,7 @@
                 <a [routerLink]="['/auth/login']" [routerLinkActive]="['active']">Iniciar session</a>
             </li>
         </ul>
+
     </div>
 
 

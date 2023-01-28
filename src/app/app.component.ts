@@ -12,16 +12,31 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent {
   title = 'fempower';
 
-  constructor (
+  constructor(
+    private _router: Router,
     private _authService: AuthService,
     public _appService: AppService,
   ) {
-    
 
-    // Verificar si hay un usuario con la sessión abierta
+    _appService.loadingApp = false;
+
+    // Verificar si hay un usuario autenticado
     this._authService.isUserAuthenticated().subscribe();
+
+  
+    // if (!_appService.user_confirmed_account) {
+
+    //   _appService.userAuthenticate.subscribe(user => {
+
+    //     let confirmed = _appService.user_confirmed_account = user.attributes['custom:data_confirmation'] == "1";
+
+    //     if (!confirmed) _router.navigate(["/auth/confirm-registration"])
+        
+    //     _appService.loadingApp = false;
+    //   });
+    // }
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

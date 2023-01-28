@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ConfirmAccountWithCodeGuard } from '../shared/guards/confirm-account-with-code.guard';
 import { AuthComponent } from './auth.component';
 import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 import { FederateSignInComponent } from './federate-sign-in/federate-sign-in.component';
@@ -17,7 +18,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent, canActivate: [] },
       { path: 'sign', component: SignUpComponent },
       { path: 'confirm', component: ConfirmRegistrationComponent },
-      { path: 'confirm-registration', component: FederateSignInComponent },
+      { path: 'confirm-registration', component: FederateSignInComponent, canActivate: [ConfirmAccountWithCodeGuard] },
     ]
   },
 

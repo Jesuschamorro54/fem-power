@@ -260,7 +260,7 @@ export class SignUpComponent implements OnInit {
 
         if (response.status == 'ok'){
           this._appService.loadingApp = true;
-          localStorage.setItem("verifyUser", "true")
+          this._appService.user_confirmed_account_attemps = 0;
         }
 
       });
