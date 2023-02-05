@@ -26,8 +26,7 @@ export class AppService {
   public user_session: number = -1;
 
   /** Comprobar si el usuario está verificado */
-  public user_confirmed_account = false;
-  public user_confirmed_account_attemps = 0;
+  public user_code_confirmed = false;
 
 
   /** Contiene los datos de la sessión del usuario autenticado -> line 18 */

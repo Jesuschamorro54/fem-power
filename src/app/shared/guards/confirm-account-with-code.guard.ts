@@ -17,7 +17,7 @@ export class ConfirmAccountWithCodeGuard implements CanActivate {
 
     if (!this._appService.cognitoUserAuthenticated) return this._router.parseUrl('/fem/home');
 
-    if (!this._appService.user_confirmed_account){
+    if (!this._appService.user_code_confirmed){
       return true
     }
 

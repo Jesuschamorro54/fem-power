@@ -238,8 +238,8 @@ export class AuthService {
     )
   }
 
-  sendUserType(body, username) : Observable<any> {
-    return this.http.post(`${this.UrlLambdaApi}/user?username=${username}`, body, this.getHeaders()).pipe(
+  verifyFundationCode(data) : Observable<any> {
+    return this.http.post(`${this.UrlLambdaApi}/users/verify-code`, { data }, this.getHeaders()).pipe(
       
       map((response: any) => {
 

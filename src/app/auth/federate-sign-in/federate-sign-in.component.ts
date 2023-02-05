@@ -12,6 +12,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FederateSignInComponent implements OnInit {
 
+  // Parametro que se recibe desde otra vista
+  customProvider
+
   //Uploading variables
   uploading_file = false;
 
@@ -27,6 +30,8 @@ export class FederateSignInComponent implements OnInit {
     private _awsS3Service: AwsS3Service
   ) { }
 
+  
+
   user_types = [
     {label: 'Seleccione el tipo de usuario', value: null},
     {label: 'Mujer rural', value: 'natural'},
@@ -35,12 +40,9 @@ export class FederateSignInComponent implements OnInit {
   ]
   type_select = {label: this.user_types[0].label, value: this.user_types[0].value}
 
-  ngOnInit(): void {
+  ngOnInit() { }
 
-
-  }
-
-  verifyData(form): void {
+  verifyData(form) {
     
     let valid = true;
 
@@ -67,13 +69,30 @@ export class FederateSignInComponent implements OnInit {
 
   }
 
-  customProvider
-  federatedLogin = {
-    Facebook: false,
-    Google: false
-  };
+  /** En esta funcion se comprueba que el usuario haya colocado el código Correcto */
+  confirmUserRegisterData() {
+    
+    this._authService.verifyFundationCode(this.addUserData).subscribe(response => {
+      console.log("response: ", response)
+      
+      const {valid, data} = response;
 
-  confirmUserRegisterData() { }
+      
+
+      if (valid) {
+
+        let storage = {...this.addUserData, ...data[0]}
+        localStorage.setItem('dataUserToUpdate', JSON.stringify(storage))
+        this.federatedSignIn()
+        
+      }else {
+        this.alert.error = "El código es invalido"
+      }
+
+    })
+    
+
+  }
 
 
   addFile(event){
@@ -165,5 +184,21 @@ export class FederateSignInComponent implements OnInit {
     }
 
   }
+
+  
+  federatedLogin = {
+    Facebook: false,
+    Google: false
+  };
+
+  /** Esta es la funcion que redirecciona a google para realizar la autenticación */
+  federatedSignIn() {
+    if (!this.federatedLogin[this.customProvider]) {
+      this.federatedLogin[this.customProvider] = true;
+      this._authService.federatedSignIn(this.customProvider).subscribe();
+    }
+  }
+
+  
 
 }

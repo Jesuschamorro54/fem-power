@@ -7,8 +7,7 @@ const APP_ROUTES: Routes = [
   
   // Modules
   { path: 'auth', data: { preload: true, loadAfterSeconds: 1 }, loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule), canActivate: [] },
-  { path: '', data: { preload: true, loadAfterSeconds: 2 }, loadChildren: () => import('./landing-pages/landin.module').then(mod => mod.LandinModule), canActivate: [HomeGuard] },
-  { path: 'fem', data: { preload: true, loadAfterSeconds: 1 }, loadChildren: () => import('./landing-pages/landin.module').then(mod => mod.LandinModule), canActivate: [HomeGuard] },
+  { path: 'fem', data: { preload: true, loadAfterSeconds: 1 }, loadChildren: () => import('./landing-pages/landin.module').then(mod => mod.LandinModule), canActivate: [] },
 
   // { path: '', redirectTo: 'fem', pathMatch: 'full'},
   { path: '**', redirectTo: 'fem', pathMatch: 'full' },

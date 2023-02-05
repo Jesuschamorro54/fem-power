@@ -15,10 +15,10 @@ const routes: Routes = [
   {
     path: '', component: AuthComponent,
     children: [
-      { path: 'login', component: LoginComponent, canActivate: [] },
+      { path: 'login', component: LoginComponent },
       { path: 'sign', component: SignUpComponent },
       { path: 'confirm', component: ConfirmRegistrationComponent },
-      { path: 'confirm-registration', component: FederateSignInComponent, canActivate: [ConfirmAccountWithCodeGuard] },
+      { path: 'code-confirm', component: FederateSignInComponent},
     ]
   },
 

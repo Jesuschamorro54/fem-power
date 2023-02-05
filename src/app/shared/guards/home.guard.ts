@@ -29,9 +29,8 @@ export class HomeGuard implements CanActivate {
 
         this._appService.loadingApp = false;
 
-        if (user.attributes['custom:data_confirmation'] == "0" && this._appService.user_confirmed_account_attemps == 0) {
-          this._appService.user_confirmed_account = false;
-          this._appService.user_confirmed_account_attemps = 1;
+        if (user.attributes['custom:data_confirmation'] == "0") {
+          this._appService.user_code_confirmed = false;
           return this._router.parseUrl('/auth/confirm-registration');
         }
 

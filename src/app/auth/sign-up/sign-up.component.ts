@@ -253,19 +253,7 @@ export class SignUpComponent implements OnInit {
 
   federatedSignIn(customProvider) {
 
-    if (!this.federatedLogin[customProvider]) {
-      this.federatedLogin[customProvider] = true;
-
-      this._authService.federatedSignIn(customProvider).subscribe(response => {
-
-        if (response.status == 'ok'){
-          this._appService.loadingApp = true;
-          this._appService.user_confirmed_account_attemps = 0;
-        }
-
-      });
-    }
-
+    this._router.navigate(["/auth/code-confirm"], {queryParams: { customProvider } })
     
   }
 
