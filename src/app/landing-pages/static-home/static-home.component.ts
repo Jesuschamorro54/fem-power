@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./static-home.component.scss']
 })
 export class StaticHomeComponent implements OnInit {
+  public imgCollection: Array<object>;
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit(): void {
   }
+
 
 }

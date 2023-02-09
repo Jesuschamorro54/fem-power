@@ -7,7 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { ClickOutsideDdownDirective } from './directives/clickOutsideDdown.directive';
 import { AwsS3Service } from './services/awsS3.service';
 import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase, UserClassName } from './pipes/shared.pipe';
-
+import { SliderComponent } from './components/slider/slider.component';
+import { DonateButtonComponent } from './components/donate-button/donate-button.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase,
     // Components
     NavBarComponent,
     FooterComponent,
+    SliderComponent,
     ClickOutsideDdownDirective,
     
     // Pipes
@@ -23,7 +25,7 @@ import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase,
     CutUserNamePipe, 
     notificationsDate, 
     messageDate, 
-    ToLowerCase
+    ToLowerCase, SliderComponent, DonateButtonComponent
   ],
   
   imports: [
@@ -34,7 +36,9 @@ import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase,
 
   exports: [
     NavBarComponent,
+    SliderComponent,
     FooterComponent,
+    DonateButtonComponent,
     ClickOutsideDdownDirective,
   ],
   providers: [

@@ -1,0 +1,344 @@
+#section-1{
+    position: relative;
+    
+    width: 100%;
+    height: 510px;
+}
+
+#div-curve {
+    width: 100%;
+    height: 510px;
+
+    border-bottom-right-radius: 100px;
+    /* clip-path:path("M 0 0 V 0 670 L 1310 670 C 550 880 900 345 0 0"); */
+    clip-path:path("M 0 0 V 0 665 L 1310 665 C 600 510 900 180 0 0");
+    background: white;
+}
+
+.div-button-donate{
+    width: 28%;
+
+    position: absolute;
+    left: 200px;
+    top: 40%;
+}
+
+.div-button-donate button{
+    margin: 0 auto;
+    padding: 10px 30px 10px 30px;
+
+    font-size: 1.75em;   
+}
+
+.title-static-home{
+    text-align: center;
+
+    margin-top: 20px;
+
+    font-size: 1.5em;   
+}
+
+#img-section-1{
+    position: absolute;
+    right: 0px; 
+    top: 0px;
+
+    width: 41.3%;
+}
+
+#section-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 250px;
+}
+
+#section-2-h3{
+    width: 55%;
+    height: fit-content;
+
+    color: #8C0054;
+    font-size: 1.4em;
+}
+
+#beneficiaries{
+    width: 21%;
+    height: fit-content;
+}
+
+#beneficiaries button{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px auto;
+    
+    width: 88%;
+    height: 50px;
+    margin-bottom: 20px;
+    padding: 5px;
+
+    border: 2px solid #8C0054;
+    background: white;
+    color: black;
+    font-size: 1.25em;
+}
+
+#beneficiaries i{
+    color: #8C0054;
+}
+
+#section-3{
+    width: 100%;
+    height: 400px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+
+    background: white;
+}
+
+#section-4{
+    width: 100%;
+    height: 600px;
+    padding: 20px;
+}
+
+#section-4 .title-static-home{
+    margin-bottom: 10px;
+
+   color: #8C0054;
+   font-weight: bold;
+}
+
+.all-merits{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px auto;
+
+    width: 70%;
+    height: 230px;
+    margin-top: 20px;
+}
+
+.merits-1, .merits-2{
+    text-align: center;
+
+    height: 200px;
+    margin: 0px 20px 20px 20px;
+    padding: 20px;
+
+    background: white;
+    border-radius: 10px;
+}
+
+.merits-1{
+    width: 25%;
+}
+
+.merits-2{
+    width: 38%;
+}
+
+.div-icons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px auto;
+
+    margin-bottom: 10px;
+
+    background: #FFF5FB;
+    border-radius: 50%;
+}
+
+.merits-1 .div-icons{
+    width: 35%;
+    height: 40%;
+}
+
+.merits-2 .div-icons{
+    width: 22%;
+    height: 40%;
+}
+
+
+.div-icons i {    
+    font-size: 2.5em;
+    color: #8C0054;
+
+    margin: 5px;
+}
+
+.all-merits p{
+    font-size: 1.25em;
+}
+
+#section-5{
+    width: 100%;
+    height: 200px;
+    padding: 20px;
+
+    background: white;
+}
+
+#section-5 .title-static-home{
+    margin-bottom: 20px;
+
+    font-weight: bold;
+}
+
+#mission{
+    text-align: center;
+    margin: 0px auto;
+
+    width: 57%;
+    font-size: 1.25em;
+}
+
+#section-6{
+    width: 100%;
+    height: 370px;
+    padding: 20px;
+
+}
+
+#section-6 .title-static-home{
+    font-weight: bold;
+    color: #8C0054;
+}
+
+#container-view{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px auto;
+
+    width: 57%;
+    height: 250px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.view{
+    width: 45%;
+    height: 230px;
+}
+
+
+.view img{
+    width: 100%;
+    height: 230px;
+
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#description-view{
+    display: flex;
+    align-items: center;
+}
+
+.view p{
+    font-size: 1.25em;
+    text-align: justify;
+}
+
+#section-7{
+    width: 100%;
+    height: 400px;
+
+    background: white;
+}
+
+#container-know-process{
+    display: flex;
+
+    margin: 0px auto;
+
+    width: 60%;
+    height: inherit;
+}
+
+.know-process{ 
+    width: 45%;
+
+    padding: 20px;
+    margin: 15px;
+
+}
+
+
+.know-process img{   
+    display: block;
+
+    width: 80%;
+    height: 250px;
+    margin: 0px auto;
+    margin-bottom: 15px;
+
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.know-process p{
+    text-align: center;
+    margin: 0px auto;
+
+    width: 80%;
+    font-size: 1.25em;   
+
+}
+
+
+#section-footer{
+    position: relative;
+
+    width: 100%;
+    height: 503px;
+}
+
+#contents-footer{
+    position: absolute;
+    top: 100px;
+    text-align: center;
+    
+    width: 100%;
+}
+
+#contents-footer p{
+    margin-bottom: 20px;
+    font-size: 1.25em;
+}
+
+#contents-footer button{
+    margin: 0px auto;
+
+    padding: 10px 20px 10px 20px;
+
+    background: #FFF5FB;
+    border-radius: 10px;
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #8C0054;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
+

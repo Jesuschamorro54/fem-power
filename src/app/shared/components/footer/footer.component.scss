@@ -1,0 +1,28 @@
+#static-footer{
+    position: relative;
+    width: 100%px;
+    height: 500px;
+
+    background: white;
+}
+
+#div-img-static{
+    width: inherit;
+    height: inherit;
+}
+
+#div-img-static img{
+    width: 100%;
+    height: inherit;
+}
+
+#div-p-static{
+    position: absolute;
+    text-align: center;
+    bottom: 15%;
+
+    width: 100%;
+
+    font-size: 16px;
+    color: white;
+}

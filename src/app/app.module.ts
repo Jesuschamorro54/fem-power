@@ -11,20 +11,20 @@ import { StaticWomenComponent } from './landing-pages/static-women/static-women.
 import { StaticHomeComponent } from './landing-pages/static-home/static-home.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    StaticFundationComponent,
-    StaticWomenComponent,
-    StaticHomeComponent,
-    StaticHomeComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    SharedModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        StaticFundationComponent,
+        StaticWomenComponent,
+        StaticHomeComponent,
+        StaticHomeComponent,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        SharedModule,
+    ]
 })
 export class AppModule { }

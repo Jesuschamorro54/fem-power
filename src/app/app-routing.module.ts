@@ -13,7 +13,7 @@ const routes: Routes = [
   
   
   // Components
-  { path: '', component: StaticHomeComponent, canActivate: [DefauldGuard] },
+  { path: '', component: StaticHomeComponent, /*canActivate: [DefauldGuard]*/ },
   { path: 'home', component: StaticHomeComponent, canActivate: [HomeGuard] },
   { path: 'fundations', component: StaticFundationComponent},
   { path: 'women', component: StaticWomenComponent},
