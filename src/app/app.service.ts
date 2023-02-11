@@ -62,6 +62,8 @@ export class AppService {
   userAuthenticate: Subject<any> = new Subject();
   public setUserData(user) {
     
+    this.loadingApp = false;
+
     this.cognitoUserAuthenticated = user;
     this.userAuthenticate.next(user);
     

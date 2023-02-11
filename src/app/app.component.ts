@@ -18,7 +18,7 @@ export class AppComponent {
     public _appService: AppService,
   ) {
 
-    _appService.loadingApp = false;
+    _appService.loadingApp = true;
 
     // Verificar si hay un usuario autenticado
     this._authService.isUserAuthenticated().subscribe();

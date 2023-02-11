@@ -40,7 +40,9 @@ export class FederateSignInComponent implements OnInit {
   ]
   type_select = {label: this.user_types[0].label, value: this.user_types[0].value}
 
-  ngOnInit() { }
+  ngOnInit() {
+    this._route.queryParams.subscribe((params: any) => this.customProvider = params.customProvider)
+  }
 
   verifyData(form) {
     
