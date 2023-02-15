@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of, Subject } from 'rxjs';
+import { catchError, map, Observable, of, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -63,20 +64,29 @@ export class AppService {
   public setUserData(user) {
     
     this.loadingApp = false;
+    this.user_code_confirmed = false;
 
     this.cognitoUserAuthenticated = user;
     this.userAuthenticate.next(user);
-    
 
     if (this.cognitoUserAuthenticated){
 
-      if(this.cognitoUserAuthenticated.hasOwnProperty('signInUserSession')){
+      if(this.cognitoUserAuthenticated.hasOwnProperty('signInUserSession')){       
         
         this.token = user.signInUserSession.idToken.jwtToken;
 
         this.user_data = JSON.parse(JSON.stringify(this.cognitoUserAuthenticated.signInUserSession.idToken.payload));
+
+        const data_confirmation = localStorage.getItem('data_confirmation') 
+        if (data_confirmation == "1 pending" && this.user_data.data_confirmation == "0") {
+          this.user_code_confirmed = true
+          this.putUserAccount({data_confirmation: "1"}).subscribe()
+          localStorage.removeItem('data_confirmation')
+        }
+
         // User in session
         this.user_session = 1;
+
       }else{
         this.user_session = 0;
         this.user_data = []
@@ -84,13 +94,27 @@ export class AppService {
     }else{
       this.token = null
     }
-    console.log("user_session: ", this.user_session)
+    // console.log("user_session: ", this.user_session)
   }
 
 
   // TODO
 
+  putUserAccount(data): Observable<any> {
+    return this.http.put(`${environment.urlAPI}/user/${this.user_data.id}`, { data }, this.getHeaders()).pipe(
+    map((response: any) => {
+      const {status, data} = response
 
+      return { valid: status, data }
+
+
+    }),
+      catchError((error: any) => {
+        this.handleError('putUserAccount');
+        return of({ status: false });
+      })
+    )
+  }
 
 
 
