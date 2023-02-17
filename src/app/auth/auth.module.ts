@@ -12,19 +12,18 @@ import { FederateSignInComponent } from './federate-sign-in/federate-sign-in.com
 
 
 @NgModule({
-  declarations: [
-    AuthComponent,
-    LoginComponent,
-    ConfirmRegistrationComponent,
-    SignUpComponent,
-    FederateSignInComponent,
-    
-  ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    FormsModule, ReactiveFormsModule,
-    SharedModule
-  ]
+    declarations: [
+        AuthComponent,
+        LoginComponent,
+        ConfirmRegistrationComponent,
+        SignUpComponent,
+        FederateSignInComponent,
+    ],
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        FormsModule, ReactiveFormsModule,
+        SharedModule,
+    ]
 })
 export class AuthModule { }

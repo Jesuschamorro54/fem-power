@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ClickOutsideDdownDirective } from './directives/clickOutsideDdown.directive';
 import { AwsS3Service } from './services/awsS3.service';
 import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase, UserClassName } from './pipes/shared.pipe';
+import { InputSelectComponent } from './components/input-select/input-select.component';
 
 
 
@@ -23,7 +24,7 @@ import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase,
     CutUserNamePipe, 
     notificationsDate, 
     messageDate, 
-    ToLowerCase
+    ToLowerCase, InputSelectComponent
   ],
   
   imports: [
@@ -36,6 +37,7 @@ import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase,
     NavBarComponent,
     FooterComponent,
     ClickOutsideDdownDirective,
+    InputSelectComponent
   ],
   providers: [
     AwsS3Service

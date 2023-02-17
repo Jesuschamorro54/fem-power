@@ -24,9 +24,12 @@ export class SignUpComponent implements OnInit {
     {label: 'Seleccione el tipo de usuario', value: null},
     {label: 'Mujer rural', value: 'natural'},
     {label: 'Organización', value: 'company'},
-    {label: 'Fundación', value: 'fundation'}
   ]
-  type_select = {label: this.user_types[0].label, value: this.user_types[0].value}
+
+  selectItems = [
+    {'label': 'Primer Item', 'value': 12334}, 
+    {'label': 'segundo item', 'value': 1234}
+  ]
 
   //Uploading variables
   uploading_file = false;
@@ -42,6 +45,8 @@ export class SignUpComponent implements OnInit {
   }
 
   verifyData(form): void {
+
+    console.log(this.addUserData)
     
     let valid = true;
 
