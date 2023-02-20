@@ -1,19 +1,17 @@
 #static-footer{
-    position: relative;
-    width: 100%px;
-    height: 500px;
+    width: 100%;
 
     background: white;
 }
 
 #div-img-static{
-    width: inherit;
-    height: inherit;
+    width: 100%;
+    height: 100%;
 }
 
 #div-img-static img{
     width: 100%;
-    height: inherit;
+    height: 100%;
 }
 
 #div-p-static{
@@ -25,4 +23,64 @@
 
     font-size: 16px;
     color: white;
+}
+
+/* Small devices (phones) */
+@media only screen and (max-width: 399px){
+    p{
+        font-size: 0.5em;
+    }
+    #static-footer{
+        height: 220px;
+    }
+}
+
+/* Small devices (medium phones, 400px and up) */
+@media only screen and (min-width: 400px)  {
+    p{
+        font-size: 0.6em;
+    }
+    #static-footer{
+        height: 250px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    p{
+        font-size: 0.7em;
+    }
+    #static-footer{
+        height: 270px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    p{
+        font-size: 0.8em;
+    }
+    #static-footer{
+        height: 290px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 900px) {
+    p{
+        font-size: 1em;
+    }
+    #static-footer{
+        height: 370px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    p{
+        font-size: 1.3em;
+    }
+    #static-footer{
+        height: 480px;
+    }
 }

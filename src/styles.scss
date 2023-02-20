@@ -4,9 +4,9 @@
 @import "./app/styles/buttons";
 
 
-// html {
-//     font-size: 16px;
-// }
+html {
+font-size: 100%;
+}
 
 * {
     font-family: "Muli", sans-serif;
@@ -62,7 +62,6 @@ body {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    font-size: 100%;
 
     &::before,
     &::after {
@@ -155,7 +154,7 @@ input[type="date"] {
     justify-content: space-between;
     background-color: white;
     align-items: center;
-    font-size: 16px;
+    font-size: 1em;
     font-weight: 400;
 
     border-radius: 5px;
@@ -172,7 +171,7 @@ input[type="date"] {
     }
 
     span::before {
-        font-size: 18px;
+        font-size: 1.125em;
     }
 
     input {

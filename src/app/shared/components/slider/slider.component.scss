@@ -1,86 +1,95 @@
-#slider{
+@import '../../../styles/colors';
+
+
+//Tamaño letras:
+p {
+    font-size: 1.25em;
+}
+
+//Contenedores
+
+#slider {
     display: flex;
     align-items: center;
     justify-content: center;
 
     width: 100%;
-    height: inherit;
+    height: 83%;
 }
 
-#div-ul{
+
+#div-ul {
     width: 88%;
+    height: 100%;
 
     overflow: hidden;
 }
 
 
-#div-ul ul{
+#div-ul ul {
     display: flex;
     flex-flow: nowrap;
     justify-content: space-between;
     align-items: center;
 
     padding: 0px;
-    
+    margin: 0px;
+    height: 100%;
+
     transition: all .5 ease;
 }
 
 
-#div-ul ul li{
-    display: flex;
-    justify-content: center;
-
-    width: 100%;
-}
-
-.contents{
-    width: 65%;
-    margin: 10px 20px 10px 30px;
-}
-
-.contents p{
-    margin-bottom: 20px;
-}
-
-.title{
-    margin-bottom: 10px;
-
-    font-size: 24px;
-    color: #8C0054;
-}
-
-.information{
-    margin-bottom: 10px;
-
-    font-size: 20px;
-    text-align: justify;
-}
-
-.image{
+#div-ul ul li {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 20%;
-    margin: 10px 10px 10px 20px;
+    width: 100%;
+    height: 90%;
 }
 
-.image img{
-    width: 250px;
-    height: 250px;
+.contents {  
+    margin: 2%;
+}
 
+.contents p {
+    margin-bottom: 3%;
+}
+
+.title {
+    text-align: left;
+
+
+    color: $dark-fucsia;
+}
+
+.information {
+    margin-bottom: 10px;
+
+    text-align: justify;
+}
+
+.image {
+    display: none;
+
+    width: fit-content;
+    height: fit-content;
+    margin: 2% 2% 2% 2%;
+}
+
+.image img {
     border-radius: 50%;
     object-fit: cover;
 }
 
-#div-icon{
+#div-icon {
     position: absolute;
 
-    width: 94%;
-    padding: 0px 10px 0px 10px;
+    width: 96%;
 }
 
-#div-icon ul{
+#div-icon ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -89,8 +98,153 @@
 }
 
 
-#div-icon i{
-    font-size: 60px;
+#div-icon i {
+    color: $dark-fucsia;
+}
 
-    color: #8C0054;
+/* Small devices (phones) */
+@media only screen and (max-width: 399px) {
+    //Tamaño letras:
+    p, .title {
+        font-size: 0.7em;
+    }
+    #div-icon i {
+        font-size: 1em;
+    }
+
+    //Contenedores
+    .contents {
+        width: 40%;
+    }
+    #div-ul ul li {
+        flex-direction: column;
+    }
+    .contents {
+        width: 90%;
+    }
+}
+
+/* Small devices (medium phones, 500px and up) */
+@media only screen and (min-width: 400px) {
+
+    //Tamaño letras:
+    p,
+    .title {
+        font-size: 0.85em;
+    }
+
+    #button-donar-staticHome {
+        font-size: 1.2em;
+    }
+
+    #div-icon i {
+        font-size: 1.5em;
+    }
+
+    //Contenedores
+    #div-ul ul li {
+        flex-direction: column;
+    }
+
+    .contents {
+        width: 90%;
+    }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+    //Tamaño letras:
+    p, .title{
+        font-size: 1em;
+    }
+
+    #button-donar-staticHome {
+        font-size: 1.4em;
+    }
+
+    #div-icon i {
+        font-size: 2em;
+    }
+
+    //Contenedores
+    #div-ul ul li {
+        flex-direction: row;
+    }
+    .contents{
+        width: 60%;
+    }
+    .image {
+        display: block;
+    }
+    .image img {
+        width: 145px;
+        height: 140px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+    //Tamaño letras:
+    p, .title {
+        font-size: 1.2em;
+    }
+
+    #button-donar-staticHome {
+        font-size: 1.6em;
+    }
+    #div-icon i {
+        font-size: 2.2em;
+    }
+    .image img {
+        width: 165px;
+        height: 160px;
+    }
+}
+
+/* Large devices (laptops/desktops, 900px and up) */
+@media only screen and (min-width: 900px) {
+
+    //Tamaño letras:
+    p, .title{
+        font-size: 1.4em;
+    }
+    #button-donar-staticHome {
+        font-size: 1.8em;
+    }
+    #div-icon i {
+        font-size: 2.6em;
+    }
+    .image img {
+        width: 195px;
+        height: 190px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+    //Tamaño letras:
+    p, .title {
+        font-size: 1.5em;
+    }
+
+    #button-donar-staticHome {
+        font-size: 2em;
+    }
+
+    #div-icon i {
+        font-size: 3em;
+    }
+
+    //Contenedores
+    .contents {
+        width: 65%;
+    }
+    .image img {
+        width: 225px;
+        height: 220px;
+    }
 }
