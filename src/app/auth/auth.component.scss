@@ -89,9 +89,10 @@
         width: 100%;
         max-width: 375px;
 
-        input, .button{
+        input, .button {
+            width: inherit;
             width: -moz-available;
-            height: 32px;
+            height: 42px;
             font-size: 17px;
             margin-bottom: 10px;
         }

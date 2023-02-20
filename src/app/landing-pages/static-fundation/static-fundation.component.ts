@@ -11,5 +11,4 @@ export class StaticFundationComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

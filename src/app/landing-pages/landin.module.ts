@@ -6,18 +6,20 @@ import { StaticFundationComponent } from './static-fundation/static-fundation.co
 import { StaticWomenComponent } from './static-women/static-women.component';
 import { StaticHomeComponent } from './static-home/static-home.component';
 import { LandinComponent } from './landin.component';
+import { SharedModule } from "../shared/shared.module";
 
 
 @NgModule({
-  declarations: [
-    StaticFundationComponent,
-    StaticWomenComponent,
-    StaticHomeComponent,
-    LandinComponent,
-  ],
-  imports: [
-    CommonModule,
-    LandinRoutingModule
-  ]
+    declarations: [
+      StaticFundationComponent,
+      StaticWomenComponent,
+      StaticHomeComponent,
+      LandinComponent,
+    ],
+    imports: [
+      CommonModule,
+      LandinRoutingModule,
+      SharedModule
+    ]
 })
 export class LandinModule { }
