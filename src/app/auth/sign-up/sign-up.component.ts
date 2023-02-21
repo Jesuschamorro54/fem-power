@@ -133,29 +133,48 @@ export class SignUpComponent implements OnInit {
     if (!this.sending) {
       this.sending = true;
 
-      this._authService.signUp(this.addUserData).subscribe(signUpResponse => {
+
+      this._authService.verifyFundationCode(this.addUserData).subscribe(response => {
+        console.log("response: ", response)
         
-        this.sending = false;
-        console.log("signUp data: ", signUpResponse);
+        const {valid, data} = response;
+  
+        
+  
+        if (valid) {
+  
+          localStorage.setItem("data_confirmation", "1 pending")
 
-        if(signUpResponse != null){
-          if (signUpResponse.status == 'ok'){
-            this.addUserData['type'] = signUpResponse.user.type;
-            this.isConfirmed = signUpResponse.user.userConfirmed;
-
-            if (!this.isConfirmed) {
-
-              let username_encrypt = window.btoa(JSON.stringify({ 
-                username: this.addUserData.email, 
-                type: this.addUserData.type, 
-                password: this.addUserData.password
-              }));
-
-              this._router.navigate(['auth/confirm'], {queryParams: {token: username_encrypt}})
-
+          this._authService.signUp(this.addUserData).subscribe(signUpResponse => {
+        
+            this.sending = false;
+            console.log("signUp data: ", signUpResponse);
+    
+            if(signUpResponse != null){
+              if (signUpResponse.status == 'ok'){
+                this.addUserData['type'] = signUpResponse.user.role;
+                this.isConfirmed = signUpResponse.user.userConfirmed;
+    
+                if (!this.isConfirmed) {
+    
+                  let username_encrypt = window.btoa(JSON.stringify({ 
+                    username: this.addUserData.email, 
+                    type: this.addUserData.type, 
+                    password: this.addUserData.password
+                  }));
+    
+                  this._router.navigate(['auth/confirm'], {queryParams: {token: username_encrypt}})
+    
+                }
+              }
             }
-          }
+          })
+          
+        }else {
+          this.alert.error = "El código es invalido"
+          this.sending = false;
         }
+  
       })
     }
   }

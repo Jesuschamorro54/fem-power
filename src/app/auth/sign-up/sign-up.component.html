@@ -7,7 +7,9 @@
 
             <h2 class="sign-up-title">Registrate</h2>
 
-            <span class="message" *ngIf="alert.error != '' ">{{alert.error}}</span>
+            <span class="message" *ngIf="alert.error != '' ">
+                {{alert.error}}
+            </span>
 
             <form #singUpForm="ngForm" (ngSubmit)="verifyData(singUpForm)">
 
@@ -44,7 +46,18 @@
                 <!-- FIN INPUT UPLOAD -->
 
 
-                <button type="submit" class="button" >Registrar</button>
+                <button type="submit" class="button" >
+                    
+                    <span *ngIf="!sending">Registrar</span> 
+
+                    <div class="spinner spinner--button white" *ngIf="sending" style="position: relative; margin: 0 15px; width: auto;">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+
+                </button>
 
                 <div class="separator">
                     <p>o</p>

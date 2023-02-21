@@ -69,10 +69,12 @@ export class AuthService {
         // fundation_code: addData.fundation_code
       },
       attributes:{
-        token,
+        // token,
         name:addData.name,        
       }
     }
+
+    console.log("data to save: ", data)
 
     return from(Auth.signUp(data).then((user: any) => {
       return { status: 'ok', user }

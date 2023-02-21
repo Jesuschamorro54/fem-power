@@ -76,16 +76,17 @@ export class AppService {
         this.token = user.signInUserSession.idToken.jwtToken;
 
         this.user_data = JSON.parse(JSON.stringify(this.cognitoUserAuthenticated.signInUserSession.idToken.payload));
+        this.user_code_confirmed = this.user_data.data_confirmation == "1"
 
         const data_confirmation = localStorage.getItem('data_confirmation') 
-        if (data_confirmation == "1 pending" && this.user_data.data_confirmation == "0") {
+        if ((data_confirmation == "1 pending" && this.user_data.data_confirmation == "0")) {
           this.user_code_confirmed = true
           this.putUserAccount({data_confirmation: "1"}).subscribe()
           localStorage.removeItem('data_confirmation')
         }
 
         // User in session
-        this.user_session = 1;
+        this.user_session = 1; 
 
       }else{
         this.user_session = 0;
