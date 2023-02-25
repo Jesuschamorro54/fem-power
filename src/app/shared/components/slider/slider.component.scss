@@ -100,6 +100,7 @@ p {
 
 #div-icon i {
     color: $dark-fucsia;
+    cursor: pointer;
 }
 
 /* Small devices (phones) */
@@ -167,7 +168,6 @@ p {
     #div-icon i {
         font-size: 2em;
     }
-
     //Contenedores
     #div-ul ul li {
         flex-direction: row;

@@ -18,4 +18,7 @@ export class StaticHomeComponent implements OnInit {
     this._router.navigate(['auth/sign'])
   }
 
+  changeView(view){
+    this._router.navigate([view]);
+  }
 }
