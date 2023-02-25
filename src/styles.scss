@@ -119,6 +119,7 @@ input[type="email"],
 input[type="number"],
 input[type="date"] {
     height: 20px;
+    width: inherit;
     margin: 5px;
     background: white;
     justify-content: center;

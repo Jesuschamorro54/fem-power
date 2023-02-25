@@ -69,10 +69,12 @@ export class AuthService {
         // fundation_code: addData.fundation_code
       },
       attributes:{
-        token,
+        // token,
         name:addData.name,        
       }
     }
+
+    console.log("data to save: ", data)
 
     return from(Auth.signUp(data).then((user: any) => {
       return { status: 'ok', user }
@@ -130,6 +132,7 @@ export class AuthService {
 
       sessionStorage.clear();
       localStorage.clear();
+
     }));
   }
 
@@ -255,13 +258,10 @@ export class AuthService {
   }
 
   public federatedSignIn(customProvider) {
-
-    localStorage.setItem('federated_signin', 'true');
     
     return from(Auth.federatedSignIn({ customProvider }).then((response: any) => {
       return { status: 'ok', response }
     }).catch(error => {
-      localStorage.removeItem('federated_signin');
       return { status: 'error', error }
     }))
   }

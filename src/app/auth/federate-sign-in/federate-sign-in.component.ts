@@ -83,8 +83,7 @@ export class FederateSignInComponent implements OnInit {
 
       if (valid) {
 
-        let storage = {...this.addUserData, ...data[0]}
-        localStorage.setItem('dataUserToUpdate', JSON.stringify(storage))
+        localStorage.setItem("data_confirmation", "1 pending")
         this.federatedSignIn()
         
       }else {
@@ -197,6 +196,7 @@ export class FederateSignInComponent implements OnInit {
   federatedSignIn() {
     if (!this.federatedLogin[this.customProvider]) {
       this.federatedLogin[this.customProvider] = true;
+
       this._authService.federatedSignIn(this.customProvider).subscribe();
     }
   }
