@@ -10,7 +10,6 @@
                 <a class="logo-label" [routerLink]="['/home']">FemPower</a>
             </span>
         </header>
-
         <!-- OPTIONS -->
 
         <!-- Usuario con Session -->
@@ -63,7 +62,7 @@
         </ul>
 
         <!-- Usuario fuera de la session -->
-        <ul *ngIf="_appService.user_session == 0" class="nav-options">
+        <ul *ngIf="_appService.user_session == 0" class="nav-options" id="id-nav-options">
             <li class="nav-link">
                 <a [routerLink]="['/fem/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
             </li>
@@ -75,12 +74,33 @@
                 <a [routerLink]="['/auth/sign']" [routerLinkActive]="['active']">Únete</a>
             </li>
             <li class="nav-link">
-                <a [routerLink]="['/auth/login']" [routerLinkActive]="['active']">Iniciar session</a>
+                <a [routerLink]="['/auth/login']" [routerLinkActive]="['active']">Iniciar sesión</a>
             </li>
         </ul>
 
     </div>
 
+    
+    <div id="reponsive-menu" (clickOutsideDdown)="responsive_menu=false">
+        <div id="icon-menu" (click)="responsive_menu=!responsive_menu"><i class="icon-menu"></i></div>
+        <div id="reponsive-menu-ul" *ngIf="responsive_menu==true">
+            <ul *ngIf="_appService.user_session == 0" class="responsive-nav-options">
+                <li class="nav-link">
+                    <a [routerLink]="['/fem/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
+                </li>
+                <li class="nav-link">
+                    <a [routerLink]="['/fem/women']" [routerLinkActive]="['active']">Mujeres</a>
+                </li>
+                <hr>
+                <li class="nav-link">
+                    <a [routerLink]="['/auth/sign']" [routerLinkActive]="['active']">Únete</a>
+                </li>
+                <li class="nav-link">
+                    <a [routerLink]="['/auth/login']" [routerLinkActive]="['active']">Iniciar session</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <!-- <div *ngIf="_appService.user_session==0" class="btn-group">
         <a [routerLink]="['/user/login']" class="login cta outline blue">Acceder</a>
