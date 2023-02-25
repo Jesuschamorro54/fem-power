@@ -1,0 +1,184 @@
+#section-1{
+    width: 100%;
+    //height: 85%;
+}
+#content-title{
+    //width: 30%;
+    height: 19%;
+    padding: 2% 0% 2% 0%;
+    margin: 0% auto;
+}
+#content-title p{
+    
+    text-align: center;
+}
+#div-container-section1{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 81%;
+}
+#img-figure{
+    position: absolute;
+    bottom: 0;
+    z-index: 0;
+
+    width: 100%;
+    height: 100px;
+}
+#img-hands{
+    position: absolute;
+    top: 0;
+    z-index: 1;
+
+    width: 65%;
+    height: 85%;
+    
+}
+#div-container-section1 div {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    text-align: center;
+
+    width: 100%;
+    height: auto;
+    padding-bottom: 1%;
+
+}
+.btn-donate{
+    width: auto;
+    height: auto;
+
+    font-weight: bold;
+    color: white;
+}
+
+#section-2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 20%;
+}
+
+/* Small devices (phones) */
+@media only screen and (max-width: 399px) {
+    p{
+        font-size: 0.7em;
+    }
+    .btn-donate{
+        font-size: 1em;
+    }
+    #section-1{
+        height: 40%;
+    }
+    #content-title{
+        width: 50%;
+    }
+    #img-figure{
+        height: 50px;
+    }
+}
+/* Small devices (medium phones, 400px and up) */
+@media only screen and (min-width: 400px) {
+    p{
+        font-size: 0.85em;
+    }
+    .btn-donate{
+        font-size: 1.2em;
+    }
+    #section-1{
+        height: 50%;
+    }
+    #content-title{
+        width: 45%;
+    }
+    #img-figure{
+        height: 54px;
+    }
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    p{
+        font-size: 1em;
+    }
+    .btn-donate{
+        font-size: 1.4em;
+    }
+    #section-1{
+        height: 60%;
+    }
+    #content-title{
+        width: 40%;
+    }
+    #img-figure{
+        height: 65px;
+    }
+
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    p{
+        font-size: 1.2em;
+    }
+    .btn-donate{
+        font-size: 1.6em;
+    }
+    #section-1{
+        height: 70%;
+    }
+    #content-title{
+        width: 35%;
+    }
+    #img-figure{
+        height: 85px;
+    }
+}
+/* Large devices (laptops/desktops, 900px and up) */
+@media only screen and (min-width: 900px) {
+    /*p{
+        font-size: 1.4em;
+    }*/
+    #content-title p{
+        font-size: 1.8em;
+    }
+    .btn-donate{
+        font-size: 2em;
+    }
+    #section-1{
+        height: 80%;
+    }
+    #content-title{
+        width: 42%;
+    }
+    #img-figure{
+        height: 120px;
+    }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    p{
+        font-size: 1.5em;
+    }
+    #section-1{
+        height: 90%;
+    }
+    #content-title{
+        height: 17%;
+    }
+    #img-figure{
+        height: 115px;
+    }
+    #img-hands{
+        height: 87%;
+    }
+    #div-container-section1{
+        height: 83%;
+    }
+
+} 
