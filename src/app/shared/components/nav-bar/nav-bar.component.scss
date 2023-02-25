@@ -1,5 +1,81 @@
 @import '../../../styles/colors';
 
+:host {
+    .menu {
+
+        position: absolute;
+        top: 55px;
+        right: 0px;
+        width: 300px;
+        padding: 0;
+        border-radius: 0px 0px 4px 4px;
+        border: 1px solid rgba(45, 45, 45, .15);
+        background-color: white;
+        box-shadow: 0 2px 4px 0 #ddd;
+
+        li {
+
+            transition: all 400ms;
+
+            &:first-child {
+                border-bottom: 1px solid var(--color-border);
+                margin-bottom: 10px;
+
+                &>a {
+                    padding: 20px;
+                }
+
+                &>a:active {
+                    color: #1e4590;
+                }
+
+                .row {
+                    display: flex;
+
+                    &>img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                    }
+
+                    h3 {
+                        color: var(--color-font);
+                        margin: 4px 0 0 12px;
+                        font-weight: 600;
+                        font-size: 18px;
+                    }
+
+                    h4 {
+                        font-weight: 400;
+                        margin: 4px 0 0 12px;
+                        color: var(--color-font-gray);
+                        // color: rgba(3, 27, 78, 0.6);
+                    }
+                }
+            }
+
+            &>a {
+                width: 100%;
+                padding: 10px 20px;
+                color: var(--color-font);
+
+                &>:active {
+                    color: $text-color;
+                }
+            }
+
+            &:last-child {
+                margin-bottom: 10px;
+            }
+
+            &:hover {
+                background-color: rgba($color: #ccc, $alpha: 0.5);
+            }
+        }
+
+    }
+}
+
 #nav-bar {
     display: flex;
     background: white;
@@ -47,7 +123,7 @@
 
         .nav-options {
             min-height: 45px;
-            display: none;
+            display: flex;
 
             .nav-link {
                 align-self: center;
@@ -79,80 +155,6 @@
                         margin-right: 0;
                     }
                 }
-
-                .menu {
-
-                    position: absolute;
-                    top: 55px;
-                    right: 0px;
-                    width: 300px;
-                    padding: 0;
-                    border-radius: 0px 0px 4px 4px;
-                    border: 1px solid rgba(45, 45, 45, .15);
-                    background-color: white;
-                    box-shadow: 0 2px 4px 0 #ddd;
-
-                    li {
-
-                        transition: all 400ms;
-
-                        &:first-child {
-                            border-bottom: 1px solid var(--color-border);
-                            margin-bottom: 10px;
-
-                            &>a {
-                                padding: 20px;
-                            }
-
-                            &>a:active {
-                                color: #1e4590;
-                            }
-
-                            .row {
-                                display: flex;
-
-                                &>img {
-                                    width: 50px;
-                                    height: 50px;
-                                    border-radius: 50%;
-                                }
-
-                                h3 {
-                                    color: var(--color-font);
-                                    margin: 4px 0 0 12px;
-                                    font-weight: 600;
-                                    font-size: 18px;
-                                }
-
-                                h4 {
-                                    font-weight: 400;
-                                    margin: 4px 0 0 12px;
-                                    color: var(--color-font-gray);
-                                    // color: rgba(3, 27, 78, 0.6);
-                                }
-                            }
-                        }
-
-                        &>a {
-                            width: 100%;
-                            padding: 10px 20px;
-                            color: var(--color-font);
-
-                            &>:active {
-                                color: $text-color;
-                            }
-                        }
-
-                        &:last-child {
-                            margin-bottom: 10px;
-                        }
-
-                        &:hover {
-                            background-color: rgba($color: #ccc, $alpha: 0.5);
-                        }
-                    }
-
-                }
             }
 
             .dropdown {
@@ -166,11 +168,12 @@
                     display: block;
                   }
                 }
-              }
+            }
         }
     }
 
     #icon-menu i{
+        margin: 0 10px;
         margin-top: 4.5px;
         font-size: 2em;
         color: $dark-fucsia;
@@ -178,52 +181,45 @@
         cursor: pointer;
     }
 
-    #reponsive-menu-ul{
-        position: absolute;
-        // top: 59px;
-        z-index: 9;
-
-        width: 200px;
-        height: 220px;
-        padding-right: 2%;
-        padding-top: 2%;
-
-        background: white;
-        ul li{
-            margin: 20px 0px 20px 0px;
-            font-weight: 700;
-        }
-
-        ul li a:hover{
-            color: $dark-fucsia;
+    #reponsive-menu {
+        .menu {
+            top: 46px;
         }
     }
+
+    
 
     @media only screen and (max-width: 399px) {
         #icon-menu{
             margin-right:5px;
         }
-        #reponsive-menu-ul{
-            right: 15px;
+    }
+
+
+    @media only screen and (max-width: 650px) {
+        .content-nav .nav-link,
+        .content-nav hr {
+            display: none;
         }
     }
+
     /* Small devices (medium phones, 400px and up) */
     @media only screen and (min-width: 400px) {
-        #icon-menu{
-            margin-right:10px;
-        }
-        #reponsive-menu-ul{
-            right:22px;
-        }
         .content-nav .logo {
             margin: 10px 10px;
         }
     }
     /* Small devices (portrait tablets and large phones, 600px and up) */
-    @media only screen and (min-width: 600px) {
+    @media only screen and (min-width: 650px) {
+        
+        #menu {
+            display: none !important;
+        }
+
         #icon-menu{
             display: none;
         }
+
         #id-nav-options{
             display: flex;
         }

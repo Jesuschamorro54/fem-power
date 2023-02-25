@@ -83,20 +83,20 @@
     
     <div id="reponsive-menu" (clickOutsideDdown)="responsive_menu=false">
         <div id="icon-menu" (click)="responsive_menu=!responsive_menu"><i class="icon-menu"></i></div>
-        <div id="reponsive-menu-ul" *ngIf="responsive_menu==true">
-            <ul *ngIf="_appService.user_session == 0" class="responsive-nav-options">
+        <div *ngIf="responsive_menu==true">
+            <ul id="menu" class="menu">
                 <li class="nav-link">
                     <a [routerLink]="['/fem/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
                 </li>
                 <li class="nav-link">
                     <a [routerLink]="['/fem/women']" [routerLinkActive]="['active']">Mujeres</a>
                 </li>
-                <hr>
-                <li class="nav-link">
+                <hr *ngIf="_appService.user_session == 0">
+                <li class="nav-link" *ngIf="_appService.user_session == 0">
                     <a [routerLink]="['/auth/sign']" [routerLinkActive]="['active']">Únete</a>
                 </li>
-                <li class="nav-link">
-                    <a [routerLink]="['/auth/login']" [routerLinkActive]="['active']">Iniciar session</a>
+                <li class="nav-link" *ngIf="_appService.user_session == 0">
+                    <a [routerLink]="['/auth/login']" [routerLinkActive]="['active']">Iniciar sesión</a>
                 </li>
             </ul>
         </div>
