@@ -7,22 +7,23 @@ import { LoginComponent } from './login/login.component';
 import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SharedModule } from '../shared/shared.module';
+import { FederateSignInComponent } from './federate-sign-in/federate-sign-in.component';
 
 
 
 @NgModule({
-  declarations: [
-    AuthComponent,
-    LoginComponent,
-    ConfirmRegistrationComponent,
-    SignUpComponent,
-    
-  ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    FormsModule, ReactiveFormsModule,
-    SharedModule
-  ]
+    declarations: [
+        AuthComponent,
+        LoginComponent,
+        ConfirmRegistrationComponent,
+        SignUpComponent,
+        FederateSignInComponent,
+    ],
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        FormsModule, ReactiveFormsModule,
+        SharedModule,
+    ]
 })
 export class AuthModule { }

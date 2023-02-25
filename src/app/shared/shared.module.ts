@@ -8,6 +8,10 @@ import { ClickOutsideDdownDirective } from './directives/clickOutsideDdown.direc
 import { AwsS3Service } from './services/awsS3.service';
 import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase, UserClassName } from './pipes/shared.pipe';
 
+import { InputSelectComponent } from './components/input-select/input-select.component';
+import { DonateButtonComponent } from './components/donate-button/donate-button.component';
+import { SliderComponent } from './components/slider/slider.component';
+
 
 
 @NgModule({
@@ -16,6 +20,8 @@ import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase,
     NavBarComponent,
     FooterComponent,
     ClickOutsideDdownDirective,
+    InputSelectComponent,
+    SliderComponent, DonateButtonComponent,
     
     // Pipes
     RoleName, 
@@ -23,7 +29,8 @@ import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase,
     CutUserNamePipe, 
     notificationsDate, 
     messageDate, 
-    ToLowerCase
+    ToLowerCase,
+    
   ],
   
   imports: [
@@ -34,8 +41,11 @@ import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase,
 
   exports: [
     NavBarComponent,
+    SliderComponent,
     FooterComponent,
+    DonateButtonComponent,
     ClickOutsideDdownDirective,
+    InputSelectComponent
   ],
   providers: [
     AwsS3Service

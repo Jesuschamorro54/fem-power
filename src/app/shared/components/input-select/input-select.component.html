@@ -1,0 +1,24 @@
+<!-- SELECT -->
+<label *ngIf="data.length > 0" class="select_list_2 dropdown" [ngClass]="{'active': ddownInput.checked}"
+    (click)="ddownInput.checked = !ddownInput.checked;" (clickOutsideDdown)="ddownInput.checked = false;">
+
+    <!-- Es el texto que se muestra en la caja -->
+    <span>{{itemSelected.label}}</span>
+
+    <!-- icono de la flecha -->
+    <i class="icon-play3"></i>
+
+    <!-- Me sirve para saber si está o no desplegado el select -->
+    <input type="checkbox" #ddownInput>
+
+    <!-- Caja que se despliega -->
+    <ul class="dropdown-list" *ngIf="ddownInput.checked">
+
+        <!-- Cada uno de los items -->
+        <li class="item" *ngFor="let item of data" (click)="selectItem(item)">
+            {{item.label}}
+        </li>
+        
+    </ul>
+</label>
+<!-- FIN SELECT -->

@@ -5,12 +5,14 @@
 
 
 html {
-    font-size: 16px;
+font-size: 100%;
 }
 
 * {
     font-family: "Muli", sans-serif;
+    box-sizing: border-box;
 
+    box-sizing: border-box;
     -webkit-touch-callout: none;
     /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;
@@ -42,6 +44,7 @@ a{
     user-select: none;
 }
 
+
 section:not(.linkAnnotation) {
     display: flex;
     flex-basis: 100%;
@@ -49,12 +52,14 @@ section:not(.linkAnnotation) {
 }
 
 body {
+    position: fixed;
+    overflow: hidden;
+
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    position: fixed;
-    overflow: hidden;
+    
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -115,6 +120,7 @@ input[type="email"],
 input[type="number"],
 input[type="date"] {
     height: 20px;
+    width: inherit;
     margin: 5px;
     background: white;
     justify-content: center;
@@ -150,7 +156,7 @@ input[type="date"] {
     justify-content: space-between;
     background-color: white;
     align-items: center;
-    font-size: 16px;
+    font-size: 1em;
     font-weight: 400;
 
     border-radius: 5px;
@@ -167,7 +173,7 @@ input[type="date"] {
     }
 
     span::before {
-        font-size: 18px;
+        font-size: 1.125em;
     }
 
     input {

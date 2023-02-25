@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
+import { AppService } from 'src/app/app.service';
 import { DataRegister } from 'src/app/models/auth.models';
 import { AwsS3Service } from 'src/app/shared/services/awsS3.service';
 import { AuthService } from '../auth.service';
@@ -13,6 +14,7 @@ import { AuthService } from '../auth.service';
 export class SignUpComponent implements OnInit {
 
   constructor(
+    private _appService: AppService,
     private _router: Router,
     private _authService: AuthService,
     private _awsS3Service: AwsS3Service
@@ -22,15 +24,18 @@ export class SignUpComponent implements OnInit {
     {label: 'Seleccione el tipo de usuario', value: null},
     {label: 'Mujer rural', value: 'natural'},
     {label: 'Organización', value: 'company'},
-    {label: 'Fundación', value: 'fundation'}
   ]
-  type_select = {label: this.user_types[0].label, value: this.user_types[0].value}
+
+  selectItems = [
+    {'label': 'Primer Item', 'value': 12334}, 
+    {'label': 'segundo item', 'value': 1234}
+  ]
 
   //Uploading variables
   uploading_file = false;
 
   // Message
-  alert = {error: null, sucess: null}
+  alert: any = {error: null, sucess: null}
 
   // Auth
   isConfirmed: boolean =  false;
@@ -40,11 +45,12 @@ export class SignUpComponent implements OnInit {
   }
 
   verifyData(form): void {
-    console.log(form.value)
+
+    console.log(this.addUserData)
     
     let valid = true;
 
-    this.alert.error = this.cleanObject(this.alert.error)
+    this.alert = this.cleanObject(this.alert)
 
     if (form.value.name == "" || form.value.name == undefined){
       this.alert.error = "Por favor escribe tu nombre"
@@ -64,13 +70,18 @@ export class SignUpComponent implements OnInit {
       return
     }
 
+    if (!this.addUserData.type) {
+      this.alert.error = "Seleccione el tipo de usuario"
+      valid = false
+    }
+
     if (this.addUserData.type == 'natural' && (form.value.fundation_code == '' || form.value.fundation_code == null) ){
       this.alert.error = "Debe escribir el código proporcionado por la fundación"
       valid = false
       return
     }
 
-    if (this.addUserData.type == 'company' && (this.addUserData.certificate == '' || this.addUserData.certificate == null)){
+    if (['company', 'fundation'].includes(this.addUserData.type) && (this.addUserData.certificate == '' || this.addUserData.certificate == null)){
       this.alert.error = "Por favor adjunte el certificado"
       valid = false;
       return
@@ -80,6 +91,8 @@ export class SignUpComponent implements OnInit {
     this.addUserData.password = form.value.password;
     this.addUserData.name = form.value.name;
     this.addUserData.code = "";
+    
+    console.log(this.addUserData)
 
     if (valid) this.signUp();
 
@@ -120,31 +133,48 @@ export class SignUpComponent implements OnInit {
     if (!this.sending) {
       this.sending = true;
 
-      this._authService.signUp(this.addUserData).subscribe(signUpResponse => {
+
+      this._authService.verifyFundationCode(this.addUserData).subscribe(response => {
+        console.log("response: ", response)
         
-        this.sending = false;
-        console.log("signUp() data: ", signUpResponse);
+        const {valid, data} = response;
+  
+        
+  
+        if (valid) {
+  
+          localStorage.setItem("data_confirmation", "1 pending")
 
-        if(signUpResponse != null){
-          if (signUpResponse.status == 'ok'){
-            this.addUserData['type'] = signUpResponse.user.type;
-            this.isConfirmed = signUpResponse.user.userConfirmed;
-
-            if (!this.isConfirmed) {
-
-              let username_encrypt = window.btoa(JSON.stringify({ 
-                username: this.addUserData.email, 
-                type: this.addUserData.type, 
-                password: this.addUserData.password
-              }));
-
-              console.log("Registrado")
-
-              this._router.navigate(['auth/confirm'], {queryParams: {token: username_encrypt}})
-
+          this._authService.signUp(this.addUserData).subscribe(signUpResponse => {
+        
+            this.sending = false;
+            console.log("signUp data: ", signUpResponse);
+    
+            if(signUpResponse != null){
+              if (signUpResponse.status == 'ok'){
+                this.addUserData['type'] = signUpResponse.user.role;
+                this.isConfirmed = signUpResponse.user.userConfirmed;
+    
+                if (!this.isConfirmed) {
+    
+                  let username_encrypt = window.btoa(JSON.stringify({ 
+                    username: this.addUserData.email, 
+                    type: this.addUserData.type, 
+                    password: this.addUserData.password
+                  }));
+    
+                  this._router.navigate(['auth/confirm'], {queryParams: {token: username_encrypt}})
+    
+                }
+              }
             }
-          }
+          })
+          
+        }else {
+          this.alert.error = "El código es invalido"
+          this.sending = false;
         }
+  
       })
     }
   }
@@ -239,5 +269,18 @@ export class SignUpComponent implements OnInit {
     }
 
   }
+
+  federatedLogin = {
+    Facebook: false,
+    Google: false
+  };
+
+  federatedSignIn(customProvider) {
+
+    this._router.navigate(["/auth/code-confirm"], {queryParams: { customProvider } })
+    
+  }
+
+  
 
 }

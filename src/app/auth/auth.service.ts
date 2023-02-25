@@ -1,11 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Amplify, Auth } from 'aws-amplify';
-import { from, Observable } from 'rxjs';
+import { catchError, from, map, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppService } from '../app.service';
 import { DataRegister, UserData } from '../models/auth.models';
 import awsconfig from '../../aws-exports';
+import { Route, Router } from '@angular/router';
 
 Amplify.configure(awsconfig);
 
@@ -15,6 +16,10 @@ Amplify.configure(awsconfig);
 export class AuthService {
 
   public dataLogin = { email: '', password: '', }
+
+  UrlLambdaApi = environment.urlAPI;
+
+  toVerifyUser = false;
 
   /** Token del usuario logueado*/
   public token;
@@ -28,8 +33,20 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private _appService: AppService
+    private _appService: AppService,
+    private _route: Router
   ) { }
+
+
+  private getHeaders(): any {
+    let headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.token
+    })
+
+    return ({ headers: headers });
+  }
+
 
   /**
    * 
@@ -48,12 +65,16 @@ export class AuthService {
       clientMetadata: {
         role: addData.type,
         cellphone: addData.cellphone,
-        certificate: addData.certificate
+        certificate: addData.certificate,
+        // fundation_code: addData.fundation_code
       },
       attributes:{
+        // token,
         name:addData.name,        
       }
     }
+
+    console.log("data to save: ", data)
 
     return from(Auth.signUp(data).then((user: any) => {
       return { status: 'ok', user }
@@ -96,6 +117,13 @@ export class AuthService {
    */
   public signOut(): Observable<any> {
     return from(Auth.signOut().then(() => {
+
+      if (navigator.credentials && navigator.credentials.preventSilentAccess) {
+        // Turn on the mediation mode so auto sign-in won't happen
+        // until next time user intended to do so.
+        navigator.credentials.preventSilentAccess();
+      }
+
       this.userLogged = null;
       this.token = null;
 
@@ -104,6 +132,7 @@ export class AuthService {
 
       sessionStorage.clear();
       localStorage.clear();
+
     }));
   }
 
@@ -210,6 +239,31 @@ export class AuthService {
 
       })
     )
+  }
+
+  verifyFundationCode(data) : Observable<any> {
+    return this.http.post(`${this.UrlLambdaApi}/users/verify-code`, { data }, this.getHeaders()).pipe(
+      
+      map((response: any) => {
+
+        const {status, data} = response;;
+        
+        return {valid: status, data: data}
+        
+      }),
+      catchError(error => {
+        return of(error)
+      })
+    );
+  }
+
+  public federatedSignIn(customProvider) {
+    
+    return from(Auth.federatedSignIn({ customProvider }).then((response: any) => {
+      return { status: 'ok', response }
+    }).catch(error => {
+      return { status: 'error', error }
+    }))
   }
 
   public getUser(): Observable<any> {

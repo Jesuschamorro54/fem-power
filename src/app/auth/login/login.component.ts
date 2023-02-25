@@ -87,4 +87,20 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  federatedLogin = {
+    Facebook: false,
+    Google: false
+  };
+
+  /** Esta es la funcion que redirecciona a google para realizar la autenticación */
+  federatedSignIn(customProvider) {
+    if (!this.federatedLogin[customProvider]) {
+      this.federatedLogin[customProvider] = true;
+
+      this._authService.federatedSignIn(customProvider).subscribe();
+    }
+  }
+
+  
+
 }

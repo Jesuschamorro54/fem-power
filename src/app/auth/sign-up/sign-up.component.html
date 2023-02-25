@@ -7,7 +7,9 @@
 
             <h2 class="sign-up-title">Registrate</h2>
 
-            <span class="message">{{alert.error}}</span>
+            <span class="message" *ngIf="alert.error != '' ">
+                {{alert.error}}
+            </span>
 
             <form #singUpForm="ngForm" (ngSubmit)="verifyData(singUpForm)">
 
@@ -19,22 +21,9 @@
 
                 <input type="password" placeholder="Confirmar contraseña">
 
-                <!-- SELECT -->
-                <label class="select_list_2 dropdown" [ngClass]="{'active': ddownMonth1.checked}"
-                    (click)="ddownMonth1.checked = !ddownMonth1.checked;"
-                    (clickOutsideDdown)="ddownMonth1.checked = false;">
+                <input-select [data]="user_types" (changeValue)="addUserData.type = $event.value"></input-select>
 
-                    <span>{{type_select.label}}</span>
-                    <i class="icon-play3"></i>
-                    <input type="checkbox" #ddownMonth1>
-
-                    <ul class="dropdown-list date" *ngIf="ddownMonth1.checked">
-                        <li class="item" *ngFor="let type of user_types" (click)="type_select = type; addUserData.type = type.value">{{type.label}}</li>
-                    </ul>
-                </label>
-                <!-- FIN SELECT -->
-
-                <input type="text" *ngIf="type_select.value == 'natural' " name="fundation_code" placeholder="Escriba su código" [(ngModel)]="addUserData.fundation_code">
+                <input type="text" *ngIf="addUserData.type == 'natural' " name="fundation_code" placeholder="Escriba su código" [(ngModel)]="addUserData.fundation_code">
 
                 <!-- SUBIR DOCUMENTO -->
                 <label class="upload-input" for="certificate-input-file" *ngIf="['fundation', 'company'].includes(addUserData.type)">
@@ -57,23 +46,33 @@
                 <!-- FIN INPUT UPLOAD -->
 
 
-                <button type="submit" class="button" >Registrar</button>
+                <button type="submit" class="button" >
+                    
+                    <span *ngIf="!sending">Registrar</span> 
+
+                    <div class="spinner spinner--button white" *ngIf="sending" style="position: relative; margin: 0 15px; width: auto;">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+
+                </button>
 
                 <div class="separator">
                     <p>o</p>
                 </div>
-
-                <button class="button btn-facebook">
+                
+                <button type="button" class="button btn-facebook" (click)="federatedSignIn('Facebook')">
                     <i class="icon-facebook"></i>
                     Facebook
                 </button>
 
 
-                <button class="button btn-google">
+                <button type="button" class="button btn-google" (click)="federatedSignIn('Google')">
                     <img src="../../../assets/images/google.svg" width="24">
                     Google
                 </button>
-
             </form>
 
 

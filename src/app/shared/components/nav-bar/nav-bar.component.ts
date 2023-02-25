@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class NavBarComponent implements OnInit {
 
   showProfile: Boolean = false;
+  public responsive_menu = false;
 
   constructor(
     public _appService: AppService,
@@ -38,5 +39,4 @@ export class NavBarComponent implements OnInit {
 
     // this._appService.nextToken = null;
   }
-
 }

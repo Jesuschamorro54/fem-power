@@ -12,16 +12,19 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent {
   title = 'fempower';
 
-  constructor (
+  constructor(
+    private _router: Router,
     private _authService: AuthService,
-    private _appservice: AppService,
-    public _router: Router,
+    public _appService: AppService,
   ) {
-    
-    // Verificar si hay un usuario con la sessión abierta
+
+    _appService.loadingApp = true;
+
+    // Verificar si hay un usuario autenticado
     this._authService.isUserAuthenticated().subscribe();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
+
