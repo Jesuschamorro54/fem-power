@@ -9,7 +9,19 @@ export class StaticFundationComponent implements OnInit {
 
   constructor() { }
 
+  fundation_names = [
+    {label: 'Seleccione la fundación...', value: null},
+    {label: 'Mujer', value: 'fundation'},
+    {label: 'Mujer', value: 'fundation'},
+    {label: 'Mujer', value: 'fundation'},
+    {label: 'Mujer', value: 'fundation'}
+  ]
+  
   ngOnInit(): void {
+  }
+
+  mostrarItem(item){
+    console.log(item.value);
   }
 
 }
