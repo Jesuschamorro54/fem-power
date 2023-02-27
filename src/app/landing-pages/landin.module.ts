@@ -6,6 +6,7 @@ import { StaticFundationComponent } from './static-fundation/static-fundation.co
 import { StaticWomenComponent } from './static-women/static-women.component';
 import { StaticHomeComponent } from './static-home/static-home.component';
 import { LandinComponent } from './landin.component';
+import {CarruselComponent} from '../shared/components/carrusel/carrusel.component';
 
 
 @NgModule({
@@ -14,10 +15,11 @@ import { LandinComponent } from './landin.component';
     StaticWomenComponent,
     StaticHomeComponent,
     LandinComponent,
+    CarruselComponent, 
   ],
   imports: [
     CommonModule,
-    LandinRoutingModule
+    LandinRoutingModule,
   ]
 })
 export class LandinModule { }

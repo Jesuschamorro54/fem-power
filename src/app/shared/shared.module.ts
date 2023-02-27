@@ -23,7 +23,8 @@ import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase,
     CutUserNamePipe, 
     notificationsDate, 
     messageDate, 
-    ToLowerCase
+    ToLowerCase,
+    
   ],
   
   imports: [
