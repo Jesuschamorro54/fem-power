@@ -1,0 +1,89 @@
+@import '../../../styles/colors';
+@import '../../profiles.component.scss';
+
+.user-info {
+    background: white;
+    border-radius: 10px;
+    padding-bottom: 10px;
+
+    .cover-photo {
+        position: relative;
+
+        .user-cover-photo {    
+            max-height: 20rem;
+            overflow: hidden;
+            border-radius: 12px;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+    }
+
+    .ph5 {
+        
+        .user {
+
+            display: flex;
+            position: relative;
+            justify-content: space-between;
+
+            div {
+                display: flex;
+            }
+
+            $photo-width: 180px;
+            $photo-margin: 18px;
+
+            .profile-photo-separator {
+                width: $photo-width;
+                margin: 0 $photo-margin;
+                height: 100px;
+            }
+
+            .profile-photo {
+                position: absolute;
+                bottom: 0px;
+                left: $photo-margin;
+                width: $photo-width;
+                height: 178px;
+                border-radius: 50%;
+                overflow: hidden;
+                border: 4px solid white;
+                background: #ccc;
+                cursor: pointer;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+
+                    transition: all 300ms;
+
+                    &:hover {
+                        filter: brightness(0.8);
+                    }
+                }
+            }
+
+            .information { }
+
+        }
+
+        .followers {
+            display: flex;
+            justify-content: center;
+            margin: 10px 18px;
+            width: 180px;
+        }
+
+    }
+
+}

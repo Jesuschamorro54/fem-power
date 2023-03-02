@@ -1,0 +1,126 @@
+@import '../styles/colors';
+
+:host {
+    .title { 
+        margin: 5px 10px;
+    }
+
+    .subtitle {
+        margin: 0px 10px;
+    }
+
+    .opacity {
+        opacity: 0.7;
+    }
+}
+
+.component {
+    &:not(:first-child) {
+        margin-top: 20px;
+    }
+}
+
+.profile {
+    width: 100%;
+    padding: 15px;
+    overflow-x: hidden;
+    height: fit-content;
+
+    .profile-container {
+        width: 100%;
+        display: flex;
+        box-sizing: content-box;
+
+        .first-section {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+
+            .left-column {
+                margin-right: 10px;
+                max-width: 60rem;
+                position: inherit;
+            }
+
+            .right-column {
+                max-width: 30rem;
+            }
+        }
+    }
+}
+
+.posts {
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 10px;
+
+    div {
+        display: flex;
+
+        &:not(:first-child){
+            justify-content: space-between;
+        }
+    }
+
+    div .photo {
+        width: 53px;
+        height: 53px;
+        margin: 0px 10px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid white;
+        cursor: pointer;
+
+        img {
+            width: 100%;
+            height: 100%;
+
+            transition: all 300ms;
+
+            &:hover {
+                filter: brightness(0.8);
+            }
+        }
+    }
+
+    div .input {
+        align-self: center;
+        background: #E5E5E5;
+        padding: 10px 15px;
+        width: 30%;
+        min-width: 157px;
+        border-radius: 20px;
+        cursor: text;
+        transition: all 200ms;
+
+        &:hover {
+            background: rgba($color: #E5E5E5, $alpha: 0.7);
+        }
+
+        span {
+            user-select: none;
+        }
+
+    }
+
+    div .button-item {
+        color: #b3b3b3;
+        padding: 8px 15px;
+        margin: 0px 5px;
+        cursor: pointer;
+        transition: all 300ms;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            background: #ebebeb;
+        }
+    }
+
+
+}
+

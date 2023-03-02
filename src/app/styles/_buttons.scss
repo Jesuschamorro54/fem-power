@@ -9,7 +9,7 @@ button, .button{
     min-width: 40px;
     min-height: 30px;
     background-color: $dark-fucsia;
-    transition: background-color 200ms;
+    transition: all 200ms;
     border-radius: 8px;
     margin: 5px;
     padding: 2px 5px;
@@ -21,4 +21,32 @@ button, .button{
     &:hover {
         background-color: rgba($color: rgb(185, 0, 114), $alpha: 1);
     }
+
+    &.outlet i,
+    &.color-white i {
+        color: #4D4A4C;
+        font-size: 14px;
+        margin: 0 5px;
+    }
+
+    &.outlet {
+        border: 1px solid rgba($color: $fucsia, $alpha: 0.3);
+        background-color: $c-backgroud;
+        color: black;
+
+        &:hover {
+            filter: brightness(0.95);
+        }
+    }
+
+    &.color-white {
+        background-color: $c-backgroud;
+        color: black;
+        border: none;
+
+        &:hover {
+            background-color: rgba($color: $c-backgroud, $alpha: 0.9);
+        }
+    }
+
 }
