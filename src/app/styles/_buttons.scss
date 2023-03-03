@@ -30,7 +30,7 @@ button, .button{
     }
 
     &.outlet {
-        border: 1px solid rgba($color: $fucsia, $alpha: 0.3);
+        border: 1px solid $light;
         background-color: $c-backgroud;
         color: black;
 
