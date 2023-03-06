@@ -1,10 +1,16 @@
 @import '../../../styles/colors';
 @import '../../profiles.component.scss';
 
+
+button {
+    padding: 8px 15px;
+}
+
 .user-info {
     background: white;
     border-radius: 10px;
     padding-bottom: 10px;
+    height: 29.28rem;
 
     .cover-photo {
         position: relative;
@@ -74,6 +80,12 @@
             }
 
             .information { }
+
+            .aditional {
+                margin-right: 9px;
+
+                
+            }
 
         }
 

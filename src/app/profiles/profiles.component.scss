@@ -73,7 +73,7 @@
                 width: 100%;
                 margin-top: 20px;
                 background: white;
-                border-radius: 10px;
+                border-radius: 20px;
                 padding: 16px;
 
                 .content-items {
@@ -86,7 +86,7 @@
                         cursor: pointer;
                         border: 1px solid #ccc;
                         border-radius: 25px;
-                        padding: 5px 15px;
+                        padding: 10px 15px;
                     }
 
                 }
@@ -103,6 +103,7 @@
     border-radius: 10px;
     flex-direction: column;
     padding: 10px;
+    height: 130px;
 
     div {
         display: flex;
