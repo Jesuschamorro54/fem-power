@@ -1,0 +1,92 @@
+@import '../../../styles/colors';
+
+.profile-information {
+    
+    display: flex;
+    flex-direction: column;
+
+    section {
+        display: flex;
+        background: white;
+        border-radius: 10px;
+        padding: 16px 10px;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+
+        article {
+            border: 1px solid $light;
+            padding: 16px;
+            border-radius: 10px;
+        }
+
+        .general-info {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            padding: 10px;
+
+            div span {
+                display: flex;
+                
+                .key {
+                    width: 155px;
+                    text-align: end;
+                    margin-right: 15px;
+                }
+
+                .value {
+
+                }
+
+            }
+
+        }
+
+        .certifications {
+            width: 100%;
+            padding: 10px;
+
+            .container-certifications {
+                display: flex;
+                border: 1px solid $light;
+                border-radius: 10px;
+                padding: 16px;
+                overflow-x: auto;
+                max-width: 85.251rem;
+
+                .certification {
+                    width: 120px;
+                    text-align: -webkit-center;
+                    margin: 5px 15px;
+                    
+
+                    .icon {
+                        border-radius: 9px;
+                        border-top-right-radius: 27px;
+                        border: 1px solid red;
+                        background: #ebebeb;
+                        width: 75px;
+                        height: 90px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-bottom: 8px;
+                        flex-direction: column;
+
+                        i {
+                            font-size: 45px;
+                        }
+                    }
+
+                    
+                }
+            }
+
+        }
+
+    }
+
+
+
+}

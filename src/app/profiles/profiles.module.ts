@@ -6,6 +6,7 @@ import { ProfilesComponent } from './profiles.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { SponsorComponent } from './components/sponsor/sponsor.component';
+import { ProfileInformationComponent } from './components/profile-information/profile-information.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SponsorComponent } from './components/sponsor/sponsor.component';
     ProfilesComponent,
     UserInfoComponent,
     PortfolioComponent,
-    SponsorComponent
+    SponsorComponent,
+    ProfileInformationComponent
   ],
   imports: [
     CommonModule,

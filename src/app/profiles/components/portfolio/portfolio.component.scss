@@ -12,6 +12,7 @@
     .head {
         display: flex;
         flex-direction: column;
+        overflow: hidden;
 
         span {
             display: flex;

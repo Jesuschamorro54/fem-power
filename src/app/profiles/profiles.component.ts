@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilesComponent implements OnInit {
 
+  currentTab = {
+    informationTab: true,
+    comunityTab: false,
+    portfolioTab: false,
+    galleryTab: false,
+    eventsTab: false
+  }
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleTabs(selectedTab){
+    Object.keys(this.currentTab).forEach(tab => this.currentTab[tab] = Boolean(selectedTab == tab))
   }
 
 }

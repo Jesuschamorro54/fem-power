@@ -4,7 +4,7 @@
 }
 
 @font-face {
-  font-family: 'Fem Power';
+  font-family: 'Fem Power icon';
   font-style: normal;
   font-weight: 400;
   src:  url('../../assets/fonts/icomoon.eot?xt01ex');
@@ -15,7 +15,7 @@
 }
 
 .fem-power-icons {
-  font-family: 'Fem Power';
+  font-family: 'Fem Power icon';
   font-weight: normal;
   font-style: normal;
   font-size: 24px;  /* Preferred icon size */
@@ -42,7 +42,7 @@
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'Fem Power' !important;
+  font-family: 'Fem Power icon' !important;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;  /* Preferred icon size */
@@ -71,6 +71,9 @@
 
 // ---------------
 
+.icon-user-job:before {
+  content: "\e937";
+}
 .icon-google .path1:before {
   content: "\e910";
   color: rgb(29, 129, 206);
@@ -151,6 +154,10 @@
 .icon-amd:before {
   content: "\e90f";
   color: #ed1c24;
+}
+.icon-americanexpress:before {
+  content: "\ea29";
+  color: #2e77bc;
 }
 .icon-anaconda:before {
   content: "\e911";
@@ -297,10 +304,6 @@
 .icon-automatic:before {
   content: "\e936";
   color: #7d8084;
-}
-.icon-autotask:before {
-  content: "\e937";
-  color: #e51937;
 }
 .icon-aventrix:before {
   content: "\e938";
@@ -3500,6 +3503,27 @@
   content: "\ec7d";
   color: #52c2af;
 }
+.icon-bulb:before {
+  content: "\ea2a";
+}
+.icon-lamp:before {
+  content: "\ea2a";
+}
+.icon-idea:before {
+  content: "\ea2a";
+}
+.icon-document-certificate:before {
+  content: "\ee6c";
+}
+.icon-document-certificate1:before {
+  content: "\ee6d";
+}
+.icon-certificate:before {
+  content: "\ee6e";
+}
+.icon-certificate1:before {
+  content: "\ee6f";
+}
 .icon-fem-power:before {
   content: "\e900";
 }
@@ -4961,10 +4985,18 @@
 .icon-notification1:before {
   content: "\ee6a";
 }
+.icon-drivers-license-o:before {
+  content: "\ea2c";
+}
+.icon-drivers-license:before {
+  content: "\ea2d";
+}
+.icon-certificate2:before {
+  content: "\ea2e";
+}
 .icon-group:before {
   content: "\ee6b";
 }
 .icon-users1:before {
   content: "\ee6b";
 }
-
