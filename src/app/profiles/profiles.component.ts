@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ProfilesComponent implements OnInit {
 
   currentTab = {
-    informationTab: true,
-    comunityTab: false,
+    informationTab: false,
+    communityTab: true,
     portfolioTab: false,
     galleryTab: false,
     eventsTab: false

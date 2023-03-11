@@ -7,6 +7,9 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { SponsorComponent } from './components/sponsor/sponsor.component';
 import { ProfileInformationComponent } from './components/profile-information/profile-information.component';
+import { ProfileComunityComponent } from './components/profile-comunity/profile-comunity.component';
+import { ProfileGalleryComponent } from './components/profile-gallery/profile-gallery.component';
+import { ProfileEventsComponent } from './components/profile-events/profile-events.component';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { ProfileInformationComponent } from './components/profile-information/pr
     UserInfoComponent,
     PortfolioComponent,
     SponsorComponent,
-    ProfileInformationComponent
+    ProfileInformationComponent,
+    ProfileComunityComponent,
+    ProfileGalleryComponent,
+    ProfileEventsComponent
   ],
   imports: [
     CommonModule,
