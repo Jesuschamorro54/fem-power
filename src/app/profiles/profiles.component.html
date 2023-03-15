@@ -48,7 +48,7 @@
 
                 <!-- Portafolio -->
                 <div class="component">
-                    <app-portfolio></app-portfolio>
+                    <app-portfolio [preview]="true"></app-portfolio>
                 </div>
 
 
@@ -87,7 +87,11 @@
             </div>
 
             <div class="component" *ngIf="currentTab.communityTab">
-                <app-profile-community style="width: 100%;"></app-profile-community>
+                <app-profile-community></app-profile-community>
+            </div>
+
+            <div class="component" *ngIf="currentTab.portfolioTab">
+                <app-portfolio [preview]="false"></app-portfolio>
             </div>
 
 

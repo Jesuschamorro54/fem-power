@@ -10,6 +10,7 @@ import { ProfileInformationComponent } from './components/profile-information/pr
 import { ProfileComunityComponent } from './components/profile-comunity/profile-comunity.component';
 import { ProfileGalleryComponent } from './components/profile-gallery/profile-gallery.component';
 import { ProfileEventsComponent } from './components/profile-events/profile-events.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ProfileEventsComponent } from './components/profile-events/profile-even
   ],
   imports: [
     CommonModule,
-    ProfilesRoutingModule
+    ProfilesRoutingModule,
+    SharedModule
   ]
 })
 export class ProfilesModule { }

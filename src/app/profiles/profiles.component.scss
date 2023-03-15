@@ -39,6 +39,10 @@
     &:not(:first-child) {
         margin-top: 20px;
     }
+
+    >:nth-child(n) {
+        width: 100%
+    }
 }
 
 .profile {

@@ -1,5 +1,5 @@
-<div class="portfolio">
-                    
+<div class="portfolio" *ngIf="preview" [ngClass]="{'limit': preview}">
+
     <section class="head">
 
 
@@ -26,8 +26,8 @@
 
                 <span class="item-data">Alrtesanías Molis</span>
 
-                <span class="item-data"> 
-                    <i class="icon-heart"></i> 137 
+                <span class="item-data">
+                    <i class="icon-heart"></i> 137
                 </span>
 
 
@@ -37,8 +37,73 @@
 
     </section>
 
+</div>
 
 
+<div class="portfolio all" *ngIf="!preview">
 
+    <head class="head">
+
+        <h3 class="title">PROYECTOS</h3>
+
+        <div class="filter-box">
+            <hr>
+            <span>
+                Filtrado por: 
+                <!-- SELECT -->
+                <label class="select_list_2 dropdown" [ngClass]="{'active': ddownInput.checked}"
+                    (click)="ddownInput.checked = !ddownInput.checked;" (clickOutsideDdown)="ddownInput.checked = false;">
+
+                    <!-- Es el texto que se muestra en la caja -->
+                    <span>{{filterSelected.label}}</span>
+
+                    <!-- icono de la flecha -->
+                    <i class="icon-play3"></i>
+
+                    <!-- Me sirve para saber si está o no desplegado el select -->
+                    <input type="checkbox" #ddownInput>
+
+                    <!-- Caja que se despliega -->
+                    <ul class="dropdown-list" *ngIf="ddownInput.checked">
+
+                        <!-- Cada uno de los items -->
+                        <li class="item" *ngFor="let item of filters" (click)="filterSelected = item">
+                            {{item.label}}
+                        </li>
+                        
+                    </ul>
+                </label>
+                <!-- FIN SELECT -->
+            </span>
+        </div>
+
+    </head>
+
+    <div class="body-grid-box">
+
+        <ul class="wraper">
+
+            <li class="item" *ngFor="let i of [0,1,2,3,4,5,6,7,7,7,7,7,7,7,7]">
+
+                <div class="cover">
+                    <img src="https://s1.significados.com/foto/shutterstock-513513718_bg.jpg" alt="">
+                </div>
+
+
+                <div class="info">
+                    <span class="item-title">Artesanías Molis</span>
+
+                    <p>
+                        En un proyecto se tienen en cuenta los aspectos técnicos, económicos y financieros.
+                    </p>
+                </div>
+
+                
+
+            </li>
+
+        </ul>
+
+    </div>
 
 </div>

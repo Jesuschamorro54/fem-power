@@ -1,5 +1,20 @@
 @import '../../../styles/colors';
 @import '../../profiles.component.scss';
+@import '../../../styles/select';
+
+// Select Styles
+.select_list_2 {
+    width: auto;
+    border: none !important;
+
+    span {
+        margin-right: 16px;
+    }
+
+    i {
+        font-size: 14px;
+    }
+}
 
 .portfolio {
     background: white;
@@ -7,12 +22,17 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    height: 29.28rem;
+    width: 100%;
+
+
+    .limit {
+        height: 29.28rem;
+    }
 
     .head {
         display: flex;
         flex-direction: column;
-        overflow: hidden;
+        // overflow: hidden;
 
         span {
             display: flex;
@@ -24,6 +44,99 @@
         }
     }
 
+    &.all {
+        
+        padding: 16px 20px;
+        
+        .head {
+            align-items: center;
+
+            .filter-box {
+                
+                width: 100%;
+                display: flex;
+                align-items: center;
+
+                hr {
+                    border: none;
+                    border-bottom: 1px solid #ccc;
+                    width: 100%;
+                    height: 1px;
+                    margin-right: 10px;
+                }
+
+                span {
+                    display: flex;
+                    width: fit-content;
+                    min-width: fit-content;
+                    align-items:center;
+                }
+
+            }
+
+        }
+
+
+        .body-grid-box {
+            margin-top: 10px;
+            max-height: 38rem;
+            overflow-y: auto;
+
+            .wraper {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                grid-column-gap: 80px;
+                grid-row-gap: 40px;
+
+                .item {
+                    display: flex;
+                    flex-direction: column;
+                    border: 1px solid $light;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    transition: border 300ms;
+                    cursor: pointer;
+
+                    &:hover {
+                        border: 1px solid rgba($color: $light, $alpha: 2);
+                    }
+
+                    .cover {
+                        width: fit-content;
+                        max-height: 180px;
+                        // border-top-left-radius: 8px;
+                        // border-top-right-radius: 8px;
+                        overflow: hidden;
+    
+                        img {
+                            width: 100%;
+                            max-width: 275px;
+                        }
+                    }
+
+                    .info {
+                        padding: 10px;
+                        .item-title {
+                            font-weight: bold;
+                            margin: 5px 0;
+                        }
+    
+                        p {
+                            contain: inline-size;
+                        }
+                    }
+
+                    
+
+
+                }
+            }
+
+        }
+
+
+    }
     .content-grid-box {
 
         .grid {

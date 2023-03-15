@@ -28,6 +28,14 @@
                 background: $search-background;
                 border-radius: 6px;
                 width: 100%;
+                display: flex;
+                padding: 0 14px;
+
+                i {
+                    align-self: center;
+                    font-size: 15px;
+                    color: #b2b2b2;
+                }
                 
                 input {
                     background: transparent;
@@ -82,8 +90,8 @@
 
 
                     &:after {
-                        border-bottom: 2px solid $dark-fucsia;
-                        bottom: -2px;
+                        border-bottom: 1px solid $dark-fucsia;
+                        bottom: -1px;
                         left: 0;
                     }
 
