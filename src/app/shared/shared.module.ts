@@ -6,9 +6,14 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ClickOutsideDdownDirective } from './directives/clickOutsideDdown.directive';
 import { AwsS3Service } from './services/awsS3.service';
-import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase, UserClassName } from './pipes/shared.pipe';
-
-
+import {
+  CutUserNamePipe,
+  messageDate,
+  notificationsDate,
+  RoleName,
+  ToLowerCase,
+  UserClassName,
+} from './pipes/shared.pipe';
 
 @NgModule({
   declarations: [
@@ -16,30 +21,23 @@ import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase,
     NavBarComponent,
     FooterComponent,
     ClickOutsideDdownDirective,
-    
+
     // Pipes
-    RoleName, 
-    UserClassName, 
-    CutUserNamePipe, 
-    notificationsDate, 
-    messageDate, 
+    RoleName,
+    UserClassName,
+    CutUserNamePipe,
+    notificationsDate,
+    messageDate,
     ToLowerCase,
-    
   ],
-  
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule
-  ],
+
+  imports: [CommonModule, FormsModule, RouterModule],
 
   exports: [
     NavBarComponent,
     FooterComponent,
     ClickOutsideDdownDirective,
   ],
-  providers: [
-    AwsS3Service
-  ]
+  providers: [AwsS3Service],
 })
-export class SharedModule { }
+export class SharedModule {}

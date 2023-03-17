@@ -1,28 +1,28 @@
-@import '../../styles/colors';
+@import "../../styles/colors";
 
 /* -------------------------------------------------------------------------- */
 /*                                  seccion 1                                 */
 /* -------------------------------------------------------------------------- */
 .section-1 {
-    height: 40rem;
-    // background-color: rebeccapurple;
-    background-color: white;
+  height: 40rem;
+  // background-color: rebeccapurple;
+  background-color: white;
 }
 
-.div-section-donate{
+.div-section-donate {
   margin-top: 8%;
-  margin-left: 25%;  
-  z-index:1;
+  margin-left: 25%;
+  z-index: 1;
   position: absolute;
-
 }
-.text-donar-static-women{
+
+.text-donar-static-women {
   text-align: center;
   font-size: 20px;
   font-weight: 400;
 }
 
-.button-donar-static-women{
+.button-donar-static-women {
   align-items: center;
   margin-left: auto;
   margin-right: auto;
@@ -35,40 +35,97 @@
   border-radius: 20px;
 }
 
-.div-section-donate{
-
+.div-section-donate {
 }
 
 #img-curve {
   width: 100%;
   height: 100rem;
   position: absolute;
-  z-index:0;
+  z-index: 0;
   top: -40rem;
-
 }
 
 #img-section-1 {
   width: 100%;
-  height:35rem;
+  height: 35rem;
   position: absolute;
-  z-index:0;
+  z-index: 0;
   top: 10%;
   left: 20%;
 }
+
 /* -------------------------------------------------------------------------- */
 /*                                  seccion 2                                 */
 /* -------------------------------------------------------------------------- */
 .section-2 {
-    margin: -5%;
-    padding: 10px;
-    background-color: white;
-  }
-  .title-section-2{
-    text-align: center;
-  }
-  /* Ajustes de estilo para el carrusel */
-  app-carousel {
-    height: 400px;
-    margin-bottom: 40px;
-  }
+  margin: 5%;
+  padding: 10px;
+  background-color: white;
+}
+
+.title-section-2 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 400;
+  color: #000;
+}
+
+/* Ajustes de estilo para el carrusel */
+app-carousel {
+  height: 400px;
+  margin-bottom: 40px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  seccion 3                                 */
+/* -------------------------------------------------------------------------- */
+.section-3{
+  background-color: #FFF5FB;
+}
+
+.title-section-3 {
+  font-size: 40px;
+  font-weight: 400;
+  text-align: center;
+}
+
+#img-section-3 {
+  width: 100%;
+  height: 35rem;
+  margin-top: 5rem;
+  position: absolute;
+  z-index: 0;
+  right: 20rem;
+}
+
+.container-step-text{
+  z-index: 1;
+  margin-left: 40%;
+  margin-bottom: 5%;
+}
+
+.text-step-one{
+  margin-top: 9rem;
+  font-size: 30px;
+}
+
+.text-step-two{
+  margin-top: 9rem;
+  font-size: 30px;
+}
+
+.text-step-three{
+  margin-top: 7rem;
+  font-size: 30px;
+}
+/* -------------------------------------------------------------------------- */
+/*                                  seccion 4                                 */
+/* -------------------------------------------------------------------------- */
+
+.title-section-4 {
+  text-align: center;
+  font-weight: 400;
+  font-size: 40px;
+  color: #000;
+}
