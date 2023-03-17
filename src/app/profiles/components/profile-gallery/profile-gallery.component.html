@@ -1,1 +1,30 @@
-<p>profile-gallery works!</p>
+<div class="profile-gallery">
+
+    <div class="container">
+
+        <section class="body">
+
+            <ul class="tabs">
+                <li class="tab" [ngClass]="{'actived': currentTab.myPhotos}"(click)="toggleTabs('myPhotos')">Fotos y videos de Mariela</li>
+                <li class="tab" [ngClass]="{'actived': currentTab.otherPhotos}" (click)="toggleTabs('otherPhotos')">Fotos en las que aparece Mariela</li>
+            </ul>
+
+            <div class="grid-box"> 
+
+                <ul class="wraper">
+        
+                    <li class="item" *ngFor="let i of [0,1,2,3,4,5,6,7,7,7,7,7,7,7,7]">
+        
+                        <div class="gallery-photo"></div>
+        
+                    </li>
+        
+                </ul>
+        
+            </div>
+
+        </section>
+
+    </div>
+
+</div>

@@ -10,8 +10,8 @@ export class ProfilesComponent implements OnInit {
   currentTab = {
     informationTab: false,
     communityTab: false,
-    portfolioTab: true,
-    galleryTab: false,
+    portfolioTab: false,
+    galleryTab: true,
     eventsTab: false
   }
 

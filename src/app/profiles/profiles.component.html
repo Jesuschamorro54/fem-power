@@ -94,6 +94,10 @@
                 <app-portfolio [preview]="false"></app-portfolio>
             </div>
 
+            <div class="component" *ngIf="currentTab.galleryTab">
+                <app-profile-gallery></app-profile-gallery>
+            </div>
+
 
         </div>
 
