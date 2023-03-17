@@ -1,0 +1,153 @@
+@import '../../../styles/colors';
+@import '../../profiles.component.scss';
+@import '../../../styles/select';
+
+// Select Styles
+.select_list_2 {
+    width: auto;
+    border: none !important;
+
+    span {
+        margin-right: 16px;
+    }
+
+    i {
+        font-size: 14px;
+    }
+}
+
+.profile-events {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+
+    .container {
+
+        .head {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .filter-box {
+                
+                width: 100%;
+                display: flex;
+                align-items: center;
+
+                hr {
+                    border: none;
+                    border-bottom: 1px solid #ccc;
+                    width: 100%;
+                    height: 1px;
+                    margin-right: 10px;
+                }
+
+                span {
+                    display: flex;
+                    width: fit-content;
+                    min-width: fit-content;
+                    align-items:center;
+                }
+
+            }
+
+        }
+
+        .body {
+            
+            max-height: 43rem;
+            overflow-y: auto;
+            
+            .events-container {
+
+                padding: 20px 86px;
+
+                .event {
+                    margin-bottom: 20px;
+
+                    .information {
+                        
+                        display: flex;
+                        flex-direction: column;
+                        display: flex;
+                        border-radius: 20px;
+                        flex-direction: column;
+                        border: 1px solid $light;
+                        border-radius: 20px;
+                        position: relative;
+
+                        .people-invited {
+                            position: absolute;
+                            right: 0;
+                            border: 1px solid #ccc;
+                            padding: 10px 22px;
+                            border-bottom-left-radius: 20px;
+                            border-top-right-radius: 19px;
+                            border-right-style: none;
+                            border-top-style: none;
+                            z-index: 1;
+                            background: #ccc;
+                            color: white;
+                        }
+
+                        .cover {
+                            width: 100%;
+                            height: 100%;
+                            overflow: hidden;
+                            border-top-left-radius: 19px;
+                            border-top-right-radius: 19px;
+
+                            img {
+                                width: inherit;
+                                max-height: 17rem;
+                                transform: scaleY(2);
+                            }
+                        }
+
+                        .description {
+                            padding: 5px 18px;
+
+                            .item {
+                                display: flex;
+                                align-items: center;
+                            }
+                        }
+                    }
+
+                    .actions {
+
+                        display: flex;
+                        justify-content: space-between;                        
+
+                        button {
+                            padding: 12px 35px;
+                            font-size: 17px;
+                            color: #aaa;
+                            width: 49%;
+                            place-content: center;
+                            margin: 10px 0px;
+                            background-color: white;
+
+                        }
+
+                        
+                    }
+
+
+                    
+                }
+
+                
+
+            }
+
+        }
+    }
+
+    
+
+}

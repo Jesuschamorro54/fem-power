@@ -11,8 +11,8 @@ export class ProfilesComponent implements OnInit {
     informationTab: false,
     communityTab: false,
     portfolioTab: false,
-    galleryTab: true,
-    eventsTab: false
+    galleryTab: false,
+    eventsTab: true
   }
 
   constructor() { }

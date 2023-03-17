@@ -1,1 +1,111 @@
-<p>profile-events works!</p>
+<div class="profile-events">
+
+    <div class="container">
+
+        <head class="head">
+
+            <h3 class="title">PROYECTOS</h3>
+
+            <div class="filter-box">
+                <hr>
+                <span>
+                    Filtrado por:
+                    <!-- SELECT -->
+                    <label class="select_list_2 dropdown" [ngClass]="{'active': ddownInput.checked}"
+                        (click)="ddownInput.checked = !ddownInput.checked;"
+                        (clickOutsideDdown)="ddownInput.checked = false;">
+
+                        <!-- Es el texto que se muestra en la caja -->
+                        <span>{{filterSelected.label}}</span>
+
+                        <!-- icono de la flecha -->
+                        <i class="icon-play3"></i>
+
+                        <!-- Me sirve para saber si está o no desplegado el select -->
+                        <input type="checkbox" #ddownInput>
+
+                        <!-- Caja que se despliega -->
+                        <ul class="dropdown-list" *ngIf="ddownInput.checked">
+
+                            <!-- Cada uno de los items -->
+                            <li class="item" *ngFor="let item of filters" (click)="filterSelected = item">
+                                {{item.label}}
+                            </li>
+
+                        </ul>
+                    </label>
+                    <!-- FIN SELECT -->
+                </span>
+            </div>
+
+        </head>
+
+        <div class="body">
+
+
+            <ul class="events-container">
+
+                <li class="event" *ngFor="let i of [0,1,2,3]">
+
+                    <section class="information">
+
+                        <span class="people-invited">23</span>
+
+                        <div class="cover">
+                            <img src="https://www.ucaldas.edu.co/portal/wp-content/uploads/2022/02/juntanzas-mujeres-rurales.jpg" alt="">
+                        </div>
+
+                        <div class="description">
+
+                            <h3>Juntanza de mujeres rurales - Narrativa por la vida</h3>
+
+                            <p>
+                                A través de un curso virtual, la iniciativa capacita y sensibiliza a funcionarias y
+                                funcionarios públicos para fortalecer la articulación interinstitucional y las rutas de
+                                atención a mujeres rurales víctimas de violencias en los 10 municipios priorizados.
+                            </p>
+
+                            <span class="item date">
+                                <i class="icon-calendar"></i>
+                                <h4>Viernes 24 de diciembre  (3:30 Pm - 7:00 Pm)</h4>
+                            </span>
+
+                            <span class="item event-modality">
+                                <i class="icon-camera"></i>
+                                <h4>Online</h4>
+                            </span>
+
+                            <span class="item event-url">
+                                <i class="icon-sphere"></i>
+                                <h4>Dirección del evento: https://us02web.zoom.us/j/81411620304</h4>
+                            </span>
+
+                            <ul class="sponsors">
+
+                                <li class="item"></li>
+
+                            </ul>
+
+
+                        </div>
+
+
+                    </section>
+
+                    <section class="actions">
+
+                        <button class="outlet"> <i class="share2"></i> Deseo Participar</button>
+                        <button class="outlet"> <i class="share2"></i> Compartir</button>
+
+                    </section>
+
+                </li>
+
+            </ul>
+
+
+        </div>
+
+    </div>
+
+</div>

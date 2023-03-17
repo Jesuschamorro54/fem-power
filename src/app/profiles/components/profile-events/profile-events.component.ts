@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileEventsComponent implements OnInit {
 
+  filters = [
+    {label: 'Esta semana', value: 'recents'},
+    {label: 'Proxima semana', value: 'relevant'},
+    {label: 'Proximo mes', value: 'relevant'}
+  ]
+  filterSelected:any = this.filters[0]
+
   constructor() { }
 
   ngOnInit(): void {
