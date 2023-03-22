@@ -50,6 +50,8 @@
     padding: 15px;
     overflow-x: hidden;
     height: fit-content;
+    margin: 0 auto;
+    max-width: 1200px;
 
     .profile-container {
         width: 100%;
@@ -67,7 +69,7 @@
 
             .left-column {
                 margin-right: 25px;
-                max-width: 60rem;
+                max-width: 50rem;
                 position: inherit;
             }
 
