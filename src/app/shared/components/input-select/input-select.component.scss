@@ -10,3 +10,29 @@
 
     }
 }
+/* Small devices (phones) */
+@media only screen and (max-width: 399px) {
+    span{
+        font-size: 0.7em;
+    }
+}
+@media only screen and (min-width: 400px) {
+    span{
+        font-size: 0.85em;
+    }
+}
+@media only screen and (min-width: 600px) {
+    span{
+        font-size: 1em;
+    }
+}
+@media only screen and (min-width: 768px) {
+    span{
+        font-size: 1.2em;
+    }
+}
+@media only screen and (min-width: 900px) {
+    span{
+        font-size: 1.4em;
+    }
+}

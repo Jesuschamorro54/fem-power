@@ -9,7 +9,10 @@ import { runInThisContext } from 'vm';
 export class SliderComponent implements OnInit {
   @Input() slider_type: string;
 
+  @Input() slider_invert: Boolean;
+
   public array_slider: Array<any>;
+  public array_highlights_projects: Array<any>;
 
   public index: number;
   public color: string;
@@ -40,6 +43,19 @@ export class SliderComponent implements OnInit {
        img: "https://www.aaa.com.co/wp-content/uploads/2017/12/Premio-Triple-A1-2017.jpg"
       }
     ];
+
+    this.array_highlights_projects=[
+      {name: "Desarrollo de cultivo de platano",
+       authors: "Juana Valentina, Laura Nathaly",
+       fundation: "Mujer y Futuro",
+       img: "https://storage.contextoganadero.com/s3fs-public/ganaderia/field_image/2019-05/mujeres_rurales.jpg"
+      },
+      {name: "La tierra de cultivos",
+       authors: "Sandra Milena",
+       fundation: "Mujeres guerreras",
+       img: "http://elcampesino.co/wp-content/uploads/2017/03/Captura-de-pantalla-2015-10-29-a-las-3.17.42-p.m..jpg"
+      }
+    ];
   }
 
   ngOnInit(): void {
@@ -64,6 +80,7 @@ export class SliderComponent implements OnInit {
       this.index--;
     }
     this.operation= this.index*-(100/this.array_slider.length);
+
   }
 
   automaticCounter(){
@@ -73,5 +90,6 @@ export class SliderComponent implements OnInit {
       this.index++;
     }
     this.operation= this.index*-(100/this.array_slider.length);
+
   }
 }

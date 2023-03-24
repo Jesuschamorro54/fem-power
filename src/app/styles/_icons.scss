@@ -71,6 +71,9 @@
 
 // ---------------
 
+.icon-donation:before {
+  content: "\ea2f";
+}
 .icon-user-job:before {
   content: "\e937";
 }
@@ -3524,6 +3527,12 @@
 .icon-certificate1:before {
   content: "\ee6f";
 }
+.icon-notifications-outline:before {
+  content: "\ee69";
+}
+.icon-notification1:before {
+  content: "\ee6a";
+}
 .icon-fem-power:before {
   content: "\e900";
 }
@@ -4979,11 +4988,14 @@
 .icon-IcoMoon:before {
   content: "\ee68";
 }
-.icon-notifications-outline:before {
-  content: "\ee69";
+.icon-drivers-license-o:before {
+  content: "\ea2c";
 }
-.icon-notification1:before {
-  content: "\ee6a";
+.icon-drivers-license:before {
+  content: "\ea2d";
+}
+.icon-certificate2:before {
+  content: "\ea2e";
 }
 .icon-drivers-license-o:before {
   content: "\ea2c";
