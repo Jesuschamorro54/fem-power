@@ -1,4 +1,4 @@
-<div id="slider">
+<div id="slider" *ngIf="!slider_invert">
     <div id="div-ul">
         <ul id="position-ul" [ngStyle]="{'width': ((array_slider.length)*100)+'%', 'transform': 'translateX(' + operation +'%)'}">
             <li *ngFor="let card of array_slider, let indice=index" [ngStyle]="{'background': color}" >
@@ -11,6 +11,36 @@
                 </div>
                 <div class="image">
                     <img src="{{card.img}}" alt="{{'card- '+index}}">
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="div-icon" *ngIf="slider_type=='no-automatic'">
+        <ul>
+            <li (click)="previous()">
+                <i class="icon-circle-left"></i>
+            </li>
+            <li (click)="next()">
+                <i class="icon-circle-right"></i>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--fundation slider-->
+
+<div id="slider" *ngIf="slider_invert">
+    <div id="div-ul">
+        <ul id="position-ul" [ngStyle]="{'width': ((array_highlights_projects.length)*100)+'%', 'transform': 'translateX(' + operation +'%)'}">
+            <li class="content-slider" *ngFor="let card of array_highlights_projects, let indice=index">
+                <div class="image">
+                    <img src="{{card.img}}" alt="{{'card- '+index}}">
+                </div>
+                
+                <div class="contents">
+                    <p class="information"><b>Nombre:</b> {{card.name}}</p>
+                    <p class="information"><b>Autores:</b> {{card.authors}}</p>
+                    <p class="information"><b>Fundación:</b> {{card.fundation}}</p>
                 </div>
             </li>
         </ul>
