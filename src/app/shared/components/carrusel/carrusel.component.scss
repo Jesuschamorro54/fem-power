@@ -1,0 +1,35 @@
+.carrusel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  
+  .carrusel-items {
+    display: flex;
+    transition: all 0.3s ease;
+    white-space: normal;
+  }
+  
+  .carrusel-item {
+    display: inline-block;
+    height: 200px;
+    width: 600px;
+    margin-right: 10px;
+    text-align: center;
+    // border: 1px solid #ccc;
+    border-radius: 15%;
+    // box-shadow: 0px 0px 5px 0px #ccc;
+    padding: 10px;
+    background-color: #FFF5FB;
+    align-items: center;
+  }
+
+  .carrusel-item-image {
+    width: 285px;
+    height: 142px;
+    border-radius: 15%;
+
+  }

@@ -1,0 +1,57 @@
+.form-static-women{
+margin-top: 5%;
+margin-left: 30%!important;
+  margin-right: 30%!important;
+}
+
+.subcontainer-input{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    font-size: 28px;
+    margin-top: 1%;
+}
+
+.subcontainer-select{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    font-size: 28px;
+    margin-top: 1%;
+}
+
+.label-input{
+    margin-right: 2rem;
+}
+
+.input-form-static-women{
+    width: 15rem;
+    height: 2rem;
+    border-width: 1px;
+    border-radius: 0;
+    border-color: #8C0054;
+}
+
+.select-form-static-women{
+    width: 17.2rem!important;
+    height: 2.5rem!important;
+    border-width: 1px!important;
+    border-radius: 0!important;
+    border-color: #8C0054!important;
+}
+.select-form-static-women::after{
+    width: 15rem!important;
+}
+
+.buttom-form{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 25px;
+    padding-left: 25px;
+    border-radius: 20px;
+}

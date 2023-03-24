@@ -6,6 +6,8 @@ import { StaticFundationComponent } from './static-fundation/static-fundation.co
 import { StaticWomenComponent } from './static-women/static-women.component';
 import { StaticHomeComponent } from './static-home/static-home.component';
 import { LandinComponent } from './landin.component';
+import { CarruselComponent } from '../shared/components/carrusel/carrusel.component';
+import { FormStaticWomenComponent } from '../shared/components/form-static-women/form-static-women.component';
 import { SharedModule } from "../shared/shared.module";
 
 
@@ -15,6 +17,8 @@ import { SharedModule } from "../shared/shared.module";
       StaticWomenComponent,
       StaticHomeComponent,
       LandinComponent,
+      CarruselComponent,
+      FormStaticWomenComponent,
     ],
     imports: [
       CommonModule,
@@ -22,4 +26,4 @@ import { SharedModule } from "../shared/shared.module";
       SharedModule
     ]
 })
-export class LandinModule { }
+export class LandinModule {}

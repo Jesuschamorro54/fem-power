@@ -1,0 +1,34 @@
+<form (ngSubmit)="onSubmit()" class="form-static-women">
+  <div class="subcontainer-input">
+    <label class="label-input"  for="nombres">Nombres:</label>
+    <input type="text" id="nombres" class="input-form-static-women"  name="nombres" required>
+  </div>
+  <div class="subcontainer-input">
+    <label class="label-input"  for="apellidos">Apellidos:</label>
+    <input type="text" id="apellidos" class="input-form-static-women"  name="apellidos" required>
+  </div>
+  <div class="subcontainer-input">
+    <label  class="label-input" for="correo">Correo:</label>
+    <input type="email" id="correo" class="input-form-static-women" name="correo" required>
+  </div>
+  <div class="subcontainer-input">
+    <label  class="label-input" for="telefono">Teléfono:</label>
+    <input type="text" id="telefono" class="input-form-static-women"  name="telefono" required>
+  </div>
+  <div class="subcontainer-input">
+    <label class="label-input"  for="zonaRural">Zona rural a la que pertenece:</label>
+    <input type="text" id="zonaRural" class="input-form-static-women"  name="zonaRural" required>
+  </div>
+  <div class="subcontainer-select">
+    <label class="label-input" for="fundacion">Fundación:</label>
+    <div class="select-form-static-women">
+      <select class="select-form-static-women" name="fundacion">
+        <option default value="fundacion1">Seleccionar</option>
+        <option value="fundacion1">Fundación 1</option>
+        <option value="fundacion2">Fundación 2</option>
+        <option value="fundacion3">Fundación 3</option>
+      </select>
+    </div>
+  </div>
+  <button class="buttom-form" type="submit">Solicitar</button>
+</form>

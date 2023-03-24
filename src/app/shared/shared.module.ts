@@ -49,8 +49,6 @@ import { ModalCreatePostComponent } from './components/modal-create-post/modal-c
     InputSelectComponent,
     ModalCreatePostComponent,
   ],
-  providers: [
-    AwsS3Service
-  ]
+  providers: [AwsS3Service],
 })
-export class SharedModule { }
+export class SharedModule {}
