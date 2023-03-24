@@ -25,22 +25,45 @@ export class CarruselComponent {
       image: 'https://www.usfq.edu.ec/sites/default/files/inline-images/diversidad-7.jpg',
       title: 'Desarrollo de cultivo de platano'
     },];
+  currentPosition = 0;
+  maxPosition = (285 * this.items.length) - 570;
 
-  constructor() {}
+  constructor() { }
 
-  next(): void {
-    this.move(-1);
+
+  prev() {
+    if (this.currentPosition > 0) {
+      this.currentPosition -= 428;
+      this.moveCarousel();
+    }
   }
 
-  prev(): void {
-    this.move(1);
+  next() {
+    if (this.currentPosition < this.maxPosition) {
+      this.currentPosition += 428;
+      this.moveCarousel();
+    }
   }
 
-  private move(direction: number): void {
-    const step = this.carrusel.nativeElement.offsetWidth / 3;
-    const movement = direction * step;
-    const currentPosition = this.carruselItems.nativeElement.style.transform.replace('translateX(', '').replace('px)', '') || '0';
-    const newPosition = parseInt(currentPosition, 10) + movement;
-    this.carruselItems.nativeElement.style.transform = `translateX(${newPosition}px)`;
+  moveCarousel() {
+    const carouselWrapper: any = document.querySelector('.carousel-wrapper');
+    carouselWrapper.style.transform = `translateX(-${this.currentPosition}px)`;
+    this.checkButtons();
+  }
+
+  checkButtons() {
+
+    const prevButton = document.querySelector('.prev-button');
+    const nextButton = document.querySelector('.next-button');
+    if (this.currentPosition <= 0) {
+      prevButton.classList.add('disabled');
+    } else {
+      prevButton.classList.remove('disabled');
+    }
+    if (this.currentPosition >= this.maxPosition) {
+      nextButton.classList.add('disabled');
+    } else {
+      nextButton.classList.remove('disabled');
+    }
   }
 }
