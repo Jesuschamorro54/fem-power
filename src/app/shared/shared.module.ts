@@ -11,6 +11,7 @@ import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase,
 import { InputSelectComponent } from './components/input-select/input-select.component';
 import { DonateButtonComponent } from './components/donate-button/donate-button.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { ModalCreatePostComponent } from './components/modal-create-post/modal-create-post.component';
 
 
 
@@ -29,7 +30,7 @@ import { SliderComponent } from './components/slider/slider.component';
     CutUserNamePipe, 
     notificationsDate, 
     messageDate, 
-    ToLowerCase,
+    ToLowerCase, ModalCreatePostComponent,
     
   ],
   
@@ -45,7 +46,8 @@ import { SliderComponent } from './components/slider/slider.component';
     FooterComponent,
     DonateButtonComponent,
     ClickOutsideDdownDirective,
-    InputSelectComponent
+    InputSelectComponent,
+    ModalCreatePostComponent,
   ],
   providers: [
     AwsS3Service
