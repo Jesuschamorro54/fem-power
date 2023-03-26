@@ -1,5 +1,5 @@
 <nav id="nav-bar">
-    <div class="content-nav">
+    <div class="content-nav" [ngClass]="{'navigation-menu': _appService.user_session == 1}">
 
         <!-- HEADER -->
         <header class="logo">
@@ -9,25 +9,39 @@
             <span class="item">
                 <a class="logo-label" [routerLink]="['/home']">FemPower</a>
             </span>
+
+            <span *ngIf="_appService.user_session == 1">
+                <app-search-input></app-search-input>
+            </span>
+            
+
         </header>
         <!-- OPTIONS -->
 
         <!-- Usuario con Session -->
         <ul *ngIf="_appService.user_session == 1" class="nav-options">
 
-            <li class="nav-link" *ngIf="!_appService.user_code_confirmed">
-                <a [routerLink]="['/fem/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
-            </li>
-            <li class="nav-link" *ngIf="!_appService.user_code_confirmed">
-                <a [routerLink]="['/fem/women']" [routerLinkActive]="['active']">Mujeres</a>
-            </li>
-            <hr>
-            <li class="nav-link" *ngIf="!_appService.user_code_confirmed">
-                <a [routerLink]="['/auth/confirm-registration']" [routerLinkActive]="['active']">Verificar cuenta</a>
-            </li>
+            <div class="links-container" *ngIf="!_appService.user_code_confirmed">
+                <li class="nav-link" >
+                    <a [routerLink]="['/fem/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
+                </li>
+                <li class="nav-link">
+                    <a [routerLink]="['/fem/women']" [routerLinkActive]="['active']">Mujeres</a>
+                </li>
+                <li class="nav-link">
+                    <a [routerLink]="['/auth/confirm-registration']" [routerLinkActive]="['active']">Verificar cuenta</a>
+                </li>
+            </div>
 
+            <!-- Menu options -->
+            <div class="links-container" *ngIf="_appService.user_code_confirmed">
+                <li>
+                    <i class="icon-document-certificate"></i>
+                </li>
+            </div>
+
+            <!-- User Avatar -->
             <div (clickOutsideDdown)="showProfile=false" class="profile dropdown">
-
                 <div (click)="toggleProfile()" [ngClass]="{'open':showProfile}" class="item">
                     <img #userAvatar [src]="_appService.user_data.picture"
                     (error)="userAvatar.src='https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg' ">
