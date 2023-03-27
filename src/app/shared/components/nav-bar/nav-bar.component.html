@@ -1,5 +1,5 @@
 <nav id="nav-bar">
-    <div class="content-nav" [ngClass]="{'navigation-menu': _appService.user_session == 1}">
+    <div class="content-nav">
 
         <!-- HEADER -->
         <header class="logo">
@@ -13,66 +13,86 @@
             <span *ngIf="_appService.user_session == 1">
                 <app-search-input></app-search-input>
             </span>
-            
+
 
         </header>
         <!-- OPTIONS -->
 
         <!-- Usuario con Session -->
-        <ul *ngIf="_appService.user_session == 1" class="nav-options">
+        <ul *ngIf="_appService.user_session == 1" class="nav-options"
+            [ngClass]="{'navigation-menu': _appService.user_code_confirmed}">
 
+            <!-- Usuario que no ha confirmado la cuenta -->
             <div class="links-container" *ngIf="!_appService.user_code_confirmed">
-                <li class="nav-link" >
+                <li class="nav-link">
                     <a [routerLink]="['/fem/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
                 </li>
                 <li class="nav-link">
                     <a [routerLink]="['/fem/women']" [routerLinkActive]="['active']">Mujeres</a>
                 </li>
                 <li class="nav-link">
-                    <a [routerLink]="['/auth/confirm-registration']" [routerLinkActive]="['active']">Verificar cuenta</a>
+                    <a [routerLink]="['/auth/confirm-registration']" [routerLinkActive]="['active']">Verificar
+                        cuenta</a>
                 </li>
             </div>
 
             <!-- Menu options -->
-            <div class="links-container" *ngIf="_appService.user_code_confirmed">
-                <li>
+            <div class="links-container menu-options" *ngIf="_appService.user_code_confirmed">
+                <li class="content-icon">
+                    <i class="icon-home" [routerLink]="['/feed']" [routerLinkActive]="['active']"></i>
+                </li>
+                <li class="content-icon">
+                    <i class="icon-briefcase"></i>
+                </li>
+                <li class="content-icon">
+                    <i class="icon-group"></i>
+                </li>
+                <li class="content-icon">
                     <i class="icon-document-certificate"></i>
                 </li>
             </div>
 
-            <!-- User Avatar -->
-            <div (clickOutsideDdown)="showProfile=false" class="profile dropdown">
-                <div (click)="toggleProfile()" [ngClass]="{'open':showProfile}" class="item">
-                    <img #userAvatar [src]="_appService.user_data.picture"
-                    (error)="userAvatar.src='https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg' ">
-                </div>
+            <div class="links-container menu-options-2">
+
+                <li class="content-icon">
+                    <i class="icon-notification1"></i>
+                </li>
+
+                <!-- User Avatar -->
+                <div (clickOutsideDdown)="showProfile=false" class="profile dropdown">
+                    <div (click)="toggleProfile()" [ngClass]="{'open':showProfile}" class="item">
+                        <img #userAvatar [src]="_appService.user_data.picture"
+                            (error)="userAvatar.src='https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg' ">
+                    </div>
 
 
-                <ul class="menu">
-                    <li>
-                        <a>
-                            <div class="row">
-                                <img [src]="_appService.user_data.picture" #menuUserAvatar
-                                    [className]="_appService.user_data.role | userClassName"
-                                    (error)="menuUserAvatar.src='https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'">
-                                <div class="name">
-                                    <h3>{{_appService.user_data.name | cutUserName: '2'}}</h3>
-                                    <h4>{{_appService.user_data.role | roleName}}</h4>
+                    <ul class="menu">
+                        <li>
+                            <a [routerLink]="['/profile/1']">
+                                <div class="row">
+                                    <img [src]="_appService.user_data.picture" #menuUserAvatar
+                                        [className]="_appService.user_data.role | userClassName"
+                                        (error)="menuUserAvatar.src='https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'">
+                                    <div class="name">
+                                        <h3>{{_appService.user_data.name | cutUserName: '2'}}</h3>
+                                        <h4>{{_appService.user_data.role | roleName}}</h4>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
 
-                    <li>
-                        <a>Mi Perfil</a>
-                    </li>
+                        <li>
+                            <a [routerLink]="['/profile/1']">Mi Perfil</a>
+                        </li>
 
-                    <li>
-                        <a (click)="logout(0)">Cerrar sesión</a>
-                    </li>
-                </ul>
+                        <li>
+                            <a (click)="logout(0)">Cerrar sesión</a>
+                        </li>
+                    </ul>
 
+                </div>
             </div>
+
         </ul>
 
         <!-- Usuario fuera de la session -->
@@ -94,7 +114,7 @@
 
     </div>
 
-    
+
     <div id="reponsive-menu" (clickOutsideDdown)="responsive_menu=false">
         <div id="icon-menu" (click)="responsive_menu=!responsive_menu"><i class="icon-menu"></i></div>
         <div *ngIf="responsive_menu==true">

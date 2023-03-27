@@ -99,6 +99,8 @@
         .logo {
             display: flex;
             align-items: center;
+            width: 50%;
+            min-width: 400px;
 
             .item {
                 cursor: pointer;
@@ -127,8 +129,42 @@
             min-height: 45px;
             display: flex;
 
+            // En caso que el usuario esté confirmado se muestra el estilo del menu de navegacion tradicional
+            &.navigation-menu {
+                width: 100%;
+                // justify-content: space-between;
+            }
+            
+            
             .links-container {
                 display: flex;
+
+                &.menu-options {
+                    // width: 50%;
+                    // margin: 0 auto;
+                    justify-content: center;
+                }
+                
+                &.menu-options-2 {
+                    margin-left: auto;
+                }
+
+                .content-icon {
+                    align-self: center;
+                    display: flex;
+                    padding: 5px 20px;
+                    cursor: pointer;
+
+                    i {
+                        transition: color 300ms ;
+                        font-size: 27px;
+                        color: #808080;
+                    }
+
+                    &:hover i, .active {
+                        color: $dark-fucsia
+                    }
+                }
             }
 
             .nav-link {
@@ -239,7 +275,10 @@
         }
 
         .content-nav {
-            padding: 0 2rem;
+            // padding: 0 2rem;
+            max-width: 1335px;
+            width: 100%;
+            margin: 0 auto;
         }
     }
 }
