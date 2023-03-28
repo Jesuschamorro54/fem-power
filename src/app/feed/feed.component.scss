@@ -1,45 +1,30 @@
 .main_section{
+    position: relative;
     margin: 0px auto;
-
     width: 1080px;
     margin-top: 1.5%;
-    
-    background: red;
-}
-
-
-.section_1{
-    position: fixed;
-    left: 9%;
-    top: 12.5%;
-
-    width: 19%;
-    height: 100%;
-
-    background: rgb(46, 77, 0);
-}
-
-.section_2{
-    margin: 0px auto;
-
-    width: 50.5%;
-
-    background: red;
-
-    #hola{
-        height: 200px;
-        width: 100%;
-        background: rebeccapurple;
+    background: rebeccapurple;
+    .section_1{
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translate(0px, 0px);
+        width: 23%;
+        height: 319px;
+        background: white;
     }
+    .section_2{
+        margin: 0px auto;
+        width: 51.5%;
+        // height: 500px;
+    }
+    .section_3{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 23%;
+        height: 319px;
+        background: rgb(46, 77, 0);
+    }
+}
 
-}
-.section_3{
-    position: fixed;
-    right: 9.5%;
-    top: 12.5%;
-    
-    width: 19%;
-    height: 100%;
-    
-    background: rgb(46, 77, 0);
-}

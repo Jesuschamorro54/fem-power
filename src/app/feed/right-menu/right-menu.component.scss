@@ -1,26 +1,21 @@
 .recommendations{
     width: 100%;
-    height: 316px;
+    height: inherit;
     padding: 8% 0px 8% 5%;
-
-    background: white;
-    
     p:first-child{
         font-weight: bold;
     }
-
     .div_list{
         width: 100%;
-        height: 93%;
+        height: 270px;
         margin-top: 3%;
-
-        overflow-y: scroll;
-        
+        overflow-y: scroll;   
         ul{
+            margin: 0px;
             padding: 0px;
             li{
                 padding: 0px;
-                margin-bottom: 5%;
+                margin-bottom: 12px;
                 div{
                     display: flex;
                     align-items: center;

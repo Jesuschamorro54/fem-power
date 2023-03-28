@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
+import 'moment-timezone';
+
 
 
 @Component({
@@ -8,12 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalCreatePostComponent implements OnInit {
   public modal_name: any;
-  public project_type : any;
+  public selected: any;
   input_state: any;
   public project_list: any;
   public chosen_project: any;
-  // public labels: Array<any>;
-  // public color_label;
+  public labels: Array<any>;
+  public color_label;
 
 
   constructor() { }
@@ -64,7 +67,7 @@ export class ModalCreatePostComponent implements OnInit {
       this.modal_name.projects= false;
       this.modal_name.photos_videos= false;
       this.modal_name.events= false;
-      this.project_type=null;
+      this.selected=null;
     }
 
     // if (this.project_list){
@@ -73,9 +76,9 @@ export class ModalCreatePostComponent implements OnInit {
   }
   onChange(option: any) {
     if(typeof(option)=="string"){
-      this.project_type=option;
+      this.selected=option;
     }else{
-      this.project_type= option.value;
+      this.selected= option.value;
     }
   }
   onInputFocus() {
@@ -88,28 +91,27 @@ export class ModalCreatePostComponent implements OnInit {
   selected_project(project){
     this.chosen_project=project.name;
   }
-  // selected_label(person){
-  //   if(this.labels.length==0){
-  //     this.labels.push(person);
-  //   }else{
-  //     this.labels.forEach(label => {
-  //       if(label==person){
-
-  //       }else{
-          
-  //       }
-  //     });
-  //   }
-  // }
   continue_or_not(warning){
     if(warning==true){
       if(this.chosen_project!="Seleccionar"){
-        this.project_type= null;
+        this.selected= null;
       }
 
     }else{
-      this.project_type= null;
+      this.selected= null;
       this.chosen_project= "Seleccionar";
     }
+  }
+  //Zona horaria
+  getZones(): any[] {
+    const zones = moment.tz.names();
+    return zones.map(zone => {
+      const offset = moment.tz(zone).utcOffset();
+      const sign = offset < 0 ? '-' : '+';
+      const hours = Math.floor(Math.abs(offset) / 60);
+      const minutes = Math.abs(offset) % 60;
+      const formattedOffset = `${sign}${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+      return {name: zone, offset: formattedOffset};
+    });
   }
 }

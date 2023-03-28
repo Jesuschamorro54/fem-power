@@ -12,6 +12,7 @@ import { InputSelectComponent } from './components/input-select/input-select.com
 import { DonateButtonComponent } from './components/donate-button/donate-button.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { ModalCreatePostComponent } from './components/modal-create-post/modal-create-post.component';
+import { PublicationComponent } from './components/publication/publication.component';
 
 
 
@@ -30,7 +31,7 @@ import { ModalCreatePostComponent } from './components/modal-create-post/modal-c
     CutUserNamePipe, 
     notificationsDate, 
     messageDate, 
-    ToLowerCase, ModalCreatePostComponent,
+    ToLowerCase, ModalCreatePostComponent, PublicationComponent,
     
   ],
   
@@ -48,6 +49,7 @@ import { ModalCreatePostComponent } from './components/modal-create-post/modal-c
     ClickOutsideDdownDirective,
     InputSelectComponent,
     ModalCreatePostComponent,
+    PublicationComponent,
   ],
   providers: [
     AwsS3Service

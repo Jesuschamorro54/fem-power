@@ -22,7 +22,7 @@
         <i class="icon-cross close" (click)="modal_control(false)"></i>
 
         <!-- CONTENIDO DE CREAR PUBLICACION -->
-        <div class="content_create_post" *ngIf="modal_name.photos_videos==true && project_type==null">
+        <div class="content_create_post" *ngIf="modal_name.photos_videos==true && selected==null">
             <h3>CREAR PUBLICACIÓN</h3>
             <div class="profile">
                 <img src="https://storage.contextoganadero.com/s3fs-public/colombia/field_image/2015-05/mujer_rural.jpg" alt="profile_photo">
@@ -36,6 +36,7 @@
                     </li>
                 </ul>
             </div>
+           <div class="content">
             <input class="description" type="text" placeholder="¿De qué trata tu publicación?">
             <div class="div_add_img">
                 <i class="icon-cross close"></i>
@@ -53,10 +54,11 @@
                 </select>
             </div>
             <input class="btn_submit" type="submit" value="PUBLICAR" />
+           </div>
         </div>
 
         <!-- CONTENIDO DE LISTAS DE PROYECTOS EXISTENTES -->
-        <div class="project_list" *ngIf="project_type=='existente' && modal_name.photos_videos==true">
+        <div class="project_or_label_list" *ngIf="selected=='existente' && modal_name.photos_videos==true">
             <i class="icon-circle-left" (click)="continue_or_not(false)"></i>
             <h3>MIS PROYECTOS</h3>
             <div class="div_search">
@@ -80,7 +82,7 @@
         </div>
 
         <!-- CONTENIDO DE CREAR NUEVO PROJECTO -->
-        <div class="create_project" *ngIf="(project_type=='nuevo' && modal_name.photos_videos==true) || (modal_name.projects && project_type==null)">
+        <div class="create_project" *ngIf="(selected=='nuevo' && modal_name.photos_videos==true) || (modal_name.projects && selected==null)">
             <i class="icon-circle-left" (click)="continue_or_not(false)" *ngIf="modal_name.photos_videos==true"></i>
             <h3>CREAR PROYECTO</h3>
             <div class="profile">
@@ -95,46 +97,48 @@
                     </li>
                 </ul>
             </div>
-            <br>
-            <div class="div_add_img">
-                <i class="icon-cross close"></i>
-                <div>
-                    <i class="icon-addthis"></i>
-                    <p>Agrear portada del proyecto</p>
+            <div class="content">
+                <div class="div_add_img">
+                    <i class="icon-cross close"></i>
+                    <div>
+                        <i class="icon-addthis"></i>
+                        <p>Agrear portada del proyecto</p>
+                    </div>
                 </div>
+                <div class="info_project">
+                    <input type="text" placeholder="Nombre del proyecto">
+                    <input class="input_descrip" type="text" placeholder="Descripción...">
+                </div>
+                <input class="btn_submit" type="submit" value="PUBLICAR" />
             </div>
-            <div class="info_project">
-                <input type="text" placeholder="Nombre del proyecto">
-                <input type="text" placeholder="Descripción...">
-            </div>
-            <input class="btn_submit" type="submit" value="PUBLICAR" />
         </div>
 
         <!-- CONTENIDO DE LISTA DE PERSONAS A ETIQUETAR -->
-        <div class="project_list" *ngIf="project_type=='label' && (modal_name.photos_videos==true || modal_name.projects==true)">
+        <div class="project_or_label_list" *ngIf="selected=='label' && (modal_name.photos_videos==true || modal_name.projects==true || modal_name.events==true)">
             <i class="icon-circle-left" (click)="continue_or_not(false)"></i>
             <h3>ETIQUETAR A OTROS PERFILES</h3>
             <div class="div_search">
-                <input type="text" placeholder="Buscar" (focus)="onInputFocus()" (blur)="onInputBlur()">
-                <i class="icon-search" *ngIf="input_state"></i>
-                <p (click)="continue_or_not(true)">Listo</p>
-            </div>
-            <div class="div_list">
-                <p>Selecciona un proyecto:</p>
-                <div class="list">
-                    <ul>
-                        <li *ngFor="let project of project_list, let indice=index" (click)="selected_project(project)">
-                            <div id="div_li_label">
-                                <img src="{{project.img}}" alt="img del projecto">
-                                <p>{{project.name}}</p>
-                            </div>
-                        </li>
-                    </ul>
+                    <input type="text" placeholder="Buscar" (focus)="onInputFocus()" (blur)="onInputBlur()">
+                    <i class="icon-search" *ngIf="input_state"></i>
+                    <p (click)="continue_or_not(true)">Listo</p>
                 </div>
-            </div>
+                <div class="div_list">
+                    <p>Selecciona un proyecto:</p>
+                    <div class="list">
+                        <ul>
+                            <li *ngFor="let project of project_list, let indice=index" (click)="selected_project(project)">
+                                <div id="div_li_label">
+                                    <img src="{{project.img}}" alt="img del projecto">
+                                    <p>{{project.name}}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
         </div>
+
         <!-- CONTENIDO DE CREAR EVENTO -->
-        <div class="create_event" *ngIf="modal_name.events">
+        <div class="create_event" *ngIf="modal_name.events && selected==null">
             <h3>CREAR EVENTO</h3>
             <div class="profile">
                 <img src="https://storage.contextoganadero.com/s3fs-public/colombia/field_image/2015-05/mujer_rural.jpg" alt="profile_photo">
@@ -147,6 +151,35 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+            <div class="content">
+                <div class="div_add_img">
+                    <i class="icon-cross close"></i>
+                    <div>
+                        <i class="icon-addthis"></i>
+                        <p>Agrear fotos / videos</p>
+                    </div>
+                </div>
+                <div class="div_event_type">
+                    <p>Tipo de evento</p>
+                    <div>
+                        <label><input type="radio" name="event_type">Online</label>
+                        <label><input type="radio" name="event_type">Presencial</label>
+                    </div>
+                </div>
+                <input type="text" placeholder="Nombre del evento">
+                <select class="mat-select-arrow" >
+                    <option *ngFor="let zone of getZones()" [value]="zone.name">{{ zone.name }} (UTC{{ zone.offset }})</option>
+                </select>
+                <div class="div_date_time">
+                    <input class="my-date-input" type="date" placeholder="Fecha de inicio">
+                    <input class="my-date-input" type="date" placeholder="Fecha de finalización">
+                    <input type="time" placeholder="Hora de inicio"/>
+                    <input type="time" placeholder="Hora de finalización"/>
+                </div>
+                <input type="text" placeholder="Dirección/Enlace">
+                <input class="input_descrip" type="text" placeholder="Descripción">
+                <input class="btn_submit" type="submit" value="PUBLICAR" />
             </div>
         </div>
     </div>

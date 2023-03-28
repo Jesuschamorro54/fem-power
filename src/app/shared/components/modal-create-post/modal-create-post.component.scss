@@ -1,18 +1,16 @@
 .component_create_post{
     width: 100%;
     height: 125px;
-    padding: 1%;
-    margin-top: 3%;
-
+    padding: 5px;
+    margin-top: 15px;
     background: white;
 
     .container_header{
         display: flex;
         margin: 0px auto;
-
         width: 98%;
         height: 60px;
-        padding: 1%;
+        padding: 5px;
         
         .photo {  
             width: 12%;
@@ -20,21 +18,18 @@
             img{
                 width: 50px;
                 height: 50px;
-            
                 border-radius: 50%;
                 object-fit: cover;
             }
         }
         .div_input{
             width: 88%;
-            padding-top: 1%;
-            padding-bottom: 1%;
+            padding-top: 5px;
+            padding-bottom: 5px;
 
             input{
                 width: 98%;
-                // height: 33px !important;
-                padding: 4% 3% 4% 3%;
-
+                padding: 20px 15px 20px 15px;
                 border-radius: 60px;
             }
         }
@@ -44,11 +39,10 @@
         display: flex;
         justify-content: space-between;
         margin: 0px auto;
-
         width: 98%;
         height: 40px;
-        padding: 1%;
-        margin-top: 2%;
+        padding: 5px;
+        margin-top: 10px;
 
         i{
             font-size: 18px;
@@ -64,7 +58,6 @@
 .photo img{
     width: 50px;
     height: 50px;
-
     border-radius: 50%;
 }
 
@@ -91,14 +84,11 @@
         position: relative;
         top: 50%;
         left: 50%;
-    
         width: 80%;
         max-width: 600px;
-        // max-height: 80vh;
-        padding: 20px;
-    
+        max-height: 95vh;
+        padding: 20px 0px;
         transform: translate(-50%, -50%) scale(0.5);
-        overflow-y: auto;
         background: #FBFAFA;
         border-radius: 10px;
         box-shadow: 0px 0px 20px #8C0054;
@@ -111,9 +101,7 @@
             position: absolute;
             right: 0;
             top: 0;
-
-            padding: 2%;
-
+            padding: 10px;
             cursor: pointer;
             color: #949494;
         }
@@ -123,25 +111,24 @@
         h3{
             text-align: center;
         }
-
+        .content{
+            width: 100%;
+            height: 65vh;
+            overflow-y: scroll;
+        }
         //CONTENIDO DE CREAR PUBLICACION
         .content_create_post{
-            margin: 0px auto;
-
-            width: 85%;
-
             .div_label{
-                width: 100px;
+                width: 110px;
             }
             .description{
-                width: 100%;
-                padding: 4% 0px 4% 0px;
-                margin-top: 3%;
-                margin-bottom: 5%;
-
+                width: 85%;
+                margin: 0px auto;
+                margin: 0px auto;
+                padding: 20px 0px 20px 0px;
+                margin-top: 15px;
+                margin-bottom: 10px;
                 border: none;
-
-                font-size: 1em;
                 background: #FBFAFA;
             }
             .div_select_project{
@@ -149,52 +136,50 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-
-                width: 98%;
-                padding: 3%;
-                margin-bottom: 5%;
-
+                width: 85%;
+                margin: 0px auto;
+                padding: 15px;
+                margin-bottom: 25px;
                 border: 0.8px solid #8C0054;
                 border-radius: 10px;
 
                 p{
-                    margin-right: 5%;
+                    margin-right: 20px; //5%
+                    background: yellow;
                 }
-                .select_projects{
-                    background:transparent;
-                    border: none !important;
+                select{
+                    border: none;
+                    outline: none;
                 }
             }
         }
         .btn_submit{//ESTE BOTON TIPO SUBMIT SE UTILIZA EN VARIOS CONTENIDOS DEL MODAL
             display: flex;
             justify-content: center;
-
-            width: 100%;
-            padding: 3% 0px 3% 0px;
-            margin-bottom: 3%;
-            
+            width: 85%;
+            margin: 0px auto;
+            padding: 15px 0px 15px 0px;
+            margin-bottom: 15px;           
             font-weight: bold;
-            font-size: 1em;
         }
         .profile{ //ESTE PROFILE SE UTILIZA EN VARIOS CONTENIDOS DEL MODAL
+            margin: 0px auto;
             display: flex;
-
-            padding: 1%;
+            padding: 5px;
+            width: 85%;
 
             img{
                 width: 55px;
-                height: 55px;
-                
+                height: 55px;               
                 object-fit: cover;
                 border-radius: 50%;
             }
             ul{
                 padding: 0px;
-                margin: 1% 0px 0px 2%;
+                margin: 5px 0px 0px 10px;
 
                 li{
-                    margin-bottom: 3%;
+                    margin-bottom: 7px;
                     p{
                         font-weight: bold;
                     }
@@ -202,10 +187,7 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-
-                        padding-top: 3%;
-                        padding-bottom: 3%;
-
+                        height: 25px;
                         background: #F0F0F0;
                         border-radius: 5px;
                         cursor: pointer;
@@ -215,8 +197,7 @@
                             color: black;
                         }
                         p{
-                            margin-left: 2%;
-
+                            margin-left: 10px;
                             font-weight: normal;
                             font-size: 0.9em;
                         }
@@ -229,17 +210,15 @@
             display: flex;
             align-items: center;
             margin: 0px auto;
-
-            width: 98%;
+            width: 85%;
+            margin: 0px auto;
             height: 140px;
-            margin-bottom: 4%;
-
+            margin-bottom: 20px;
             background: #F0F0F0;
             border-radius: 10px;
 
             div{
                 margin: 0px auto;
-
                 text-align: center;
 
                 i{
@@ -248,16 +227,16 @@
                 }
 
                 p{
-                    padding-top: 3%;
+                    padding-top: 15px;
                 }
             }
         }
 
         //CONTENIDO DE LISTAS DE PROYECTOS EXISTENTES
-        .project_list{
+        .project_or_label_list{
+            width: 85%;
             margin: 0px auto;
 
-            width: 85%;
             .div_search{
                 position: relative;
                 display: flex;
@@ -265,8 +244,7 @@
                 width: 100%;
 
                 input{
-                    padding: 4% 3% 4% 6%;
-
+                    padding: 20px 15px 20px 30px;
                     border-radius:50px;
                     background: #F0F0F0;               
                 }
@@ -279,49 +257,44 @@
                 i{
                     position: absolute;
                     left: 15px;
-
                     font-size: 15px;
                     color: #949494;
                 }
             }
             .div_list{
                 margin: 0px auto;
-
                 width: 100%;
-                margin-top: 2%;
-                margin-bottom: 4%;
+                margin: 0px auto;
+                margin-top: 10px;
+                margin-bottom: 20px;
 
                 p:first-child{
-                   margin-left: 2%;
-                   margin-bottom: 2%;
+                   margin-left: 10px;
+                   margin-bottom: 10px;
                    color: #666666;
                 }
                 .list{
-                    width: 98%;
+                    width: 100%;
                     height: 280px;
-                    margin-left: 2%;
-
+                    margin-left: 10px;
                     overflow-y: scroll;
 
                     ul {
                         padding: 0px;
                         margin: 0px;
                         li {
-                            margin-bottom: 2%;
-
+                            margin-bottom: 10px;
                             cursor: pointer;
 
                             div{
                                 display: flex;
-                                align-items: center;
-                                
-                                padding: 2%;
+                                align-items: center;                               
+                                padding: 10px;
             
                                 img{
                                     width: 50px;
                                     height: 50px;
-                                    margin-right: 3%;
-
+                                    margin-right: 15px;
                                     object-fit: cover;
                                 }
                             }
@@ -346,14 +319,12 @@
                 }
             }
         }
-        .project_list, .create_project{ //ESTE ICONO FLECHA ES UTILIZADO EN VARIOS CONTENIDOS DEL MODAL
+        .project_or_label_list, .create_project{ //ESTE ICONO FLECHA ES UTILIZADO EN VARIOS CONTENIDOS DEL MODAL
             .icon-circle-left{
                 position: absolute;
                 left: 0;
                 top: 0;
-
-                padding: 2%;
-
+                padding: 10px;
                 color: #949494;
                 cursor: pointer;
             }
@@ -364,37 +335,104 @@
 
         //CONTENIDO DE CREAR NUEVO PROJECTO
         .create_project{
-            margin: 0px auto;
-
-            width: 85%;
+            .profile{
+                margin-bottom: 10px;
+            }
 
             .div_label{
-                width: 180px;
+                width: 190px;
             }
             .info_project{
                 input{
-                    padding: 4%;
-                    width: 100%;
+                    padding: 20px 15px;
+                    width: 85%;
+                    margin: 0px auto;
                 }
                 input:nth-child(1){
-                    margin-bottom: 3%;
+                    margin-bottom: 15px;
                 }
-                input:nth-child(2){
-                    height: 90px;
-                    margin-bottom: 5%;
-                }
+                // input:nth-child(2){
+                //     height: 90px;
+                //     margin-bottom: 25px;
+                // }
             }
             .btn_submit{
-                margin-top: 2%;
+                margin-top: 10px;
             }
         }
-
+        .input_descrip{
+            height: 90px;
+            margin-bottom: 25px;
+        }
+        input, select {
+            font-size: 1em;
+        }
         .create_event{
-            margin: 0px auto;
-
-            width: 85%;
             .div_label{
-                width: 230px;
+                width: 240px;
+            }
+            .profile{
+                margin-bottom: 10px;
+            }
+            .div_event_type{
+                width: 85%;
+                margin: 0px auto;
+                
+                text-align: left;
+
+                div{
+                    display: flex;
+                    justify-content: space-between;
+                    width: 70%;
+                    margin-top: 10px;
+                }
+            }
+            select{
+                display: block;
+                margin: 0px auto;
+                width: 85%;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid rgba(140, 0, 84, 0.2);
+                cursor: pointer;
+                option:hover{
+                    background: #ffe4f4 !important;
+                }
+            }
+            select, input[type=text]{
+                margin-bottom: 20px !important;
+                margin-top: 20px !important;
+            }
+            input[type=text]{
+                margin: 0px auto;
+                width: 85% !important;
+                padding: 20px 15px;
+            }
+            .div_date_time{
+                width: 85%;
+                margin: 0px auto;
+                margin: 0px auto;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+                input{
+                    width: 48% !important;
+                    margin: 0px;
+                    margin-bottom: 12px !important;
+                    margin-top: 10px !important;
+                    cursor: pointer;
+                }
+                input[type=date]{
+                    border-radius: 5px;
+                    padding: 20px 15px;
+                }
+                input[type=time]{
+                    border-radius: 5px;
+                    padding: 8px 15px;
+                    border: 1px solid rgba(140, 0, 84, 0.2);
+                    outline: none;
+                }
             }
         }
     }
