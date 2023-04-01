@@ -5,7 +5,7 @@
 
     background: $search-background;
     border-radius: 6px;
-    width: 100%;
+    // width: 100%;
     display: flex;
     padding: 0 14px;
     margin: 0 15px;
@@ -35,4 +35,41 @@
         box-shadow: none;
     }
 
+    // -------------------------------------------------------------------------
+    /* Small devices (medium phones, 400px and up) */
+    @media only screen and (min-width: 400px) {
+        
+    }
+
+    // -------------------------------------------------------------------------
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 650px) {
+        
+    }
+
+    /* Small devices (portrait tablets and large phones, 767px and down) */
+    @media only screen and (max-width: 768px) {
+
+        background: transparent;
+        padding: 3px;
+
+        i {
+            font-size: 24px;
+        }
+
+        input {
+            display: none;
+        }
+
+        
+    }
+
+    // -------------------------------------------------------------------------
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+        
+    }
+
 }
+

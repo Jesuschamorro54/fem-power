@@ -4,7 +4,7 @@
     .menu {
 
         position: absolute;
-        top: 55px;
+        top: 53px;
         right: 0px;
         width: 300px;
         padding: 0;
@@ -95,12 +95,16 @@
         align-items: center;
         justify-content: space-between;
         transition: all 300ms;
+        max-width: 1335px;
+        width: 100%;
+        margin: 0 auto;
 
         .logo {
             display: flex;
             align-items: center;
             width: 50%;
             min-width: 400px;
+            margin: 0px 10px;
 
             .item {
                 cursor: pointer;
@@ -132,6 +136,8 @@
             // En caso que el usuario esté confirmado se muestra el estilo del menu de navegacion tradicional
             &.navigation-menu {
                 width: 100%;
+                padding-right: 10px;
+                margin-right: 10px;
                 // justify-content: space-between;
             }
             
@@ -140,9 +146,13 @@
                 display: flex;
 
                 &.menu-options {
-                    // width: 50%;
-                    // margin: 0 auto;
                     justify-content: center;
+
+                    .min-responsive {
+                        display: none;
+                        align-self: center;
+                    }
+
                 }
                 
                 &.menu-options-2 {
@@ -152,12 +162,10 @@
                 .content-icon {
                     align-self: center;
                     display: flex;
-                    padding: 5px 20px;
                     cursor: pointer;
 
                     i {
                         transition: color 300ms ;
-                        font-size: 27px;
                         color: #808080;
                     }
 
@@ -229,14 +237,14 @@
         }
     }
 
-    
+    // RESPONSIVES
 
-    @media only screen and (max-width: 399px) {
-        #icon-menu{
-            margin-right:5px;
+    @media only screen and (max-width: 872px) {
+        .content-nav .nav-link,
+        .content-nav hr {
+            display: none;
         }
     }
-
 
     @media only screen and (max-width: 650px) {
         .content-nav .nav-link,
@@ -245,12 +253,44 @@
         }
     }
 
-    /* Small devices (medium phones, 400px and up) */
-    @media only screen and (min-width: 400px) {
-        .content-nav .logo {
-            margin: 10px 10px;
+    @media only screen and (max-width: 498px) {
+
+        .content-nav .navigation-menu {
+            justify-content: right;
+        }
+
+        .content-nav .navigation-menu .menu-options-2 {
+            margin: 0 !important;
+        }
+
+        .content-nav .nav-options .links-container .content-icon {
+            display: none;
+        }
+
+        .content-nav .nav-options .links-container .min-responsive {
+            display: block !important;
+
+            .menu .content-icon{
+                display: flex;
+            }
         }
     }
+
+    @media only screen and (max-width: 399px) {
+        #icon-menu{
+            margin-right:5px;
+        }
+    }
+
+    // -------------------------------------------------------------------------
+
+    /* Small devices (medium phones, 400px and up) */
+    @media only screen and (min-width: 400px) {
+
+    }
+
+    // -------------------------------------------------------------------------
+
     /* Small devices (portrait tablets and large phones, 600px and up) */
     @media only screen and (min-width: 650px) {
         
@@ -266,19 +306,48 @@
             display: flex;
         }
 
+        .content-nav .nav-options .links-container .content-icon {
+            padding: 10px;
+        }
     }
-    /* Medium devices (landscape tablets, 768px and up) */
-    @media only screen and (min-width: 768px) {
-        .content-nav .logo {
-            padding: 0 10px;
-            margin: 10px 10px;
-        }
 
-        .content-nav {
-            // padding: 0 2rem;
-            max-width: 1335px;
-            width: 100%;
-            margin: 0 auto;
+    /* Small devices (portrait tablets and large phones, 650px and down) */
+    @media only screen and (max-width: 650px) {
+        .content-nav .nav-options .links-container .content-icon {
+            padding: 8px;
+
+            i {
+                font-size: 20px;
+            }
+            
         }
+    }
+
+    // -------------------------------------------------------------------------
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (max-width: 768px) {
+        .content-nav .logo{
+           min-width: auto;
+        }
+    }
+
+    /* Big devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 930px) {
+        .content-nav .nav-options .links-container .content-icon {
+            padding: 5px 20px;
+
+            i {
+                font-size: 27px;
+            }
+            
+        }
+    }
+}
+
+@media only screen and (max-width: 498px) {
+    .menu {
+        position: fixed !important;
+        width: 100% !important;
     }
 }

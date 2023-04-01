@@ -27,13 +27,14 @@
 
     &.limit {
         max-width: 30rem;
-        height: 29.28rem;
+        // height: 29.28rem;
     }
 
     .head {
         display: flex;
         flex-direction: column;
-        height: 73px;
+        // height: 75px;
+        
         // overflow: hidden;
 
         span {
@@ -140,9 +141,8 @@
 
 
     }
-    .content-grid-box {
 
-        height: inherit;
+    .content-grid-box {
 
         .grid {
             
@@ -151,7 +151,7 @@
             // grid-gap: 0px;
             // padding: 10px;
             margin: 0;
-            align-content: space-between;
+            // align-content: space-between;
 
             .item {
 
@@ -163,7 +163,7 @@
                 transition: border 300ms;
                 cursor: pointer;
                 margin: 9px 6px;
-                height: 154px;
+                // height: 162.2px;
 
                 .cover {
                     width: 160px;
@@ -178,7 +178,7 @@
                 }
 
                 .item-data {
-                    padding: 8px;
+                    padding: 5px 8px;
 
                     .icon-heart {
                         color: #e72f2f;

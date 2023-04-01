@@ -10,7 +10,7 @@
                 <a class="logo-label" [routerLink]="['/home']">FemPower</a>
             </span>
 
-            <span *ngIf="_appService.user_session == 1">
+            <span *ngIf="_appService.user_session == 1" style="width: 100%;">
                 <app-search-input></app-search-input>
             </span>
 
@@ -50,6 +50,34 @@
                 <li class="content-icon">
                     <i class="icon-document-certificate"></i>
                 </li>
+
+
+                <div class="min-responsive dropdown">
+
+                    <div (click)="toggleMenuOptions()" [ngClass]="{'open':showMenuOptions}" class="item">
+                        <i class="icon-menu"></i>
+                    </div>
+
+                    <ul class="menu">
+
+                        <li class="content-icon">
+                            <i class="icon-home" [routerLink]="['/feed']" [routerLinkActive]="['active']"></i>
+                        </li>
+                        <li class="content-icon">
+                            <i class="icon-briefcase"></i>
+                        </li>
+                        <li class="content-icon">
+                            <i class="icon-group"></i>
+                        </li>
+                        <li class="content-icon">
+                            <i class="icon-document-certificate"></i>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
             </div>
 
             <div class="links-container menu-options-2">
@@ -115,7 +143,7 @@
     </div>
 
 
-    <div id="reponsive-menu" (clickOutsideDdown)="responsive_menu=false">
+    <div id="reponsive-menu" (clickOutsideDdown)="responsive_menu=false" *ngIf="_appService.user_session != 1">
         <div id="icon-menu" (click)="responsive_menu=!responsive_menu"><i class="icon-menu"></i></div>
         <div *ngIf="responsive_menu==true">
             <ul id="menu" class="menu">
