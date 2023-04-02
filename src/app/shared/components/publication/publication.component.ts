@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicationComponent implements OnInit {
 
-  public array_publications: any;
+  public array_publications: Array<any>;
 
   constructor() { }
 
@@ -18,30 +18,46 @@ export class PublicationComponent implements OnInit {
         description: "La integración de los servicios de apoyo que el proyecto ofrece a los beneficiarios con el fin de incrementar la producción, productividad y mejorar los ingresos de la población",
         img: "https://www.minagricultura.gov.co/noticias/PublishingImages/Paginas/Forms/AllItems/mujer%20rural%201.jpg",
         linked: "Granja Aromas de mi Tierra",
-        time:"1 día",
-        amount_likes: 123,
-        amount_comments: 8,
-        amount_shared: 2
+        publication_time:"",
+        event_type: "",
+        address: "",
+        date: "",
+        time_zone:"",
+        start_date:"",
+        ending_date:"",
+        start_time: "",
+        ending_time: "",
+
       },
       {
         publication_type:"photos_videos",
-        description: null,
+        description: "",
         img: "https://www.minagricultura.gov.co/noticias/PublishingImages/Paginas/Forms/AllItems/mujer%20rural%201.jpg",
-        linked: null,
-        time:"1 día",
-        amount_likes: 98,
-        amount_comments: 1,
-        amount_shared: 5
+        linked: "",
+        publication_time:"",
+        event_type: "",
+        address: "",
+        date: "",
+        time_zone:"",
+        start_date:"",
+        ending_date:"",
+        start_time: "",
+        ending_time: "",
       },
       {
         publication_type:"photos_videos",
         description: "La integración de los servicios de apoyo que el proyecto ofrece a los beneficiarios con el fin de incrementar la producción, productividad y mejorar los ingresos de la población",
         img: "https://www.minagricultura.gov.co/noticias/PublishingImages/Paginas/Forms/AllItems/mujer%20rural%201.jpg",
         linked: "Granja Aromas de mi Tierra",
-        time:"1 día",
-        amount_likes: 98,
-        amount_comments: 1,
-        amount_shared: 5
+        publication_time:"",
+        event_type: "",
+        address: "",
+        date: "",
+        time_zone:"",
+        start_date:"",
+        ending_date:"",
+        start_time: "",
+        ending_time: ""
       },
       {
         publication_type:"events",
@@ -50,13 +66,20 @@ export class PublicationComponent implements OnInit {
         img: "https://s3.amazonaws.com/elcomun/imagenes/1589843442.jpg",
         event_type: "online",
         address: "https://www.linkedin.com/feed/",
-        date: "05/11/22",
         start_time: "15:00",
         ending_time: "16:30",
-        time:"1 día",
+        publication_time:"",
+        time_zone:"",
+        start_date:"25-06-2023",
+        ending_date:"23-06-2023",
       },
     ]
   }
 
+  add_publication(info: any) {
+    console.log('Información recibida:', info);
+    this.array_publications.unshift(info)
+    console.log(this.array_publications);
+  }
   
 }

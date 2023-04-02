@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 import 'moment-timezone';
 
@@ -14,17 +14,34 @@ export class ModalCreatePostComponent implements OnInit {
   public selected: any;
   input_state: any;
   public project_list: any;
-  public chosen_project: any;
   public labels: Array<any>;
   public color_label;
+  public var_close;
+  public previous_closed;
 
+  @Output() infoChange = new EventEmitter<any>();
+  info ={
+    name:"",
+    publication_type:"",
+        description: "",
+        img: "https://www.minagricultura.gov.co/noticias/PublishingImages/Paginas/Forms/AllItems/mujer%20rural%201.jpg",
+        linked: "",
+        publication_time:"",
+        event_type: "",
+        address: "",
+        date: "",
+        time_zone:"",
+        start_date:"",
+        ending_date:"",
+        start_time: "",
+        ending_time: ""
+  };
 
   constructor() { }
 
   ngOnInit(): void {
     this.input_state=true;
     this.modal_name= {"projects": false, "photos_videos": false, "events": false};
-    this.chosen_project="Seleccionar"
     this.project_list=[
       {
         img: "https://www.eldiario.com.co/wp-content/uploads/2021/09/NOTA-DOS.jpg",
@@ -49,10 +66,14 @@ export class ModalCreatePostComponent implements OnInit {
       {
         img: "https://www.codespa.org/app/uploads/turismo-recortada.jpg",
         name:"Sombreros precolombinos -  May"
-      },
-      
+      }, 
     ]
   }
+
+  btn_submit(){
+    this.infoChange.emit(this.info);
+  }
+
 
   modal_control(name){
     if(name=="projects"){
@@ -69,10 +90,8 @@ export class ModalCreatePostComponent implements OnInit {
       this.modal_name.events= false;
       this.selected=null;
     }
-
-    // if (this.project_list){
-    //   this.project_list=null;
-    // }
+    this.info.publication_type=name;
+    this.var_close=true;
   }
   onChange(option: any) {
     if(typeof(option)=="string"){
@@ -80,6 +99,8 @@ export class ModalCreatePostComponent implements OnInit {
     }else{
       this.selected= option.value;
     }
+    this.previous_closed=this.var_close;
+    this.var_close=true;
   }
   onInputFocus() {
     this.input_state=false;
@@ -89,18 +110,18 @@ export class ModalCreatePostComponent implements OnInit {
     this.input_state=true;
   }
   selected_project(project){
-    this.chosen_project=project.name;
+    this.info.linked=project.name;
   }
   continue_or_not(warning){
     if(warning==true){
-      if(this.chosen_project!="Seleccionar"){
+      if(this.info.linked!=""){
         this.selected= null;
       }
-
     }else{
       this.selected= null;
-      this.chosen_project= "Seleccionar";
+      this.info.linked= "";
     }
+    this.var_close=this.previous_closed;
   }
   //Zona horaria
   getZones(): any[] {
@@ -113,5 +134,8 @@ export class ModalCreatePostComponent implements OnInit {
       const formattedOffset = `${sign}${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
       return {name: zone, offset: formattedOffset};
     });
+  }
+  funtion_close(){
+    this.var_close=false;
   }
 }

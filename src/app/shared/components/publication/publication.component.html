@@ -1,3 +1,5 @@
+<app-modal-create-post (infoChange)="add_publication($event)"></app-modal-create-post>
+
 <div class="publications" *ngFor="let publication of array_publications, let indice=index">
     <i class="icon-minus"></i>
     <div class="profile">
@@ -5,25 +7,25 @@
         <ul>
             <li>
                 <p *ngIf="publication.publication_type=='projects'">PEPITA PEREZ<span>Nuevo proyecto</span>{{publication.linked.slice(0,16)}}...</p>
-                <p *ngIf="publication.publication_type=='photos_videos'">PEPITA PEREZ</p><p *ngIf="publication.linked!=null && publication.publication_type=='photos_videos'"><span>Avance de</span>{{publication.linked.slice(0, 22)}}...</p>
+                <p *ngIf="publication.publication_type=='photos_videos'">PEPITA PEREZ</p><p *ngIf="publication.linked!='' && publication.publication_type=='photos_videos'"><span>Avance de</span>{{publication.linked.slice(0, 22)}}...</p>
                 <p *ngIf="publication.publication_type=='events'">PEPITA PEREZ<span>Evento {{publication.event_type}}</span></p>
             </li>
             <li>
-                <p>{{publication.time}}</p>
+                <p>2 días</p> 
             </li>
         </ul>
     </div>
     <div class="projects_or_photos_videos" *ngIf="publication.publication_type=='projects' || publication.publication_type=='photos_videos'">
-        <p class="description" *ngIf="publication.description!=null">{{publication.description}}</p>
-        <img class="img_publication" src="{{publication.img}}" alt="Imagen de la publicación" [ngStyle]="{'margin-top': publication.description!=null ? '10px' : '0px'}">
+        <p class="description" *ngIf="publication.description!=''">{{publication.description}}</p>
+        <img class="img_publication" src="{{publication.img}}" alt="Imagen de la publicación" [ngStyle]="{'margin-top': publication.description!='' ? '10px' : '0px'}">
         <div class="div_recognition">
             <div>
                 <i class="icon-heart"></i>
-                <p>{{publication.amount_likes}}</p>
+                <p>11</p>
             </div>
             <div>
-                <p>{{publication.amount_comments}} Comentarios</p>
-                <p>{{publication.amount_shared}} Veces compartidos</p>
+                <p>3 Comentarios</p>
+                <p>7 Veces compartidos</p>
             </div>
         </div>
         <hr>
@@ -46,13 +48,13 @@
             </div>
         </div>
     </div>
-    <div class="projects_or_photos_videos" *ngIf="publication.publication_type=='events'">
+    <div class="events" *ngIf="publication.publication_type=='events'">
         <ul>
             <li>
-                <p>Integración mujeres del Magdalena</p>
+                <p>{{publication.name}}</p>
             </li>
             <li>
-                <p><span>Fecha:</span> {{publication.date}}</p>
+                <p><span>Fecha:</span> {{publication.start_date}} / {{publication.ending_date}}</p>
             </li>
             <li>
                 <p><span>Dirección:</span> {{publication.address}}</p>

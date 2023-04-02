@@ -4,7 +4,7 @@
         <div class="div_info">
             <ul>
                 <li><a href="">PEPITA PEREZ</a></li>
-                <li>Mujer Rural</li>
+                <li><p>Mujer Rural</p></li>
             </ul>
         </div>
     </div>
@@ -12,7 +12,16 @@
     <div class="options">
         <ul>
             <li><a href="">Ver otros perfiles</a></li>
-            <li><a href="">Mi comunidad</a></li>
+            <li class="community_option">
+                <p (click)="change_community()" [ngStyle]="">Mi comunidad</p>
+                <div *ngIf="community">
+                    <hr class="vertical-hr">
+                    <ul>
+                        <li><hr><a href="#">Seguidores</a></li>
+                        <li><hr><a href="#">Integrantes</a></li>
+                    </ul>
+                </div>
+            </li>
             <li><a href="">Portafolios guardados</a></li>
         </ul>
     </div>
