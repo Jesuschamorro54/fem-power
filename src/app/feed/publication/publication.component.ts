@@ -81,5 +81,32 @@ export class PublicationComponent implements OnInit {
     this.array_publications.unshift(info)
     console.log(this.array_publications);
   }
+
+  suma = 0
+  addkk(){
+
+    console.log("añadiendo publicacion")
+
+    let info = {
+      name: "",
+      publication_type: "photos_videos",
+      description: "hola 123" + this.suma++,
+      img: "https://www.minagricultura.gov.co/noticias/PublishingImages/Paginas/Forms/AllItems/mujer%20rural%201.jpg",
+      linked: "",
+      publication_time: "",
+      event_type: "",
+      address: "",
+      date: "",
+      time_zone: "",
+      start_date: "",
+      ending_date: "",
+      start_time: "",
+      ending_time: ""
+    };
+
+    this.array_publications.unshift(info)
+
+    console.log(this.array_publications)
+  }
   
 }

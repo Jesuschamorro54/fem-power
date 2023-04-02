@@ -6,32 +6,32 @@
                 alt="profile_photo">
         </div>
         <div class="div_input">
-            <input type="text" placeholder="Crear publicación" (click)="modal_control('photos_videos')">
+            <input type="text" placeholder="Crear publicación" (click)="modal_control('main', 'photos_videos')">
         </div>
     </div>
 
     <div class="container_foot">
-        <span (click)="modal_control('projects')"> <i class="icon-folder"></i> Proyectos</span>
-        <span (click)="modal_control('photos_videos')"> <i class="icon-file-picture"></i> Fotos / Videos</span>
-        <span (click)="modal_control('events')"> <i class="icon-calendar"></i> Eventos</span>
+        <span (click)="modal_control('projects', 'projects')"> <i class="icon-folder"></i> Proyectos</span>
+        <span (click)="modal_control('main', 'photos_videos')"> <i class="icon-file-picture"></i> Fotos / Videos</span>
+        <span (click)="modal_control('events', 'events')"> <i class="icon-calendar"></i> Eventos</span>
     </div>
 </div>
 
 <!-- -------------------------- MODAL ---------------------------------------------- -->
 
-<div class="modal" [ngClass]="{'show': modal_name.photos_videos ||  modal_name.projects || modal_name.events}">
-    <div class="modal_content" [ngClass]="{'show': modal_name.photos_videos==true ||  modal_name.projects || modal_name.events}">
-        <i class="icon-cross style_close" (click)="modal_control(false)"></i>
+<div class="modal" [ngClass]="{'show': showModal}">
+    <div class="modal_content" [ngClass]="{'show': showModal}">
+        <i class="icon-cross style_close" (click)="closeModal()"></i>
 
         <!-- CONTENIDO DE CREAR PUBLICACION -->
-        <div class="content_create_post" *ngIf="modal_name.photos_videos==true && selected==null">
+        <div class="content_create_post" *ngIf="showModal==true && currentModal=='main' ">
             <h3>CREAR PUBLICACIÓN</h3>
             <div class="profile">
                 <img src="https://storage.contextoganadero.com/s3fs-public/colombia/field_image/2015-05/mujer_rural.jpg" alt="profile_photo">
                 <ul>
                     <li><p>PEPITA PEREZ</p></li>
                     <li>
-                        <div class="div_label" (click)="onChange('label')">
+                        <div class="div_label" (click)="changeModal('tag_people')">
                             <i class="icon-group"></i>
                             <p>Etiquetar</p>
                         </div>
@@ -48,28 +48,58 @@
                 </div>
             </div>
             <div class="div_select_project">
-                <p>Agregar a un proyecto:</p>
-                <select name="select_projects" class="select_projects" (change)="onChange($event.target)">
-                    <ng-container [ngValue]="null">
+                <p>Agregar a un proyecto: </p>
+
+
+                <label *ngIf="select_data.length > 0" class="select_list_2 dropdown" [ngClass]="{'active': ddownInput.checked}"
+                    (click)="ddownInput.checked = !ddownInput.checked;" (clickOutsideDdown)="ddownInput.checked = false;">
+                
+                    <!-- Es el texto que se muestra en la caja -->
+                    <span>Seleccionar</span>
+                    <span *ngIf="info.linked!=''">{{info.linked.slice(0,16)}}</span>
+                
+                    <!-- icono de la flecha -->
+                    <i class="icon-play3"></i>
+                
+                    <!-- Me sirve para saber si está o no desplegado el select -->
+                    <input type="checkbox" #ddownInput>
+                
+                    <!-- Caja que se despliega -->
+                    <ul class="dropdown-list" *ngIf="ddownInput.checked">
+                
+                        <!-- Cada uno de los items -->
+                        <li class="item" *ngFor="let item of select_data" (click)="currentModal = item.value">
+                            {{item.label}}
+                        </li>
+                        
+                    </ul>
+                </label>
+
+
+
+                <!-- <select name="select_projects" class="select_projects" (change)="onChange($event.target)">
+                    <ng-container>
                         <option *ngIf="info.linked!=''" disabled selected value>{{info.linked.slice(0,16)}}...</option>
                         <option *ngIf="info.linked==''" disabled selected value>Seleccionar</option>
                     </ng-container>
                     <option value="existente">Un proyecto existente</option>
                     <option value="nuevo">Un proyecto nuevo</option>
-                </select>
+                </select> -->
+
+                
             </div>
             <input (click)="btn_submit()" class="btn_submit" type="submit" value="PUBLICAR" />
            </div>
         </div>
 
         <!-- CONTENIDO DE LISTAS DE PROYECTOS EXISTENTES -->
-        <div class="project_or_label_list" *ngIf="selected=='existente' && modal_name.photos_videos==true">
-            <i class="icon-circle-left" (click)="continue_or_not(false)"></i>
+        <div class="project_or_label_list" *ngIf="currentModal=='existente' && showModal==true">
+            <i class="icon-circle-left" (click)="returnPreviousModal(false)"></i>
             <h3>MIS PROYECTOS</h3>
             <div class="div_search">
                 <input type="text" placeholder="Buscar" (focus)="onInputFocus()" (blur)="onInputBlur()">
                 <i class="icon-search" *ngIf="input_state"></i>
-                <p (click)="continue_or_not(true)">Listo</p>
+                <p (click)="returnPreviousModal(true)">Listo</p>
             </div>
             <div class="div_list">
                 <p>Selecciona un proyecto:</p>
@@ -87,15 +117,15 @@
         </div>
 
         <!-- CONTENIDO DE CREAR NUEVO PROJECTO -->
-        <div class="create_project" *ngIf="(selected=='nuevo' && modal_name.photos_videos==true) || (modal_name.projects && selected==null)">
-            <i class="icon-circle-left" (click)="continue_or_not(false)" *ngIf="modal_name.photos_videos==true"></i>
+        <div class="create_project" *ngIf="currentModal=='projects'">
+            <i class="icon-circle-left" (click)="returnPreviousModal(false)" *ngIf="showModal==true"></i>
             <h3>CREAR PROYECTO</h3>
             <div class="profile">
                 <img src="https://storage.contextoganadero.com/s3fs-public/colombia/field_image/2015-05/mujer_rural.jpg" alt="profile_photo">
                 <ul>
                     <li><p>PEPITA PEREZ</p></li>
                     <li>
-                        <div class="div_label" (click)="onChange('label')">
+                        <div class="div_label" (click)="changeModal('tag_people')">
                             <i class="icon-group"></i>
                             <p>Etiquetar participantes</p>
                         </div>
@@ -107,7 +137,7 @@
                     <i class="icon-cross style_close" (click)="funtion_close()"></i>
                     <div>
                         <i class="icon-addthis"></i>
-                        <p>Agrear portada del proyecto</p>
+                        <p>Agregar portada del proyecto</p>
                     </div>
                 </div>
                 <div class="info_project">
@@ -119,13 +149,13 @@
         </div>
 
         <!-- CONTENIDO DE LISTA DE PERSONAS A ETIQUETAR -->
-        <div class="project_or_label_list" *ngIf="selected=='label' && (modal_name.photos_videos==true || modal_name.projects==true || modal_name.events==true)">
-            <i class="icon-circle-left" (click)="continue_or_not(false)"></i>
+        <div class="project_or_label_list" *ngIf="currentModal=='tag_people'">
+            <i class="icon-circle-left" (click)="returnPreviousModal(false)"></i>
             <h3>ETIQUETAR A OTROS PERFILES</h3>
             <div class="div_search">
                     <input type="text" placeholder="Buscar" (focus)="onInputFocus()" (blur)="onInputBlur()">
                     <i class="icon-search" *ngIf="input_state"></i>
-                    <p (click)="continue_or_not(true)">Listo</p>
+                    <p (click)="returnPreviousModal(true)">Listo</p>
                 </div>
                 <div class="div_list">
                     <p>Selecciona un proyecto:</p>
@@ -143,14 +173,14 @@
         </div>
 
         <!-- CONTENIDO DE CREAR EVENTO -->
-        <div class="create_event" *ngIf="modal_name.events && selected==null">
+        <div class="create_event" *ngIf="currentModal=='events' ">
             <h3>CREAR EVENTO</h3>
             <div class="profile">
                 <img src="https://storage.contextoganadero.com/s3fs-public/colombia/field_image/2015-05/mujer_rural.jpg" alt="profile_photo">
                 <ul>
                     <li><p>PEPITA PEREZ</p></li>
                     <li>
-                        <div class="div_label" (click)="onChange('label')">
+                        <div class="div_label" (click)="changeModal('tag_people')">
                             <i class="icon-group"></i>
                             <p>Etiquetar invitados especiales</p>
                         </div>
@@ -174,7 +204,7 @@
                 </div>
                 <input [(ngModel)]="info.name" type="text" placeholder="Nombre del evento">
                 <select class="mat-select-arrow" [(ngModel)]="info.time_zone">
-                    <ng-container [ngValue]="null">
+                    <ng-container>
                         <option disabled selected value>Zona horaria</option>
                     </ng-container>
                     <option *ngFor="let zone of getZones()" [value]="zone.name">{{ zone.name }} (UTC{{ zone.offset }})</option>
