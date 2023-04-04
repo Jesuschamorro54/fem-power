@@ -4,7 +4,7 @@
     .menu {
 
         position: absolute;
-        top: 53px;
+        top: 58px;
         right: 0px;
         width: 300px;
         padding: 0;
@@ -102,7 +102,7 @@
         .logo {
             display: flex;
             align-items: center;
-            width: 50%;
+            // width: 50%;
             min-width: 400px;
             margin: 0px 10px;
 
@@ -135,7 +135,7 @@
 
             // En caso que el usuario esté confirmado se muestra el estilo del menu de navegacion tradicional
             &.navigation-menu {
-                width: 100%;
+                width: 42%;
                 padding-right: 10px;
                 margin-right: 10px;
                 // justify-content: space-between;
@@ -186,7 +186,6 @@
             }
 
             .profile {
-                position: relative;
 
                 .item {
                     padding: 0px;
@@ -214,9 +213,11 @@
                 }
           
                 .item.open {
-                  &+.menu {
-                    display: block;
-                  }
+                    &+.menu.config { display: block; }
+                    &+.menu.navigation { 
+                        display: flex; 
+                        justify-content: space-around;
+                    }
                 }
             }
         }
@@ -262,18 +263,6 @@
         .content-nav .navigation-menu .menu-options-2 {
             margin: 0 !important;
         }
-
-        .content-nav .nav-options .links-container .content-icon {
-            display: none;
-        }
-
-        .content-nav .nav-options .links-container .min-responsive {
-            display: block !important;
-
-            .menu .content-icon{
-                display: flex;
-            }
-        }
     }
 
     @media only screen and (max-width: 399px) {
@@ -287,6 +276,29 @@
     /* Small devices (medium phones, 400px and up) */
     @media only screen and (min-width: 400px) {
 
+    }
+
+    @media only screen and (max-width: 600px) {
+
+        .content-nav .nav-options.navigation-menu {
+            justify-content: flex-end !important;
+        }
+
+        // Menu responsivo
+        .content-nav .nav-options .links-container {
+            .content-icon {
+                display: none;
+            }
+
+            .min-responsive {
+                display: block !important;
+    
+                .menu .content-icon{
+                    display: flex;
+                    margin: 0;
+                }
+            }
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -326,14 +338,25 @@
     // -------------------------------------------------------------------------
 
     /* Medium devices (landscape tablets, 768px and up) */
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 784px) {
         .content-nav .logo{
            min-width: auto;
         }
+
+        .content-nav .nav-options {
+
+            &.navigation-menu {
+                justify-content: center;
+            }
+
+            .links-container .content-icon {
+                padding: 10px 13px;
+            }
+        }
     }
 
-    /* Big devices (landscape tablets, 768px and up) */
-    @media only screen and (min-width: 930px) {
+    /* Big devices (landscape tablets, 922px and up) */
+    @media only screen and (min-width: 922px) {
         .content-nav .nav-options .links-container .content-icon {
             padding: 5px 20px;
 
@@ -345,9 +368,9 @@
     }
 }
 
-@media only screen and (max-width: 498px) {
+@media only screen and (max-width: 600px) {
     .menu {
-        position: fixed !important;
+        position: absolute;
         width: 100% !important;
     }
 }

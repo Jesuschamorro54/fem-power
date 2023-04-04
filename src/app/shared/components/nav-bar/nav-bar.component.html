@@ -18,23 +18,8 @@
         </header>
         <!-- OPTIONS -->
 
-        <!-- Usuario con Session -->
-        <ul *ngIf="_appService.user_session == 1" class="nav-options"
-            [ngClass]="{'navigation-menu': _appService.user_code_confirmed}">
-
-            <!-- Usuario que no ha confirmado la cuenta -->
-            <div class="links-container" *ngIf="!_appService.user_code_confirmed">
-                <li class="nav-link">
-                    <a [routerLink]="['/fem/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
-                </li>
-                <li class="nav-link">
-                    <a [routerLink]="['/fem/women']" [routerLinkActive]="['active']">Mujeres</a>
-                </li>
-                <li class="nav-link">
-                    <a [routerLink]="['/auth/confirm-registration']" [routerLinkActive]="['active']">Verificar
-                        cuenta</a>
-                </li>
-            </div>
+        <!-- Usuario con Session options-1-->
+        <ul *ngIf="_appService.user_session == 1" class="nav-options navigation-menu">
 
             <!-- Menu options -->
             <div class="links-container menu-options" *ngIf="_appService.user_code_confirmed">
@@ -58,7 +43,7 @@
                         <i class="icon-menu"></i>
                     </div>
 
-                    <ul class="menu">
+                    <ul class="menu navigation">
 
                         <li class="content-icon">
                             <i class="icon-home" [routerLink]="['/feed']" [routerLinkActive]="['active']"></i>
@@ -79,8 +64,29 @@
                 </div>
 
             </div>
+        </ul>
 
-            <div class="links-container menu-options-2">
+        <!-- Usuario en la sessión options 2 -->
+        <ul *ngIf="_appService.user_session == 1" class="nav-options navigation-menu-2">
+
+            <!-- Usuario que no ha confirmado la cuenta -->
+            <div class="links-container" *ngIf="!_appService.user_code_confirmed">
+                <li class="nav-link">
+                    <a [routerLink]="['/fem/fundations']" [routerLinkActive]="['active']">Fundaciones</a>
+                </li>
+                <li class="nav-link">
+                    <a [routerLink]="['/fem/women']" [routerLinkActive]="['active']">Mujeres</a>
+                </li>
+                <li class="nav-link">
+                    <a [routerLink]="['/auth/confirm-registration']" [routerLinkActive]="['active']">Verificar cuenta</a>
+                </li>
+            </div>
+
+           <div class="links-container menu-options-2">
+
+                <li class="content-icon">
+                    <i class="icon-message1"></i>
+                </li>
 
                 <li class="content-icon">
                     <i class="icon-notification1"></i>
@@ -94,7 +100,7 @@
                     </div>
 
 
-                    <ul class="menu">
+                    <ul class="menu config">
                         <li>
                             <a [routerLink]="['/profile/1']">
                                 <div class="row">
@@ -119,8 +125,7 @@
                     </ul>
 
                 </div>
-            </div>
-
+            </div> 
         </ul>
 
         <!-- Usuario fuera de la session -->
