@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class NavBarComponent implements OnInit {
 
   showProfile: Boolean = false;
+  showMenuOptions: Boolean = false;
   public responsive_menu = false;
 
   constructor(
@@ -21,7 +22,13 @@ export class NavBarComponent implements OnInit {
   }
 
   toggleProfile(): void {
+    this.showMenuOptions = false
     this.showProfile = !this.showProfile;
+  }
+
+  toggleMenuOptions() {
+    this.showProfile = false;
+    this.showMenuOptions = !this.showMenuOptions;
   }
 
   logout(url) {
