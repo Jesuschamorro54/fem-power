@@ -1,0 +1,16 @@
+<div class="div_carousel">
+    <div class="div-ul">
+        <ul id="position-ul" [ngStyle]="{'width': ((array_carousel.length)*100)+'%', 'transform': 'translateX(' + operation +'%)'}">
+            <li *ngFor="let card of array_carousel, let indice=index">
+                <img src="{{card.img}}" alt="project image">
+                <div class="info-project">
+                    <p>{{card.project_name}}</p>
+                    <ul>
+                        <li><i class="icon-heart"></i></li>
+                        <li><p>{{card.like}}</p></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

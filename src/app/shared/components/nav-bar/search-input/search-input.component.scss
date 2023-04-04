@@ -1,0 +1,114 @@
+
+
+.search-container {
+    $search-background: rgba(229, 229, 229, 0.7);
+
+    background: $search-background;
+    border-radius: 6px;
+    // width: 100%;
+    display: flex;
+    padding: 0 14px;
+    margin: 0 15px;
+    max-height: 30px;
+
+    #responsive-icon {
+        display: none;
+    }
+
+    .icon-cross {
+        display: none;
+    }
+
+    i {
+        align-self: center;
+        font-size: 15px;
+        color: #b2b2b2;
+    }
+    
+    input {
+        background: transparent;
+        width: 100%;
+        // height: 100%;    
+        border: none;
+        padding: 0;
+
+        &:focus {
+            box-shadow: none !important;
+        }
+
+    }
+    
+    &:hover, &:focus-within {
+        background: rgba($color: $search-background, $alpha: 0.5);
+        box-shadow: none;
+    }
+
+    // -------------------------------------------------------------------------
+    /* Small devices (medium phones, 400px and up) */
+    @media only screen and (min-width: 400px) {
+        
+    }
+
+    // -------------------------------------------------------------------------
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 650px) {
+        
+    }
+
+    /* Small devices (portrait tablets and large phones, 784px and down) */
+    @media only screen and (max-width: 784px) {
+
+        background: transparent;
+        padding: 3px;
+
+        i {
+            font-size: 24px;
+        }
+
+        #basic-icon, input {
+            display: none;
+        }
+        
+        #responsive-icon {
+            display: block;
+        }
+
+        &.responsive-actived {
+
+            background: white;
+            border-radius: 0px;
+            height: 58.6px;
+            max-height: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            width: 100%;
+            z-index: 1;
+            // transition: all 300ms;
+
+            .icon-cross {
+                display: block !important;
+            }
+
+            i {
+                margin: 10px;
+            }
+
+            input {
+                height: auto;
+                display: block !important;
+            }
+        }
+
+    }
+
+    // -------------------------------------------------------------------------
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+        
+    }
+
+}
+

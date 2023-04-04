@@ -1,0 +1,72 @@
+@import '../../../styles/colors';
+@import '../../profiles.component.scss';
+
+.sponsor {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 198px;
+
+    .head {
+        display: flex;
+        flex-direction: column;
+        height: inherit;
+        overflow: hidden;
+
+        span {
+            display: flex;
+            justify-content: space-between;
+
+            a {
+                align-self: center;
+            }
+
+        }
+    }
+
+    .content-elements {
+
+        .elements {
+            
+            display: flex;
+            flex-direction: column;
+            // max-height: 86px;
+            padding: 0;
+            margin: 0;
+
+            .item {
+                cursor: pointer;
+                margin: 5px;
+                max-width: 50px;
+                
+                .photo {
+
+                    width: 40px;
+                    height: 40px;
+                    max-height: 82px;
+                    overflow: hidden;
+                    border-radius: 25px;
+                    border: 1px solid #a3a3a3;
+                    display: flex;
+                    background: white;
+                    transition: all 200ms;
+
+                    img {
+                        width: inherit;
+                        align-self: center;
+                    }
+
+                    &:hover {
+                        filter: brightness(.9);
+                    }
+
+                }
+                
+
+            }
+        }
+    }
+
+}

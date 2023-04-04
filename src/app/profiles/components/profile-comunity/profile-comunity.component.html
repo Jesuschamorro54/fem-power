@@ -1,0 +1,51 @@
+
+<div class="profile-comunity">
+    <div class="container">
+
+
+        <section class="head">
+
+            <h3 class="title">COMUNIDAD</h3>
+
+
+            <div class="search-container">
+                <i class="icon-search"></i>
+                <input type="text" placeholder="Search">
+            </div>
+
+        </section>
+
+        <section class="body">
+
+            <ul class="tabs">
+                <li class="tab" [ngClass]="{'actived': currentTab.myFollows}"(click)="toggleTabs('myFollows')">Perfiles que sigo</li>
+                <li class="tab" [ngClass]="{'actived': currentTab.followers}" (click)="toggleTabs('followers')">Perfiles que me siguen</li>
+            </ul>
+
+            <div class="follows-content">
+
+                <!-- Seguidos -->
+                <ul>
+                    <li class="user" *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]">
+
+                        <div>
+                            <div class="photo">
+                                <img src="http://www.uniagraria.edu.co/wp-content/uploads/2013/10/mujere_rural-principal.jpg">
+                            </div>
+    
+                            <span class="user-name">Daniela Miranda</span>
+                        </div>
+                        
+
+                        <i class="options">•••</i>
+
+                    </li>
+                </ul>
+
+            </div>
+
+        </section>
+
+
+    </div>
+</div>

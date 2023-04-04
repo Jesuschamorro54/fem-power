@@ -1,0 +1,126 @@
+
+@import '../../../styles/colors';
+@import '../../profiles.component.scss';
+
+.profile-gallery {
+    background: white;
+    border-radius: 20px;
+    padding: 16px 10px;
+
+    .container {
+
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        align-items: center;
+
+
+        .body {
+
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .tabs {
+                display: flex;
+                justify-content: center;
+                width: fit-content;
+                
+
+                .tab {
+                    display: flex;
+                    width: fit-content;
+                    margin: 0 10px;
+                    height: fit-content;
+                    padding: 5px 25px;
+                    position: relative;
+                    justify-content: center;
+
+                    &:before,
+                    &:after {
+                        border: 0 solid transparent;
+                        transition: all 0.4s;
+                        content: "";
+                        height: 0;
+                        position: absolute;
+                        width: 0px;
+                    }
+
+
+                    &:after {
+                        border-bottom: 1px solid $dark-fucsia;
+                        bottom: -1px;
+                        left: 0;
+                    }
+
+                    &:hover:before,
+                    &:hover:after {
+                        width: 100%;
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    &.actived {
+                        border-bottom: 2px solid $dark-fucsia;
+                    }
+
+                }
+
+            }
+
+            .grid-box {
+
+                margin-top: 10px;
+                max-height: 38rem;
+                overflow-y: auto;
+
+                .wraper {
+
+                    width: 100%;
+                    display: flex;
+                    padding-right: 40px;
+                    flex-wrap: wrap;
+                    justify-content: center;
+
+                    .item {
+
+                        display: flex;
+                        min-width: 294px;
+                        max-width: 294px;
+                        margin: 10px;
+                        height: 175px;
+                        flex-direction: column;
+                        overflow: hidden;
+                        border-radius: 10px;
+                        border: 1px solid $light;
+                        transition: border 300ms;
+                        cursor: pointer;
+
+                        .gallery-photo {
+                            cursor: pointer;
+                            width: inherit;
+                            height: inherit;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            transition: all .2s;
+                            background-image: url("https://cdn.euroinnova.edu.es/img/subidasEditor/artesanias-1580290982.webp");
+                            
+                            
+
+                            // &:hover {
+                            //     border: 1px solid rgba($color: $light, $alpha: 2);
+                            // }
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
+}

@@ -103,6 +103,13 @@ p {
     cursor: pointer;
 }
 
+.content-slider{
+    .image img{
+        border-radius: 0%;
+    }
+}
+
+
 /* Small devices (phones) */
 @media only screen and (max-width: 399px) {
     //Tamaño letras:

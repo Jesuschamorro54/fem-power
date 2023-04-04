@@ -14,5 +14,100 @@
 
 <!--Section 2-->
 <div id="section-2">
-    <!--<input-select [data]="fundation_names" (changeValue)="mostrarItem($event)"></input-select>-->
+    <div id="select-fundations">
+        <input-select id="input-select" [data]="fundation_names" (changeValue)="mostrarItem($event)"></input-select>
+    </div>
+    <div id="info-fundations">
+        <div id="container-view">
+            <div id="view-img">
+                <img src="https://www.mujeresparalasalud.org/nuevoamswp/wp-content/uploads/2019/02/pol%C3%ADtica-feminista-para-avanzar-en-la-igualdad-y-la-corresponsabilidad-entre-mujeres-y-hombres.png" alt="Imagen She Is">
+            </div>
+            <div id="description-view">
+                <p id="name-fundation">She Is</p>
+                <p>La Fundación She Is es una entidad sin ánimo de lucro que inicio operaciones en Colombia en enero del 2016 dedicada a promover, integrar e implementar...</p>
+            </div>
+            <button id="btn-more">Ver más...</button>
+        </div>
+    </div>
 </div>
+
+<!--Sección 3-->
+<div id="section-3">
+    <h3>PROYECTOS DESTACADOS</h3>
+    <app-slider id="slider" [slider_type]="'no-automatic'" [slider_invert]="true"></app-slider>
+</div>
+
+<!--Sección 4-->
+<div id="section-4">
+    <p>En FemPower tu fundación puede gestionar</p>
+    <div class="all-manage">
+        <div class="manage-1">
+            <p class="description-manage" id="desc-donation">Las donaciones</p>
+            <div class="div-icons">
+                <i class="icon-donation"></i>
+            </div>
+        </div>
+
+        <div class="manage-1">
+            <p class="description-manage">Las vacantes laborales de las mujeres</p>
+            <div class="div-icons">
+                <i class="icon-user-job"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="all-manage">
+        <div class="manage-2">
+            <div class="box-description">
+                <p class="description-manage">
+                    Los certificados de donación que reconocen el aporte de las organizaciones
+                </p>
+            </div>
+            <div class="div-icons">
+                <i class="icon-document-certificate"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Sección 5-->
+<div id="section-5">
+    <p>Principales organizaciones patrocinadoras</p>
+    <div class="all-sponsoring">
+        <div class="organization">
+            <img src="https://m.media-amazon.com/images/I/31epF-8N9LL.png" alt="">
+        </div>
+
+        <div class="organization">
+            <img src="https://info.netcommerce.mx/wp-content/uploads/2015/08/coca-cola-logo.jpg" alt="">
+        </div>
+
+        <div class="organization">
+            <img src="data:image/png;base64,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" alt="">
+        </div>
+    </div>
+    <div class="all-sponsoring2">
+        <div class="organization">
+            <img src="https://bogota.gov.co/sites/default/files/styles/1050px/public/2020-04/diseno-sin-titulo-24.png" alt="">
+        </div>
+
+        <div class="organization">
+            <img src="https://www.canalextensiaamerica.com/wp-content/uploads/2015/04/c_triplea_corporativa2.png" alt="">
+        </div>
+
+        <div class="organization">
+            <img src="https://i0.wp.com/coolechera.co/wp-content/uploads/2022/01/Logo_coolechera.png?fit=500%2C187&ssl=1" alt="">
+        </div>
+    </div>
+</div>
+
+<!--Footer-->
+<div id="section-footer">
+    <div id="contents-footer">
+        <p>Se parte de la comunidad FemPower</p>
+        <button (click)="goToSignUp()">REGISTRARSE</button>
+    </div>
+    <app-footer></app-footer>
+</div>
+
+<app-donate-button></app-donate-button>

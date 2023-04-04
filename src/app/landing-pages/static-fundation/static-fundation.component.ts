@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-static-fundation',
@@ -7,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaticFundationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
   fundation_names = [
     {label: 'Seleccione la fundación...', value: null},
-    {label: 'Mujer', value: 'fundation'},
+    {label: 'She Is', value: 'fundation'},
     {label: 'Mujer', value: 'fundation'},
     {label: 'Mujer', value: 'fundation'},
     {label: 'Mujer', value: 'fundation'}
@@ -22,6 +23,10 @@ export class StaticFundationComponent implements OnInit {
 
   mostrarItem(item){
     console.log(item.value);
+  }
+
+  goToSignUp() {
+    this._router.navigate(['auth/sign'])
   }
 
 }

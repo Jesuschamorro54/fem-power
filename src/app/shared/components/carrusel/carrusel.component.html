@@ -1,0 +1,11 @@
+<div class="carrusel" #carrusel>
+    <div class="carrusel-items" #carruselItems>
+      <div class="carrusel-item" *ngFor="let item of items">
+        <img src={{item.image}} class="carrusel-item-image" alt="" srcset="">
+        <h3>{{ item.title }}</h3>
+        
+    </div>
+    </div>
+  </div>
+  <button (click)="prev()">Anterior</button>
+  <button (click)="next()">Siguiente</button>

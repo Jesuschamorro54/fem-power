@@ -4,7 +4,7 @@
 }
 
 @font-face {
-  font-family: 'Fem Power';
+  font-family: 'Fem Power icon';
   font-style: normal;
   font-weight: 400;
   src:  url('../../assets/fonts/icomoon.eot?xt01ex');
@@ -15,7 +15,7 @@
 }
 
 .fem-power-icons {
-  font-family: 'Fem Power';
+  font-family: 'Fem Power icon';
   font-weight: normal;
   font-style: normal;
   font-size: 24px;  /* Preferred icon size */
@@ -42,7 +42,7 @@
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'Fem Power' !important;
+  font-family: 'Fem Power icon' !important;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;  /* Preferred icon size */
@@ -70,7 +70,75 @@
 
 
 // ---------------
-
+.icon-chat:before {
+  content: "\ea30";
+}
+.icon-bubbles:before {
+  content: "\ea30";
+}
+.icon-talk:before {
+  content: "\ea30";
+}
+.icon-message:before {
+  content: "\ea30";
+}
+.icon-conversation:before {
+  content: "\ea30";
+}
+.icon-envelope:before {
+  content: "\ea31";
+}
+.icon-mail:before {
+  content: "\ea31";
+}
+.icon-email:before {
+  content: "\ea31";
+}
+.icon-letter:before {
+  content: "\ea31";
+}
+.icon-message2:before {
+  content: "\ea31";
+}
+.icon-bulb:before {
+  content: "\ea2a";
+}
+.icon-lamp:before {
+  content: "\ea2a";
+}
+.icon-idea:before {
+  content: "\ea2a";
+}
+.icon-document-certificate:before {
+  content: "\ee6c";
+}
+.icon-document-certificate1:before {
+  content: "\ee6d";
+}
+.icon-certificate:before {
+  content: "\ee6e";
+}
+.icon-certificate1:before {
+  content: "\ee6f";
+}
+.icon-messages:before {
+  content: "\ea32";
+}
+.icon-message-typing:before {
+  content: "\ee06";
+}
+.icon-message3:before {
+  content: "\ee07";
+}
+.icon-message1:before {
+  content: "\ee08";
+}
+.icon-donation:before {
+  content: "\ea2f";
+}
+.icon-user-job:before {
+  content: "\e937";
+}
 .icon-google .path1:before {
   content: "\e910";
   color: rgb(29, 129, 206);
@@ -151,6 +219,10 @@
 .icon-amd:before {
   content: "\e90f";
   color: #ed1c24;
+}
+.icon-americanexpress:before {
+  content: "\ea29";
+  color: #2e77bc;
 }
 .icon-anaconda:before {
   content: "\e911";
@@ -297,10 +369,6 @@
 .icon-automatic:before {
   content: "\e936";
   color: #7d8084;
-}
-.icon-autotask:before {
-  content: "\e937";
-  color: #e51937;
 }
 .icon-aventrix:before {
   content: "\e938";
@@ -3500,6 +3568,12 @@
   content: "\ec7d";
   color: #52c2af;
 }
+.icon-notifications-outline:before {
+  content: "\ee69";
+}
+.icon-notification1:before {
+  content: "\ee6a";
+}
 .icon-fem-power:before {
   content: "\e900";
 }
@@ -3827,7 +3901,7 @@
 .icon-bubble:before {
   content: "\ece9";
 }
-.icon-bubbles:before {
+.icon-bubbles1:before {
   content: "\ecea";
 }
 .icon-bubbles2:before {
@@ -4664,7 +4738,7 @@
 .icon-share2:before {
   content: "\ee00";
 }
-.icon-mail:before {
+.icon-mail1:before {
   content: "\ee01";
 }
 .icon-mail2:before {
@@ -4955,11 +5029,14 @@
 .icon-IcoMoon:before {
   content: "\ee68";
 }
-.icon-notifications-outline:before {
-  content: "\ee69";
+.icon-drivers-license-o:before {
+  content: "\ea2c";
 }
-.icon-notification1:before {
-  content: "\ee6a";
+.icon-drivers-license:before {
+  content: "\ea2d";
+}
+.icon-certificate2:before {
+  content: "\ea2e";
 }
 .icon-group:before {
   content: "\ee6b";
@@ -4967,4 +5044,3 @@
 .icon-users1:before {
   content: "\ee6b";
 }
-
