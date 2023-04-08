@@ -8,6 +8,7 @@
         height: 80px;
     
         background: white;
+        border-radius: 10px;
     
         .div_img, .div_info{
             height: 84%;
@@ -44,6 +45,7 @@
         padding: 10px;
 
         background: white;
+        border-radius: 10px;
         
         ul{
             padding: 0px;
@@ -95,8 +97,13 @@
         height: 55px;
     
         background: white;
+        border-radius: 10px;
+
+        i{
+            cursor: pointer;
+        }
     
-        a:hover{
+        a:hover, i:hover{
             color: #8C0054;
         }
     }

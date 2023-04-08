@@ -6,6 +6,7 @@
     padding: 5px;
     margin-top: 12px;
     background: white;
+    border-radius: 10px;
     .container_header{
         display: flex;
         margin: 0px auto;
@@ -13,8 +14,8 @@
         height: 60px;
         padding: 5px;
         .photo img{
-            width: 50px;
-            height: 50px;
+            // width: 50px;
+            // height: 50px;
             border-radius: 50%;
             object-fit: cover;
         }
@@ -45,11 +46,11 @@
         }
     }
 }
-.photo img{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
+// .photo img{
+//     width: 50px;
+//     height: 50px;
+//     border-radius: 50%;
+// }
 
 
 // ----------------------------- MODAL ------------------------------------------------------
@@ -475,6 +476,10 @@
         width: 40px;
         height: 40px;
     }
+    .component_create_post  .photo img{
+        width: 39px;
+        height: 39px;
+    }
 }
 /* Small devices (medium phones, 400px and up) */
 @media only screen and (min-width: 400px) {
@@ -515,6 +520,10 @@
         width: 45px;
         height: 45px;
     }
+    .component_create_post  .photo img{
+        width: 39px;
+        height: 39px;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -530,6 +539,12 @@
     .div_list img{
         width: 50px;
         height: 50px;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .component_create_post  .photo img{
+        width: 41px;
+        height: 41px;
     }
 }
 /* Large devices (laptops/desktops, 900px and up) */
@@ -555,11 +570,19 @@
     .select_list_2{
         width: 170px;
     }
+    .component_create_post  .photo img{
+        width: 47px;
+        height: 47px;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .style_close{
         font-size: 0.93em;
+    }
+    .component_create_post  .photo img{
+        width: 55px;
+        height: 55px;
     }
 }
