@@ -1,0 +1,9 @@
+<div class="search-container" [ngClass]="{'responsive-actived': onFocus}" (clickOutsideDdown)="onFocus=false">
+    
+    <i id="basic-icon" class="icon-search"></i>
+    <i id="responsive-icon" class="icon-search" (click)="showInput()"></i>
+
+    <input #searchInput_ type="text" placeholder="Buscar">
+
+    <i class="icon-cross" (click)="showInput()"></i>
+</div>

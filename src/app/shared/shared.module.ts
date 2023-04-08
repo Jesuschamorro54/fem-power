@@ -13,6 +13,7 @@ import { InputSelectComponent } from './components/input-select/input-select.com
 import { DonateButtonComponent } from './components/donate-button/donate-button.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { ModalCreatePostComponent } from './components/modal-create-post/modal-create-post.component';
+import { SearchInputComponent } from './components/nav-bar/search-input/search-input.component';
 
 
 
@@ -31,7 +32,8 @@ import { ModalCreatePostComponent } from './components/modal-create-post/modal-c
     CutUserNamePipe, 
     notificationsDate, 
     messageDate, 
-    ToLowerCase, ModalCreatePostComponent
+    ToLowerCase, ModalCreatePostComponent, SearchInputComponent,
+    
   ],
   
   imports: [
