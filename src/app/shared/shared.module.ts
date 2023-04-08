@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ClickOutsideDdownDirective } from './directives/clickOutsideDdown.directive';
 import { AwsS3Service } from './services/awsS3.service';
 import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase, UserClassName } from './pipes/shared.pipe';
+
 
 import { InputSelectComponent } from './components/input-select/input-select.component';
 import { DonateButtonComponent } from './components/donate-button/donate-button.component';
@@ -30,14 +31,13 @@ import { ModalCreatePostComponent } from './components/modal-create-post/modal-c
     CutUserNamePipe, 
     notificationsDate, 
     messageDate, 
-    ToLowerCase, ModalCreatePostComponent,
-    
+    ToLowerCase, ModalCreatePostComponent
   ],
   
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
   ],
 
   exports: [
@@ -49,6 +49,11 @@ import { ModalCreatePostComponent } from './components/modal-create-post/modal-c
     InputSelectComponent,
     ModalCreatePostComponent,
   ],
-  providers: [AwsS3Service],
+  providers: [
+    AwsS3Service
+  ],
+  schemas: [
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class SharedModule {}

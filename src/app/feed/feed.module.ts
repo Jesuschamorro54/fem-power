@@ -7,6 +7,7 @@ import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { PostCarouselComponent } from './post-carousel/post-carousel.component';
 import { SharedModule } from "../shared/shared.module";
 import { RightMenuComponent } from './right-menu/right-menu.component';
+import { PublicationComponent } from './publication/publication.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { RightMenuComponent } from './right-menu/right-menu.component';
     LeftMenuComponent,
     PostCarouselComponent,
     RightMenuComponent,
+    PublicationComponent
   ],
   imports: [
     CommonModule,

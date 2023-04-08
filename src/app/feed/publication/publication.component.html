@@ -1,0 +1,83 @@
+<app-modal-create-post (infoChange)="add_publication($event)"></app-modal-create-post>
+
+<div class="publications" *ngFor="let publication of array_publications, let indice=index">
+    <i class="icon-minus"></i>
+    <div class="profile">
+        <img src="https://storage.contextoganadero.com/s3fs-public/colombia/field_image/2015-05/mujer_rural.jpg" alt="profile_photo">
+        <ul>
+            <li>
+                <p *ngIf="publication.publication_type=='projects'">PEPITA PEREZ<span>Nuevo proyecto</span>{{publication.linked.slice(0,16)}}...</p>
+                <p *ngIf="publication.publication_type=='photos_videos' && publication.linked!=''">PEPITA PEREZ<span>Avance de</span>{{publication.linked.slice(0,16)}}...</p>
+                <p *ngIf="publication.publication_type=='photos_videos' && publication.linked==''">PEPITA PEREZ</p>
+                <!-- <p *ngIf="publication.publication_type=='photos_videos'">PEPITA PEREZ</p><p *ngIf="publication.linked!='' && publication.publication_type=='photos_videos'"><span>Avance de</span>{{publication.linked.slice(0, 22)}}...</p> -->
+                <p *ngIf="publication.publication_type=='events'">PEPITA PEREZ<span>Evento {{publication.event_type}}</span></p>
+            </li>
+            <li>
+                <p>2 días</p> 
+            </li>
+        </ul>
+    </div>
+    <div class="projects_or_photos_videos" *ngIf="publication.publication_type=='projects' || publication.publication_type=='photos_videos'">
+        <p class="description" *ngIf="publication.description!=''">{{publication.description}}</p>
+        <img class="img_publication" src="{{publication.img}}" alt="Imagen de la publicación" [ngStyle]="{'margin-top': publication.description!='' ? '10px' : '0px'}">
+        <div class="div_recognition">
+            <div>
+                <i class="icon-heart"></i>
+                <p>11</p>
+            </div>
+            <div>
+                <p>3 Comentarios</p>
+                <p>7 Veces compartidos</p>
+            </div>
+        </div>
+        <hr>
+        <div class="div_interact">
+            <div>
+                <i class="icon-heart"></i>
+                <p>Me gusta</p>
+            </div>
+            <div>
+                <i class="icon-bubble2"></i>
+                <p>Comentar</p>
+            </div>
+            <div>
+                <i class="icon-sphere"></i>
+                <p>Compartir</p>
+            </div>
+            <div>
+                <i class="icon-joomla"></i>
+                <p>Donar</p>
+            </div>
+        </div>
+    </div>
+    <div class="events" *ngIf="publication.publication_type=='events'">
+        <ul>
+            <li>
+                <p>{{publication.name}}</p>
+            </li>
+            <li>
+                <p><span>Fecha:</span> {{publication.start_date}} / {{publication.ending_date}}</p>
+            </li>
+            <li>
+                <p><span>Dirección:</span> {{publication.address}}</p>
+            </li>
+            <li>
+                <p><span>Hora:</span> {{publication.start_time}} - {{publication.ending_time}}</p>
+            </li>
+            <li>
+                <p>{{publication.description}}</p>
+            </li>
+        </ul>
+        <img class="img_front_page" src="{{publication.img}}" alt="Portada del evento">
+        <div class="div_interact">
+            <div>
+                <i class="icon-clubs"></i>
+                <p>Me gusta</p>
+            </div>
+            <div>
+                <i class="icon-sphere"></i>
+                <p>Compartir</p>
+            </div>
+        </div>
+    </div>
+</div>

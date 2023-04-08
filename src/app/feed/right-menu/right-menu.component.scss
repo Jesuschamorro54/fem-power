@@ -1,40 +1,100 @@
 .recommendations{
     width: 100%;
-    height: 316px;
-    padding: 8% 0px 8% 5%;
-
-    background: white;
-    
-    p:first-child{
-        font-weight: bold;
+    height: inherit;
+    padding: 16px 10px;
+    .header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p{
+            font-weight: bold;
+        }
+        a{
+            display: none;
+            color: #8C0054;
+        }
     }
-
     .div_list{
         width: 100%;
-        height: 93%;
-        margin-top: 3%;
 
-        overflow-y: scroll;
-        
+        // height: 265px;
+        margin-top: 9px;
         ul{
+            margin: 0px;
             padding: 0px;
             li{
                 padding: 0px;
-                margin-bottom: 5%;
+                // margin-bottom: 12px;
                 div{
                     display: flex;
                     align-items: center;
 
                     img{
-                        width: 50px;
-                        height: 50px;
                         margin-right: 4%;
 
                         border-radius: 50%;
                         object-fit: cover;
                     }
                 }
+
             }
         }
+    }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    p, a{
+        font-size: 0.88em; 
+    }
+    i{
+        font-size: 0.75em;
+    }
+    img{
+        width: 41px;
+        height: 41px;
+    }     
+    .div_list li{
+        padding: 0px;
+        margin-bottom: 12px;
+    }
+}
+
+/* Large devices (laptops/desktops, 900px and up) */
+@media only screen and (min-width: 900px) {
+    p, a{
+        font-size: 1em;
+    }
+    i{
+        font-size: 0.85em;
+    }
+    img{
+        width: 47px;
+        height: 47px;
+    }
+    .div_list li{
+        padding: 0px;
+        margin-bottom: 5px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    i{
+        font-size: 0.93em;
+    }
+    img{
+        width: 55px;
+        height: 55px;
+    }
+    .header{
+        a{
+            display: block !important;
+        }
+    }
+    .div_list li{
+        padding: 0px;
+        margin-bottom: 12px;
     }
 }

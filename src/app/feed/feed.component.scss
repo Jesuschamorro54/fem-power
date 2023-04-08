@@ -1,45 +1,86 @@
 .main_section{
+    display: flex;
     margin: 0px auto;
-
     width: 1080px;
-    margin-top: 1.5%;
+    margin-top: 21px;
     
-    // background: red;
-}
-
-
-.section_1{
-    position: fixed;
-    left: 9%;
-    top: 12.5%;
-
-    width: 19%;
-    height: 100%;
-
-    // background: rgb(46, 77, 0);
-}
-
-.section_2{
-    margin: 0px auto;
-
-    width: 50.5%;
-
-    // background: red;
-
-    #hola{
-        height: 200px;
+    .section_1{
+        display: none;
+        position: sticky;
+        top: 79px;
+        // transform: translate(0px, 0px);
+        height: 328px;
+        width: 23%;
+    }
+    .section_2{
+        margin: 0px auto;
         width: 100%;
-        // background: rebeccapurple;
+        border-radius: 10px;
+    }
+    .section_3{
+        display: none;
+        position: sticky;
+        top: 79px;
+        width: 23%;
+        background: white;
+        border-radius: 10px;
+    }
+}
+
+/* Small devices (phones) */
+@media only screen and (max-width: 399px) {
+    .main_section{
+        width: 330px;
+    }
+}
+
+/* Small devices (medium phones, 400px and up) */
+@media only screen and (min-width: 400px) {
+    .main_section{
+        width: 380px;
     }
 
 }
-.section_3{
-    position: fixed;
-    right: 9.5%;
-    top: 12.5%;
-    
-    width: 19%;
-    height: 100%;
-    
-    // background: rgb(46, 77, 0);
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .main_section{
+        width: 550px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .main_section{
+        width: 730px;
+    }
+    .section_1, .section_3{
+        display: block !important;
+    }
+    .section_2{
+        width: 51.5% !important;
+    }
+    .section_3{
+        height: 255px;
+    }
+}
+
+/* Large devices (laptops/desktops, 900px and up) */
+@media only screen and (min-width: 900px) {
+    .main_section{
+        width: 890px;
+    }
+    .section_3{
+        height: 257px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .main_section{
+        width: 1080px;
+    }
+    .section_3{
+        height: 322px;
+    }
 }

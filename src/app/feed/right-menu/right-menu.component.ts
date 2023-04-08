@@ -15,7 +15,7 @@ export class RightMenuComponent implements OnInit {
       {name: "Liliana Martinez",
        img: "https://img.lalr.co/cms/2021/04/20143147/Mujeres-rurales.jpg"
       },
-      {name: "Tatiana Sanchez",
+      {name: "Tati Sanchez",
        img: "https://files.rcnradio.com/2019-10/banana-4493420_1920.jpg"
       },
       {name: "Lucia Landines",
@@ -23,22 +23,7 @@ export class RightMenuComponent implements OnInit {
       },
       {name: "Tuti Hernandez",
        img: "https://www.undp.org/sites/g/files/zskgke326/files/migration/cr/undp_cr_politica_genero_MAG_02_20.jpg"
-      },
-      {name: "Margare Alcon",
-       img: "https://ipsnoticias.net/wp-content/uploads/2020/10/Mujer-rural-FAO.jpg"
-      },
-      {name: "Saray Tumaco",
-       img: "https://www.bbva.com/wp-content/uploads/2022/10/Graciela-Vela%CC%81squez-Financiera-Confianza.jpg"
-      },
-      {name: "Martina Cardena",
-       img: "https://natura.org.co/wp-content/uploads/2019/03/historia-de-vida-fundacion-natura-1.jpg"
-      },
-      {name: "Olivia Chamorro",
-       img: "https://agriculturadelasamericas.com/wp-content/uploads/2020/10/ff2e5d0e-aa0d-4916-9405-d8f4d9921868.jpg"
-      },
-      {name: "Valeria Cerra",
-       img: "https://aulaintercultural.org/wp-content/uploads/2020/10/jovenrural.jpg"
-      },
+      }
     ];
   }
 

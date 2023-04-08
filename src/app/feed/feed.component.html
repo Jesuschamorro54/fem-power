@@ -1,14 +1,15 @@
-<!-- section 1: MENU IZQUIERDO-->
+
 <div class="main_section">
+    <!-- section 1: MENU IZQUIERDO-->
     <div class="section_1">
         <app-left-menu></app-left-menu>
     </div>
     
     <!-- section_2: PUBLICACIONES -->
-    <div class="section_2">
+    <div class="section_2" #myDiv scroll>
         <app-post-carousel></app-post-carousel>
-        <app-modal-create-post></app-modal-create-post>
-        <div id="hola"></div>
+        
+        <app-publication></app-publication>
     </div>
     
     <!-- section_3: RECOMENDADOS -->

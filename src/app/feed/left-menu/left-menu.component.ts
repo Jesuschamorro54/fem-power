@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftMenuComponent implements OnInit {
 
+  public community: Boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  change_community(){
+    this.community= !this.community;
+  }
 }
