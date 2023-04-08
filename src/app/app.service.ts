@@ -118,6 +118,21 @@ export class AppService {
   }
 
 
+  searchUser(searchText): Observable<any> {
+    return this.http.get(`${environment.urlAPI}/users/search?search_string="${searchText}"`, this.getHeaders()).pipe(
+      map((response: any) => {
+        const {status, data} = response
+  
+        return { valid: status, data }
+      }),
+        catchError((error: any) => {
+          this.handleError('searchUser');
+          return of({ status: false });
+        })
+      )
+  }
+
+
 
   // END TODO
   

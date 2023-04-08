@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Amplify, Auth } from 'aws-amplify';
-import { catchError, from, map, Observable, of } from 'rxjs';
+import { catchError, from, map, Observable, of, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppService } from '../app.service';
 import { DataRegister, UserData } from '../models/auth.models';
@@ -260,6 +260,7 @@ export class AuthService {
   public federatedSignIn(customProvider) {
     
     return from(Auth.federatedSignIn({ customProvider }).then((response: any) => {
+
       return { status: 'ok', response }
     }).catch(error => {
       return { status: 'error', error }
@@ -272,11 +273,42 @@ export class AuthService {
     }));
   }
 
+  getUserData(): Observable<any> {
+
+    const { id } = this._appService.user_data;
+
+    return this.http.get(`${environment.urlAPI}/users/${id}`, this.getHeaders())
+      .pipe(map((user: any) => {
+        const { data, status } = user;
+        let data_return = [];
+
+        if (status) {
+          this.userData = data[0];
+          data_return = data;
+        }
+        return data_return
+      }),
+        retry(3),
+        catchError(this.handleError<any>('getUserData', []))
+      );
+  }
+
   public generateRandomString() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     for (var i = 0; i < 12; i++)text += possible.charAt(Math.floor(Math.random() * possible.length));
     return text;
+  }
+
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.log('%cerror::', 'color:red', error); // log to console instead
+      
+      return of(result as T);
+    };
   }
 
 

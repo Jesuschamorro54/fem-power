@@ -277,7 +277,7 @@ export class SignUpComponent implements OnInit {
 
   federatedSignIn(customProvider) {
 
-    this._router.navigate(["/auth/code-confirm"], {queryParams: { customProvider } })
+    this._router.navigate(["/auth/confirm-registration"], {queryParams: { customProvider } })
     
   }
 
