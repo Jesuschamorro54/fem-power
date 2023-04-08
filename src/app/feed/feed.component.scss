@@ -3,20 +3,18 @@
     margin: 0px auto;
     width: 1080px;
     margin-top: 21px;
-    background: rebeccapurple;
     
     .section_1{
         display: none;
         position: sticky;
         top: 79px;
-        transform: translate(0px, 0px);
+        // transform: translate(0px, 0px);
+        height: 328px;
         width: 23%;
-        // height: 325px;
     }
     .section_2{
         margin: 0px auto;
         width: 100%;
-        // width: 51.5%;
     }
     .section_3{
         display: none;

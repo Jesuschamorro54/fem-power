@@ -7,7 +7,9 @@
         <ul>
             <li>
                 <p *ngIf="publication.publication_type=='projects'">PEPITA PEREZ<span>Nuevo proyecto</span>{{publication.linked.slice(0,16)}}...</p>
-                <p *ngIf="publication.publication_type=='photos_videos'">PEPITA PEREZ</p><p *ngIf="publication.linked!='' && publication.publication_type=='photos_videos'"><span>Avance de</span>{{publication.linked.slice(0, 22)}}...</p>
+                <p *ngIf="publication.publication_type=='photos_videos' && publication.linked!=''">PEPITA PEREZ<span>Avance de</span>{{publication.linked.slice(0,16)}}...</p>
+                <p *ngIf="publication.publication_type=='photos_videos' && publication.linked==''">PEPITA PEREZ</p>
+                <!-- <p *ngIf="publication.publication_type=='photos_videos'">PEPITA PEREZ</p><p *ngIf="publication.linked!='' && publication.publication_type=='photos_videos'"><span>Avance de</span>{{publication.linked.slice(0, 22)}}...</p> -->
                 <p *ngIf="publication.publication_type=='events'">PEPITA PEREZ<span>Evento {{publication.event_type}}</span></p>
             </li>
             <li>

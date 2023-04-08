@@ -40,8 +40,8 @@
             </div>
            <div class="content">
             <input [(ngModel)]="info.description" class="description" type="text" placeholder="¿De qué trata tu publicación?">
-            <div class="div_add_img" *ngIf="var_close">
-                <i class="icon-cross style_close" (click)="funtion_close()"></i>
+            <div class="div_add_img" *ngIf="closed_img">
+                <i class="icon-cross style_close" (click)="funtion_close_img()"></i>
                 <div>
                     <i class="icon-addthis"></i>
                     <p>Agrear fotos / videos</p>
@@ -49,13 +49,11 @@
             </div>
             <div class="div_select_project">
                 <p>Agregar a un proyecto: </p>
-
-
                 <label *ngIf="select_data.length > 0" class="select_list_2 dropdown" [ngClass]="{'active': ddownInput.checked}"
                     (click)="ddownInput.checked = !ddownInput.checked;" (clickOutsideDdown)="ddownInput.checked = false;">
                 
                     <!-- Es el texto que se muestra en la caja -->
-                    <span>Seleccionar</span>
+                    <span *ngIf="info.linked==''">Seleccionar</span>
                     <span *ngIf="info.linked!=''">{{info.linked.slice(0,16)}}</span>
                 
                     <!-- icono de la flecha -->
@@ -68,14 +66,12 @@
                     <ul class="dropdown-list" *ngIf="ddownInput.checked">
                 
                         <!-- Cada uno de los items -->
-                        <li class="item" *ngFor="let item of select_data" (click)="currentModal = item.value">
+                        <li class="item" *ngFor="let item of select_data" (click)="changeModal(item.value)">
                             {{item.label}}
                         </li>
                         
                     </ul>
                 </label>
-
-
 
                 <!-- <select name="select_projects" class="select_projects" (change)="onChange($event.target)">
                     <ng-container>
@@ -97,7 +93,7 @@
             <i class="icon-circle-left" (click)="returnPreviousModal(false)"></i>
             <h3>MIS PROYECTOS</h3>
             <div class="div_search">
-                <input type="text" placeholder="Buscar" (focus)="onInputFocus()" (blur)="onInputBlur()">
+                <input type="text" placeholder="Buscar" (focus)="onInputFocus_Search()" (blur)="onInputBlur_Search()">
                 <i class="icon-search" *ngIf="input_state"></i>
                 <p (click)="returnPreviousModal(true)">Listo</p>
             </div>
@@ -116,9 +112,9 @@
             </div>
         </div>
 
-        <!-- CONTENIDO DE CREAR NUEVO PROJECTO -->
-        <div class="create_project" *ngIf="currentModal=='projects'">
-            <i class="icon-circle-left" (click)="returnPreviousModal(false)" *ngIf="showModal==true"></i>
+        <!-- CONTENIDO DE CREAR NUEVO PROYECTO -->
+        <div class="create_project" *ngIf="currentModal=='projects' || currentModal=='nuevo'">
+            <i class="icon-circle-left" (click)="returnPreviousModal(false)" *ngIf="currentModal=='nuevo'"></i>
             <h3>CREAR PROYECTO</h3>
             <div class="profile">
                 <img src="https://storage.contextoganadero.com/s3fs-public/colombia/field_image/2015-05/mujer_rural.jpg" alt="profile_photo">
@@ -133,8 +129,8 @@
                 </ul>
             </div>
             <div class="content">
-                <div class="div_add_img" *ngIf="var_close">
-                    <i class="icon-cross style_close" (click)="funtion_close()"></i>
+                <div class="div_add_img" *ngIf="closed_img">
+                    <i class="icon-cross style_close" (click)="funtion_close_img()"></i>
                     <div>
                         <i class="icon-addthis"></i>
                         <p>Agregar portada del proyecto</p>
@@ -153,7 +149,7 @@
             <i class="icon-circle-left" (click)="returnPreviousModal(false)"></i>
             <h3>ETIQUETAR A OTROS PERFILES</h3>
             <div class="div_search">
-                    <input type="text" placeholder="Buscar" (focus)="onInputFocus()" (blur)="onInputBlur()">
+                    <input type="text" placeholder="Buscar" (focus)="onInputFocus_Search()" (blur)="onInputBlur_Search()">
                     <i class="icon-search" *ngIf="input_state"></i>
                     <p (click)="returnPreviousModal(true)">Listo</p>
                 </div>
@@ -188,8 +184,8 @@
                 </ul>
             </div>
             <div class="content">
-                <div class="div_add_img" *ngIf="var_close">
-                    <i class="icon-cross style_close" (click)="funtion_close()"></i>
+                <div class="div_add_img" *ngIf="closed_img">
+                    <i class="icon-cross style_close" (click)="funtion_close_img()"></i>
                     <div>
                         <i class="icon-addthis"></i>
                         <p>Agrear fotos / videos</p>
@@ -199,7 +195,7 @@
                     <p>Tipo de evento</p>
                     <div>
                         <label><input [(ngModel)]="info.event_type" type="radio" value="online" name="event_type">Online</label>
-                        <label><input [(ngModel)]="info.event_type"  type="radio" value="face_to_face" name="event_type">Presencial</label>
+                        <label><input [(ngModel)]="info.event_type"  type="radio" value="presencial" name="event_type">Presencial</label>
                     </div>
                 </div>
                 <input [(ngModel)]="info.name" type="text" placeholder="Nombre del evento">

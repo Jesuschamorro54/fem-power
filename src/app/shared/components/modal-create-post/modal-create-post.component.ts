@@ -15,8 +15,11 @@ export class ModalCreatePostComponent implements OnInit {
   public project_list: any;
   public labels: Array<any>;
   public color_label;
-  public var_close;
-  public previous_closed;
+  public closed_img;
+  public previous_closed_img;
+
+  //Para capturar la imagen del input 
+  public selected_file: any;
 
   // Modal Variables
   showModal = false;
@@ -25,7 +28,6 @@ export class ModalCreatePostComponent implements OnInit {
 
   // Select variables
   select_data = [
-    {label: "Seleccionar", value: null},
     {label: "Un proyecto existente", value: "existente"},
     {label: "Un proyecto nuevo", value: "nuevo"},
   ]
@@ -84,38 +86,37 @@ export class ModalCreatePostComponent implements OnInit {
 
 
   btn_submit() {
+    
     this.infoChange.emit({...this.info});
   }
 
 
   modal_control(name, type) {
-
     this.currentModal = name
     this.info.publication_type = type;
     this.showModal = true
-    this.var_close = true;
-    
+    this.closed_img = true;
   }
 
+  closeModal() {
+    this.showModal = false
+    this.info.linked='';
+  }
 
   changeModal(option) {
     this.previusModal = this.currentModal
     this.currentModal = option;
-    
-    this.previous_closed = this.var_close;
-    this.var_close = true;
-
-    this.previous_closed = this.var_close;
-    this.var_close = true;
+    this.previous_closed_img = this.closed_img;
+    this.closed_img = true;
   }
 
 
-  onInputFocus() {
+  onInputFocus_Search() {
     this.input_state = false;
   }
 
 
-  onInputBlur() {
+  onInputBlur_Search() {
     console.log('Input blurred!');
     this.input_state = true;
   }
@@ -127,11 +128,10 @@ export class ModalCreatePostComponent implements OnInit {
 
 
   returnPreviousModal(warning?) {
-
-    this.currentModal = this.previusModal
-    this.var_close = this.previous_closed;
+    this.currentModal = this.previusModal;
+    this.closed_img = this.previous_closed_img;
   }
-
+ 
 
   //Zona horaria
   getZones(): any[] {
@@ -146,12 +146,11 @@ export class ModalCreatePostComponent implements OnInit {
     });
   }
 
-  
-  funtion_close() {
-    this.var_close = false;
+  funtion_close_img(){
+    this.closed_img = false;
   }
 
-  closeModal() {
-    this.showModal = false
+  appendFile(event){
+    this.selected_file = event.target.files[0];
   }
 }
