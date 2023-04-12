@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { UserData, imageDefault } from 'src/app/models/auth.models';
 
 @Component({
   selector: 'app-user-info',
@@ -14,10 +15,16 @@ export class UserInfoComponent implements OnInit {
     private _authService: AuthService,
   ) { }
 
+
+  userData: UserData
+  photoDefault = imageDefault;
+
   ngOnInit(): void {
 
     this._authService.getUserData().subscribe(response => {
-      console.log(response)
+      this.userData = response[0];
+      console.log("userData:", this.userData)
+      
     })
 
   }

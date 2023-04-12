@@ -15,14 +15,14 @@
             <div>
                 <span class="profile-photo-separator"></span>
                 <div class="profile-photo">
-                    <img src="http://www.uniagraria.edu.co/wp-content/uploads/2013/10/mujere_rural-principal.jpg" alt="">
+                    <img #userAvatar *ngIf="userData" [src]="userData.User?.image" (error)="userAvatar.src = photoDefault">
                 </div>
 
                 
                 
                 <span class="information">
-                    <h3 class="title">Marianela Martinez Pinto</h3>
-                    <p class="subtitle">Fundación Santo Domingo</p>
+                    <h3 class="title">{{userData?.User?.name}}</h3>
+                    <p class="subtitle">{{userData?.Profile?.Woman?.fundation ? userData.Profile.Woman.fundation : 'Sin afiliación'}}</p>
                 </span>
             </div>
             

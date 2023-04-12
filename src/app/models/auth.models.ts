@@ -1,3 +1,5 @@
+export const imageDefault = "https://fempower-public.s3.amazonaws.com/photoDefault.jpg";
+
 export interface UserData {
     User: User,
     Profile: Profile,
@@ -21,6 +23,7 @@ export interface Fundation {
 
 
 export interface Woman {
+    fundation: string
     description: string,
     workplace: string,
     employment_status: string,
@@ -43,6 +46,7 @@ export interface User {
     email: string,
     password: string,
     image: string,
+    cover?: string,
     cellphone?: string,
     role: string,
     date_create?: string,
