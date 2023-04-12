@@ -70,68 +70,9 @@
 
 
 // ---------------
-.icon-chat:before {
+
+.icon-microphone:before {
   content: "\ea30";
-}
-.icon-bubbles:before {
-  content: "\ea30";
-}
-.icon-talk:before {
-  content: "\ea30";
-}
-.icon-message:before {
-  content: "\ea30";
-}
-.icon-conversation:before {
-  content: "\ea30";
-}
-.icon-envelope:before {
-  content: "\ea31";
-}
-.icon-mail:before {
-  content: "\ea31";
-}
-.icon-email:before {
-  content: "\ea31";
-}
-.icon-letter:before {
-  content: "\ea31";
-}
-.icon-message2:before {
-  content: "\ea31";
-}
-.icon-bulb:before {
-  content: "\ea2a";
-}
-.icon-lamp:before {
-  content: "\ea2a";
-}
-.icon-idea:before {
-  content: "\ea2a";
-}
-.icon-document-certificate:before {
-  content: "\ee6c";
-}
-.icon-document-certificate1:before {
-  content: "\ee6d";
-}
-.icon-certificate:before {
-  content: "\ee6e";
-}
-.icon-certificate1:before {
-  content: "\ee6f";
-}
-.icon-messages:before {
-  content: "\ea32";
-}
-.icon-message-typing:before {
-  content: "\ee06";
-}
-.icon-message3:before {
-  content: "\ee07";
-}
-.icon-message1:before {
-  content: "\ee08";
 }
 .icon-donation:before {
   content: "\ea2f";
@@ -3567,6 +3508,30 @@
 .icon-zulip:before {
   content: "\ec7d";
   color: #52c2af;
+}
+.icon-message1:before {
+  content: "\ee08";
+}
+.icon-bulb:before {
+  content: "\ea2a";
+}
+.icon-lamp:before {
+  content: "\ea2a";
+}
+.icon-idea:before {
+  content: "\ea2a";
+}
+.icon-document-certificate:before {
+  content: "\ee6c";
+}
+.icon-document-certificate1:before {
+  content: "\ee6d";
+}
+.icon-certificate:before {
+  content: "\ee6e";
+}
+.icon-certificate1:before {
+  content: "\ee6f";
 }
 .icon-notifications-outline:before {
   content: "\ee69";

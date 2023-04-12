@@ -102,7 +102,7 @@
 
                     <ul class="menu config">
                         <li>
-                            <a (click)="goToProfile()">
+                            <a (click)="changeView('/profile/')">
                                 <div class="row">
                                     <img [src]="_appService.user_data.picture" #menuUserAvatar
                                         [className]="_appService.user_data.role | userClassName"
@@ -116,7 +116,7 @@
                         </li>
 
                         <li>
-                            <a (click)="goToProfile()">Mi Perfil</a>
+                            <a (click)="changeView('/profile/')">Mi Perfil</a>
                         </li>
 
                         <li>

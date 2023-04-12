@@ -33,8 +33,8 @@ export class NavBarComponent implements OnInit {
     this.showMenuOptions = !this.showMenuOptions;
   }
 
-  goToProfile() {
-    this._router.navigate(['/profile/' + this._appService.user_data.id])
+  changeView(view) {
+    this._router.navigate([view + this._appService.user_data.id])
     this.showProfile = false;
   }
 
