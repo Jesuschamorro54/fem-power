@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -16,6 +17,7 @@ export class NavBarComponent implements OnInit {
   constructor(
     public _appService: AppService,
     public _authService: AuthService,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +31,11 @@ export class NavBarComponent implements OnInit {
   toggleMenuOptions() {
     this.showProfile = false;
     this.showMenuOptions = !this.showMenuOptions;
+  }
+
+  changeView(view) {
+    this._router.navigate([view + this._appService.user_data.id])
+    this.showProfile = false;
   }
 
   logout(url) {
@@ -45,5 +52,10 @@ export class NavBarComponent implements OnInit {
     this._authService.signOut();
 
     // this._appService.nextToken = null;
+  }
+
+
+  search(){
+    
   }
 }
