@@ -1,45 +1,133 @@
 <div class="user-info">
 
-    <div class="cover-photo">
-        <div class="user-cover-photo">
-            <img src="https://africa.unwomen.org/sites/default/files/Field%20Office%20Africa/Images/News/2021/07/D4RWRD%20-%20Cover.jpg">
-        </div>
-        
-        <button class="color-white"> <i class="icon-pencil"></i> Editar perfil</button>
+    <!-- Loading -->
+    <div class="cover-photo" *ngIf="loadingUserData">
+        <div class="user-cover-photo loading-Element"></div>
     </div>
 
-    <div class="ph5">
-        
+
+    <div class="ph5" *ngIf="loadingUserData">
+        <div class="user">
+            <div>
+                <span class="profile-photo-separator"></span>
+                <div class="profile-photo">
+
+                    <div class=" userAvatar" style="background-color: #ccc;">
+                    </div>
+                </div>
+                <span class="information loading">
+                    <h3 class="loadingBar title loading-Element "></h3>
+                    <p class="loadingBar subtitle loading-Element"></p>
+                </span>
+            </div>
+
+            <div>
+                <span class="aditional">
+                    <div class="loadingBar loading-Element"> </div>
+                </span>
+            </div>
+        </div>
+
+        <div class="followers">
+            <span class="loadingBar loading-Element"></span>
+        </div>
+
+    </div>
+
+    <!-- VIEW -->
+    <div class="cover-photo" *ngIf="!loadingUserData">
+
+        <!-- Edition MODE -->
+        <div class="user-cover-photo" *ngIf="editionMode && cover_data">
+            <img *ngIf="userData" #imgCover [src]="cover_data.Location">
+        </div>
+
+        <div class="upload-cover">
+            <div class="input-upload-content" *ngIf="editionMode">
+                <label for="ipt-user-photo">
+                    <span class="icon-attached"></span> Subir una foto de portada
+                    <input type="file" id="ipt-cover-photo" accept='image/*' [disabled]="uploading_cover"
+                        style="display: none;" (change)="addFile($event)" />
+                </label>
+            </div>
+        </div>
+
+        <!-- COVER -->
+        <div class="user-cover-photo" *ngIf="!editionMode || !cover_data">
+            <img *ngIf="userData" #imgCover [src]="userData.Profile.coverUrl">
+        </div>
+
+
+        <div class="btn-group">
+            <button *ngIf="!editionMode" class="color-white" (click)="editionMode = !editionMode">
+                <i class="icon-pencil"></i> Editar perfil
+            </button>
+
+            <button *ngIf="editionMode" class="color-white" (click)="editProfile()">
+                <i class="icon-floppy-disk"></i> Guardar
+            </button>
+
+            <button *ngIf="editionMode" class="color-white" (click)="editionMode = !editionMode">
+                <i class="icon-cancel-circle"></i> Cancelar
+            </button>
+        </div>
+
+    </div>
+
+    <div class="ph5" *ngIf="!loadingUserData">
+
         <div class="user">
 
             <div>
                 <span class="profile-photo-separator"></span>
                 <div class="profile-photo">
-                    <img #userAvatar *ngIf="userData" [src]="userData.User?.image" (error)="userAvatar.src = photoDefault">
+
+                    <div class="userAvatar" #userAvatar *ngIf="userData"
+                        [ngStyle]="{'background-image': 'url('+userData.User.image+')'}">
+                    </div>
+
+                    <ng-template #imgElse>
+                        <div class="userAvatar" [ngStyle]="{'background-image': 'url({{photoDefault}})'}">
+                        </div>
+                    </ng-template>
+
+                    <div class="icon-camera input-upload-content">
+                        <label class="user-photo" for="ipt-user-photo">
+                            <input type="file" id="ipt-user-photo" accept='image/*' [disabled]="uploading_avatar"
+                                style="display: none; position: absolute;" (change)="addFile($event)" />
+                        </label>
+                    </div>
                 </div>
 
-                
-                
-                <span class="information">
-                    <h3 class="title">{{userData?.User?.name}}</h3>
-                    <p class="subtitle">{{userData?.Profile?.Woman?.fundation ? userData.Profile.Woman.fundation : 'Sin afiliación'}}</p>
+
+                <span class="information" *ngIf="userData">
+
+                    <!-- Normal -->
+                    <h3 *ngIf="!editionMode" class="title">{{userData.User?.name}}</h3>
+                    <p *ngIf="!editionMode" class="subtitle">{{userData.Profile?.fundation}}</p>
+
+                    <!-- Edition Mode -->
+                    <input class="ipt-title" *ngIf="editionMode" #accountName="ngModel" type="text"
+                        [(ngModel)]="model.User.name">
+                    <!-- <input class="ipt-subtitle" *ngIf="editionMode" #accountName="ngModel" type="text" [(ngModel)]="model.Profile.fundation" placeholder="Fundación a la que pertenece"> -->
+
                 </span>
             </div>
-            
+
             <div>
                 <span class="aditional">
                     <button class="outlet"> <i class="icon-user-plus"></i> Seguir</button>
                 </span>
             </div>
-            
-            
+
+
 
         </div>
 
         <div class="followers">
             <span>
                 38 seguidores
-            </span>   
+            </span>
         </div>
 
     </div>

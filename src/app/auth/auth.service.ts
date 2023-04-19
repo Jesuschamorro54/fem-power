@@ -277,7 +277,7 @@ export class AuthService {
 
     const { id } = this._appService.user_data;
 
-    return this.http.get(`${environment.urlAPI}/users/${id}`, this.getHeaders())
+    return this.http.get(`${environment.urlAPI}/users/"${id}"`, this.getHeaders())
       .pipe(map((user: any) => {
         const { data, status } = user;
         let data_return = [];
@@ -291,6 +291,10 @@ export class AuthService {
         retry(3),
         catchError(this.handleError<any>('getUserData', []))
       );
+  }
+
+  public getUserImages(){
+    
   }
 
   public generateRandomString() {

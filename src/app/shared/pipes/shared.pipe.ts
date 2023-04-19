@@ -22,6 +22,16 @@ export class RoleName implements PipeTransform {
     }
 }
 
+@Pipe({ name: 'scaleResolutionImg' })
+export class ScaleResolutionImg implements PipeTransform {
+    transform(url: string, source, size): string {
+
+        let result =  (source == 'google') ? url.split('=s')[0] + `=s${size}-c` : url + ''; // `&width=${size}&height=${size}`;
+        console.log(result)
+        return result
+    }
+}
+
 @Pipe({ name: 'userClassName' })
 export class UserClassName implements PipeTransform {
     transform(role: string): string {

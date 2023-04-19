@@ -7,36 +7,20 @@ export interface UserData {
 
 
 export interface Profile {
-    Fundation: Fundation,
-    Woman: Woman,
-    Company: Company
-}
-
-
-export interface Fundation {
+    id?: string,
     description: string,
+    fundation: string
+    workplace: string,
+    employment_status: string,
+    performance: string,
+    age: number,
+    aspiration: string,
     mision: string,
     vision: string,
     rural_zone: string,
     entity_type: string,
-}
-
-
-export interface Woman {
-    fundation: string
-    description: string,
-    workplace: string,
-    employment_status: string,
-    rural_zone: string,
-    performance: string,
-    age: number,
-    aspiration: string
-}
-
-export interface Company {
-    description: string,
-    mision: string,
-    vision: string   
+    cover: string,
+    coverUrl?: string
 }
 
 
@@ -46,6 +30,7 @@ export interface User {
     email: string,
     password: string,
     image: string,
+    imageUrl?: string,
     cover?: string,
     cellphone?: string,
     role: string,
@@ -69,4 +54,33 @@ export interface DataLogin {
     email: string,
     password: string,
     country?: string
+}
+
+export const user_empty = {
+    id: "",
+    name: "",
+    email: "",
+    password: "",
+    image: "",
+    cover: "",
+    cellphone: "",
+    role: "",
+    date_create: "",
+    fuente: "",
+    active: 1
+}
+
+export const profile_empty = {
+    description: "",
+    fundation: "",
+    workplace: "",
+    employment_status: "",
+    performance: "",
+    age: 0,
+    aspiration: "",
+    mision: "",
+    vision: "",
+    rural_zone: "",
+    entity_type: "",
+    cover: ""
 }

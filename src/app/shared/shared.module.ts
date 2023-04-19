@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ClickOutsideDdownDirective } from './directives/clickOutsideDdown.directive';
 import { AwsS3Service } from './services/awsS3.service';
-import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ToLowerCase, UserClassName } from './pipes/shared.pipe';
+import { CutUserNamePipe, messageDate, notificationsDate, RoleName, ScaleResolutionImg, ToLowerCase, UserClassName } from './pipes/shared.pipe';
 
 
 import { InputSelectComponent } from './components/input-select/input-select.component';
@@ -32,7 +32,7 @@ import { SearchInputComponent } from './components/nav-bar/search-input/search-i
     CutUserNamePipe, 
     notificationsDate, 
     messageDate, 
-    ToLowerCase, ModalCreatePostComponent, SearchInputComponent,
+    ToLowerCase, ModalCreatePostComponent, SearchInputComponent, ScaleResolutionImg
     
   ],
   
@@ -50,6 +50,7 @@ import { SearchInputComponent } from './components/nav-bar/search-input/search-i
     ClickOutsideDdownDirective,
     InputSelectComponent,
     ModalCreatePostComponent,
+    ScaleResolutionImg
   ],
   providers: [
     AwsS3Service

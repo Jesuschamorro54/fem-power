@@ -102,11 +102,11 @@ export class AppService {
   // TODO
 
   putUserAccount(data): Observable<any> {
-    return this.http.put(`${environment.urlAPI}/user/${this.user_data.id}`, { data }, this.getHeaders()).pipe(
+    return this.http.put(`${environment.urlAPI}/users/"${this.user_data.id}"`, { data }, this.getHeaders()).pipe(
     map((response: any) => {
-      const {status, data} = response
+      const {status, row_count} = response
 
-      return { valid: status, data }
+      return { valid: status, row_count }
 
 
     }),

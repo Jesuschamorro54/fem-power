@@ -11,6 +11,8 @@ import { ProfileComunityComponent } from './components/profile-comunity/profile-
 import { ProfileGalleryComponent } from './components/profile-gallery/profile-gallery.component';
 import { ProfileEventsComponent } from './components/profile-events/profile-events.component';
 import { SharedModule } from '../shared/shared.module';
+import { ScaleResolutionImg } from '../shared/pipes/shared.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
+    FormsModule, ReactiveFormsModule,
     ProfilesRoutingModule,
     SharedModule
   ]
