@@ -1,5 +1,6 @@
 @import '../../../styles/colors';
 @import '../../profiles.component.scss';
+@import '../../../styles/spinner';
 
 
 button {
@@ -53,7 +54,7 @@ button {
         .user-cover-photo {    
             max-height: 320px;
             min-height: 320px;
-            background: #ccc;
+            background: #ddd;
             overflow: hidden;
             border-radius: 12px;
 

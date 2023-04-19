@@ -4,7 +4,7 @@ import { Amplify, Auth } from 'aws-amplify';
 import { catchError, from, map, Observable, of, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppService } from '../app.service';
-import { DataRegister, UserData } from '../models/auth.models';
+import { DataRegister, User, UserData } from '../models/auth.models';
 import awsconfig from '../../aws-exports';
 import { Route, Router } from '@angular/router';
 
@@ -40,8 +40,8 @@ export class AuthService {
 
   private getHeaders(): any {
     let headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.token
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token
     })
 
     return ({ headers: headers });
@@ -68,9 +68,9 @@ export class AuthService {
         certificate: addData.certificate,
         // fundation_code: addData.fundation_code
       },
-      attributes:{
+      attributes: {
         // token,
-        name:addData.name,        
+        name: addData.name,
       }
     }
 
@@ -185,7 +185,7 @@ export class AuthService {
         }
       })
 
-    }).catch(err => { 
+    }).catch(err => {
       console.log(err)
       this._appService.cognitoUserAuthenticated = [];
       this._appService.setUserData([]);
@@ -241,15 +241,15 @@ export class AuthService {
     )
   }
 
-  verifyFundationCode(data) : Observable<any> {
+  verifyFundationCode(data): Observable<any> {
     return this.http.post(`${this.UrlLambdaApi}/users/verify-code`, { data }, this.getHeaders()).pipe(
-      
+
       map((response: any) => {
 
-        const {status, data} = response;;
-        
-        return {valid: status, data: data}
-        
+        const { status, data } = response;;
+
+        return { valid: status, data: data }
+
       }),
       catchError(error => {
         return of(error)
@@ -258,7 +258,7 @@ export class AuthService {
   }
 
   public federatedSignIn(customProvider) {
-    
+
     return from(Auth.federatedSignIn({ customProvider }).then((response: any) => {
 
       return { status: 'ok', response }
@@ -280,22 +280,19 @@ export class AuthService {
     return this.http.get(`${environment.urlAPI}/users/"${id}"`, this.getHeaders())
       .pipe(map((user: any) => {
         const { data, status } = user;
-        let data_return = [];
 
         if (status) {
-          this.userData = data[0];
-          data_return = data;
+          this.userData = this._appService.formmatDataUser(data[0]);
         }
-        return data_return
+
+        return { print: data, valid: status }
       }),
         retry(3),
         catchError(this.handleError<any>('getUserData', []))
       );
   }
 
-  public getUserImages(){
-    
-  }
+  
 
   public generateRandomString() {
     var text = "";
@@ -310,7 +307,7 @@ export class AuthService {
 
       // TODO: send the error to remote logging infrastructure
       console.log('%cerror::', 'color:red', error); // log to console instead
-      
+
       return of(result as T);
     };
   }

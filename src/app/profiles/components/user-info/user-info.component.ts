@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { AppService } from 'src/app/app.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { UserData, imageDefault, profile_empty, user_empty } from 'src/app/models/auth.models';
-import { ScaleResolutionImg } from 'src/app/shared/pipes/shared.pipe';
 import { AwsS3Service } from 'src/app/shared/services/awsS3.service';
 import { ProfileService } from '../../profile.service';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
+import { log } from 'console';
 
 @Component({
   selector: 'app-user-info',
@@ -19,105 +21,128 @@ export class UserInfoComponent implements OnInit {
     private _awsS3Service: AwsS3Service,
     private _appService: AppService,
     private _authService: AuthService,
-    public _profielService: ProfileService
+    public _profielService: ProfileService,
+    private _location: Location,
+    private _router: Router,
   ) { }
 
-  // Loaders
-  loadingUserData = true;
-
   // Edition 
-  model: UserData = {User: user_empty, Profile: profile_empty}
+  model: UserData = { User: user_empty, Profile: profile_empty }
   message
   editionMode = false;
+  uploading = false;
   uploading_cover = false;
   uploading_avatar = false;
+  data_to_update = {}
 
   userData: UserData
   photoDefault = imageDefault;
 
-  ngOnInit(): void {
-    this._authService.getUserData().subscribe(response => {
-      this.userData = {...response[0]};
+  ngOnInit(): void { }
 
-      // Cover
-      if (this.userData.Profile.cover) {
-        this.userData.User.image = this.getImageUrl(this.userData.User.image);   
-      }
+  setUserDataProfile() {
+    // console.log("::setUserDataProfile::")
 
-      if (this.userData.User.image){
-        this.userData.Profile.coverUrl = this.getImageUrl(this.userData.Profile.cover);
+    if (this._profielService.restricted) {
+      // console.log("::is restricted::")
+      this._profielService.getUserData().subscribe(response => {
+
+        const { print, valid } = response;
+
+        if (valid) {
         
-        let source =  this.userData.User.image.includes('google') ? 'google' : '';
-        
-        this.userData.User.image = new ScaleResolutionImg().transform(this.userData.User.image, source, 200)
-      }
+          this.userData = JSON.parse(JSON.stringify(this._profielService.userData));
+          this.model = JSON.parse(JSON.stringify(this._profielService.userData));
 
-      this.model.User = {...this.userData.User};
-      this.model.Profile = {...this.userData.Profile};
-      
 
-      console.log("::userdata::", this.userData)
+          console.log("::UserInfo | userdata::", this.userData)
 
-      setTimeout(() => {
-        this.loadingUserData = false;
-      }, 300);
-      
-    })
+          setTimeout(() => {
+            // Si lo que está en la url es un UUID lo remplazo por el username
+            this.parseURL()
+            this._profielService.loadingUserInfo = false;
+
+          }, 300);
+        }
+      })
+    }else {
+      console.log("::is not restricted::")
+      this._profielService.loadingUserInfo = false;
+      this.userData = JSON.parse(JSON.stringify(this._profielService.userData));
+      this.model = JSON.parse(JSON.stringify(this._profielService.userData));
+      this.parseURL();
+    }
+    console.log(this.userData)
   }
 
-  getImageUrl(name){
-    return environment.s3PublicUrl + `Users/${this.userData.User.id}/${name}`
+  parseURL(){
+    if (this._appService.isUUID(this._profielService.userIdInRoute)){
+      this._location.go(`/profile/${this.userData.User.username}`);
+    }
   }
 
   editProfile() {
 
-    // Para el usuario
-    if (this.model.User != this.userData.User){
-      
-      let data1  = this.getchanges('User');
+    this.uploading = true;
 
-      if (Object.keys(data1).length > 0) {
-        console.log("User", data1)
-        this._profielService.putUser(data1).subscribe(response => {
-          if (response.valid){
-            this.userData.User = {...this.model.User}
+    console.log("data:", this.data_to_update)
+
+    // Para el usuario
+    if (this.data_to_update.hasOwnProperty('User')) {
+
+      let user = this.data_to_update['User'];
+
+      if (Object.keys(user).length > 0) {
+        console.log("User", user)
+        this._profielService.putUser(user).subscribe(response => {
+          if (response.valid) {
+            this.userData.User = { ...this.model.User }
+
+            if (this.avatar_data) this.userData.User.imageUrl = this.avatar_data.Location;
+
             this.editionMode = false;
-            this.cover_data = null
+            this.avatar_data = false;
+            this.data_to_update = {}
+            this.uploading = false;
           }
         })
-      }      
+      }
     }
 
     // Para el profile
-    if (this.model.Profile != this.userData.Profile){      
-      
-      let data2 = this.getchanges('Profile');
+    if (this.data_to_update.hasOwnProperty('Profile')) {
 
-      if (Object.keys(data2).length > 0){
+      let profile = this.data_to_update['Profile']
+
+      if (Object.keys(profile).length > 0) {
 
 
-        this._profielService.putProfile(this.userData.Profile.id, data2).subscribe(response => {
-          this.userData.Profile = {...this.model.Profile}
+        this._profielService.putProfile(this.userData.Profile.id, profile).subscribe(response => {
+          this.userData.Profile = { ...this.model.Profile }
 
-          if(this.cover_data) this.userData.Profile.coverUrl = this.cover_data.Location; 
+          if (this.cover_data) this.userData.Profile.coverUrl = this.cover_data.Location;
 
           this.editionMode = false;
           this.cover_data = null
+          this.data_to_update = {}
+          this.uploading = false;
         })
       }
-      
 
-      
+
+
 
     }
 
   }
 
   cover_data = null;
+  avatar_data = null;
   addFile(event) {
 
     this.uploading_cover = true;
-    this.cover_data = null
+    this.cover_data = null;
+    this.avatar_data = null;
 
     let element_id = event.target.id;
     let fileInput = event.target;
@@ -171,21 +196,24 @@ export class UserInfoComponent implements OnInit {
             return false;
           }
 
-          if(element_id == 'ipt-cover-photo') {
+          if (element_id == 'ipt-cover-photo') {
 
-            this.cover_data = { params, options, file, Location: environment.s3PublicUrl + folderKey }
-            this.model.Profile.cover = this.cover_data.file.file_name
+            this.cover_data = {Location: environment.s3PublicUrl + folderKey }
+            this.data_to_update['Profile'] = {...{'cover': file.file_name}} ;
             this.uploading_cover = false;
 
           } else {
 
-            this.model.User.image = file.file_name;
-            this.uploading_avatar = false;
+            this.avatar_data = {Location: environment.s3PublicUrl + folderKey}
+            this.data_to_update['User'] = {...{'image': file.file_name}} ;
 
+            this.uploading_avatar = false;
             this.editProfile();
 
           }
+
           
+
           return true
         });
 
@@ -201,35 +229,10 @@ export class UserInfoComponent implements OnInit {
 
   }
 
-  setCover(){
+  fieldEditing(ob, key, value) {
+    this.data_to_update[ob] = {...{[key]: value}};
 
-  }
-
-  getchanges(ob) {
-
-    let data = {}
-
-    let original
-    let model_value
-
-    Object.keys(this.userData[ob]).forEach(key => {
-
-
-      original = this.userData[ob][key]
-      model_value = this.model[ob][key]
-
-      // Para comparar imagenes de google
-      if(key == 'image' && original.includes('google')){ 
-        original = original.split("=s")[0]
-        model_value = model_value.split("=s")[0]
-      }
-      
-      if ( original != model_value) {
-        data[key] = this.model[ob][key]
-      }
-    });
-
-    return data
+    console.log(this.data_to_update)
   }
 
 }

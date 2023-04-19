@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, map, Observable, of, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { UserData } from './models/auth.models';
 
 
 
@@ -115,6 +116,35 @@ export class AppService {
         return of({ status: false });
       })
     )
+  }
+
+  public formmatDataUser(data): UserData {
+    let user_data: UserData
+    let urlAvatar = `${environment.s3PublicUrl}Users`;
+    let image = data.User.image ? `${urlAvatar}/${data.User.id}/${data.User.image}` : `${urlAvatar}/photoDefault.jpg`
+    let cover = data.Profile.cover ? `${urlAvatar}/${data.User.id}/${data.Profile.cover}` : '';
+
+    if (data.User.image.includes('google') || data.User.image.includes('facebook')) {
+      image = data.User.image;
+    }
+
+    data.User.imageUrl = image;
+    data.Profile.coverUrl = cover;
+
+    user_data = data;
+
+    // console.log("::formatData::", user_data);
+
+    return user_data;
+  }
+
+  public isUUID(param): Boolean {
+    const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+
+    // console.log("param: ", param)
+    // console.log(":regex: ", regexExp.test(param))
+
+    return regexExp.test(param)
   }
 
 

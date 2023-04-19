@@ -1,14 +1,28 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppService } from '../app.service';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, map, of, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
+import { UserData } from '../models/auth.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
+
+  /**Contiene la data del usuario que se está visitando el perfil */
+  public userData: UserData;
+
+  /**Valida si el perfil que se está visitando será restringido o no*/
+  public restricted: Boolean;
+
+  /** Id del usuario que está en la ruta */
+  public userIdInRoute
+
+  public loadingUserInfo = true;
+
+
 
   constructor(
     private http: HttpClient,
@@ -25,7 +39,29 @@ export class ProfileService {
     return ({ headers: headers });
   }
 
+  getUserData(): Observable<any> {
 
+    const id = this.userIdInRoute;
+
+    let url =  `${environment.urlAPI}/users`;
+    url += this._appService.isUUID(id) ? `/"${id}"` : `/username/"${id}"`
+
+    return this.http.get(url, this.getHeaders())
+      .pipe(map((user: any) => {
+        const { data, status } = user;
+
+        if (status) {
+          this.userData = this._appService.formmatDataUser(data[0]);
+        }
+
+        return {print: data, valid: status}
+      }),
+        retry(3),
+        catchError(this.handleError<any>('getUserData', []))
+      );
+  }
+
+  
 
 
   putProfile(id, data): Observable<any> {

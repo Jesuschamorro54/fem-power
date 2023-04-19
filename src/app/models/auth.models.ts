@@ -1,4 +1,4 @@
-export const imageDefault = "https://fempower-public.s3.amazonaws.com/photoDefault.jpg";
+export const imageDefault = "https://fempower-public.s3.us-east-1.amazonaws.com/Users/photoDefault.jpg";
 
 export interface UserData {
     User: User,
@@ -8,35 +8,35 @@ export interface UserData {
 
 export interface Profile {
     id?: string,
-    description: string,
-    fundation: string
-    workplace: string,
-    employment_status: string,
-    performance: string,
-    age: number,
-    aspiration: string,
-    mision: string,
-    vision: string,
-    rural_zone: string,
-    entity_type: string,
-    cover: string,
+    description?: string,
+    fundation?: string
+    workplace?: string,
+    employment_status?: string,
+    performance?: string,
+    age?: number,
+    aspiration?: string,
+    mision?: string,
+    vision?: string,
+    rural_zone?: string,
+    entity_type?: string,
+    cover?: string,
     coverUrl?: string
 }
 
 
 export interface User {
-    id: string,
-    name: string,
-    email: string,
-    password: string,
-    image: string,
+    id?: string,
+    name?: string,
+    username?: string,
+    email?: string,
+    password?: string,
+    image?: string,
     imageUrl?: string,
-    cover?: string,
     cellphone?: string,
-    role: string,
+    role?: string,
     date_create?: string,
-    fuente: string,
-    active: number
+    fuente?: string,
+    active?: number
 }
 
 export interface DataRegister {

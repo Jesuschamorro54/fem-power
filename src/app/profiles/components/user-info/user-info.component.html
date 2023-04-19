@@ -1,12 +1,12 @@
 <div class="user-info">
 
     <!-- Loading -->
-    <div class="cover-photo" *ngIf="loadingUserData">
+    <div class="cover-photo" *ngIf="_profielService.loadingUserInfo">
         <div class="user-cover-photo loading-Element"></div>
     </div>
 
 
-    <div class="ph5" *ngIf="loadingUserData">
+    <div class="ph5" *ngIf="_profielService.loadingUserInfo">
         <div class="user">
             <div>
                 <span class="profile-photo-separator"></span>
@@ -35,7 +35,7 @@
     </div>
 
     <!-- VIEW -->
-    <div class="cover-photo" *ngIf="!loadingUserData">
+    <div class="cover-photo" *ngIf="!_profielService.loadingUserInfo">
 
         <!-- Edition MODE -->
         <div class="user-cover-photo" *ngIf="editionMode && cover_data">
@@ -44,7 +44,7 @@
 
         <div class="upload-cover">
             <div class="input-upload-content" *ngIf="editionMode">
-                <label for="ipt-user-photo">
+                <label for="ipt-cover-photo">
                     <span class="icon-attached"></span> Subir una foto de portada
                     <input type="file" id="ipt-cover-photo" accept='image/*' [disabled]="uploading_cover"
                         style="display: none;" (change)="addFile($event)" />
@@ -54,7 +54,7 @@
 
         <!-- COVER -->
         <div class="user-cover-photo" *ngIf="!editionMode || !cover_data">
-            <img *ngIf="userData" #imgCover [src]="userData.Profile.coverUrl">
+            <img *ngIf="userData.Profile.coverUrl" #imgCover [src]="userData.Profile.coverUrl">
         </div>
 
 
@@ -64,7 +64,14 @@
             </button>
 
             <button *ngIf="editionMode" class="color-white" (click)="editProfile()">
-                <i class="icon-floppy-disk"></i> Guardar
+                <i class="icon-floppy-disk" *ngIf="!uploading"></i> 
+                <div class="spinner spinner--button" *ngIf="uploading" style="position: relative; margin: 0 15px 0px 8px; width: auto;">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                Guardar
             </button>
 
             <button *ngIf="editionMode" class="color-white" (click)="editionMode = !editionMode">
@@ -74,7 +81,7 @@
 
     </div>
 
-    <div class="ph5" *ngIf="!loadingUserData">
+    <div class="ph5" *ngIf="!_profielService.loadingUserInfo">
 
         <div class="user">
 
@@ -82,12 +89,12 @@
                 <span class="profile-photo-separator"></span>
                 <div class="profile-photo">
 
-                    <div class="userAvatar" #userAvatar *ngIf="userData"
-                        [ngStyle]="{'background-image': 'url('+userData.User.image+')'}">
+                    <div class="userAvatar" #userAvatar *ngIf="userData.User.imageUrl else imgElse"
+                        [ngStyle]="{'background-image': 'url('+userData.User.imageUrl+')' }">
                     </div>
 
                     <ng-template #imgElse>
-                        <div class="userAvatar" [ngStyle]="{'background-image': 'url({{photoDefault}})'}">
+                        <div class="userAvatar" [ngStyle]="{'background-image': 'url('+photoDefault+')'}">
                         </div>
                     </ng-template>
 
@@ -108,7 +115,7 @@
 
                     <!-- Edition Mode -->
                     <input class="ipt-title" *ngIf="editionMode" #accountName="ngModel" type="text"
-                        [(ngModel)]="model.User.name">
+                        [(ngModel)]="model.User.name" (ngModelChange)="fieldEditing('User','name', $event)">
                     <!-- <input class="ipt-subtitle" *ngIf="editionMode" #accountName="ngModel" type="text" [(ngModel)]="model.Profile.fundation" placeholder="Fundación a la que pertenece"> -->
 
                 </span>
