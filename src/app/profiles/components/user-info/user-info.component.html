@@ -54,7 +54,7 @@
 
         <!-- COVER -->
         <div class="user-cover-photo" *ngIf="!editionMode || !cover_data">
-            <img *ngIf="userData.Profile.coverUrl" #imgCover [src]="userData.Profile.coverUrl">
+            <img *ngIf="userData.Profile.coverUrl != '' " #imgCover [src]="userData.Profile.coverUrl">
         </div>
 
 
@@ -90,7 +90,7 @@
                 <div class="profile-photo">
 
                     <div class="userAvatar" #userAvatar *ngIf="userData.User.imageUrl else imgElse"
-                        [ngStyle]="{'background-image': 'url('+userData.User.imageUrl+')' }">
+                        [ngStyle]="{'background-image': 'url('+(userData.User.imageUrl | scaleResolutionImg: 200) +')' }">
                     </div>
 
                     <ng-template #imgElse>

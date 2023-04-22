@@ -8,7 +8,8 @@ import { AwsS3Service } from 'src/app/shared/services/awsS3.service';
 import { ProfileService } from '../../profile.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import { log } from 'console';
+import { error, log } from 'console';
+import { dataUploadFile } from 'src/app/shared/services/awsS3Models';
 
 @Component({
   selector: 'app-user-info',
@@ -50,7 +51,7 @@ export class UserInfoComponent implements OnInit {
         const { print, valid } = response;
 
         if (valid) {
-        
+
           this.userData = JSON.parse(JSON.stringify(this._profielService.userData));
           this.model = JSON.parse(JSON.stringify(this._profielService.userData));
 
@@ -65,7 +66,7 @@ export class UserInfoComponent implements OnInit {
           }, 300);
         }
       })
-    }else {
+    } else {
       console.log("::is not restricted::")
       this._profielService.loadingUserInfo = false;
       this.userData = JSON.parse(JSON.stringify(this._profielService.userData));
@@ -75,8 +76,8 @@ export class UserInfoComponent implements OnInit {
     console.log(this.userData)
   }
 
-  parseURL(){
-    if (this._appService.isUUID(this._profielService.userIdInRoute)){
+  parseURL() {
+    if (this._appService.isUUID(this._profielService.userIdInRoute)) {
       this._location.go(`/profile/${this.userData.User.username}`);
     }
   }
@@ -144,95 +145,41 @@ export class UserInfoComponent implements OnInit {
     this.cover_data = null;
     this.avatar_data = null;
 
-    let element_id = event.target.id;
-    let fileInput = event.target;
-    let filePath = event.target.value;
-    let fileList: FileList = event.target.files; //obtiene el file  del input html
-
-    var allowedImageExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-
-    if (!allowedImageExtensions.exec(filePath)) {
-      // alert('Please upload file having extensions .jpeg, .jpg, .png, .gif only.');
-      fileInput.value = '';
-      this.message = { status: false, text: 'El formato de la imagen no es válido.' }
-      this.uploading_cover = false;
-      return false;
+    let params: dataUploadFile = {
+      element_id: event.target.id,
+      fileInput: event.target,
+      filePath: event.target.value,
+      fileList: FileList = event.target.files,
+      folderKey: `Users/${this._appService.user_data.id}`,
+      extension_type: 'img'
     }
 
-    let file: any;
-    if (fileList.length > 0) {
+    this._awsS3Service.uploadFileS3(params).then((result) => {
 
-      const { size, name, type } = fileList[0];
+      const {status, data} = result 
 
-      if ((size <= (1024 * 1024 * 250))) {//valida que el size del file sea <= 250
+      if (params.element_id == 'ipt-cover-photo') {
 
-        let extension = name.toLowerCase().split('.').pop();
-        let tokenhash = this._authService.generateRandomString();
-
-        file = {
-          size: size,
-          file_type: type,//asigna el nombre file
-          file_ext: extension,
-          file_name: element_id == 'ipt-user-photo' ? `avatar-${tokenhash}.${extension}` : `userCover-${tokenhash}.${extension}`
-        }
-
-        let folderKey = `Users/${this._appService.user_data.id}/${file.file_name}`;
-
-        const params = {
-          Bucket: 'fempower-public',
-          Key: folderKey,
-          Body: fileList[0],
-          ContentType: file.file_type
-        };
-
-        const options = { partSize: 5 * 1024 * 1024, queueSize: 1 };
-        const command = new PutObjectCommand(params)
-
-        this._awsS3Service.getS3Bucket().send(command, (error, data) => {
-
-          if (error) {
-            // this.alert.error = 'Ocurrió un error al subir el documento. Por favor recargue y vuelva intentarlo'
-            console.log(error);
-            return false;
-          }
-
-          if (element_id == 'ipt-cover-photo') {
-
-            this.cover_data = {Location: environment.s3PublicUrl + folderKey }
-            this.data_to_update['Profile'] = {...{'cover': file.file_name}} ;
-            this.uploading_cover = false;
-
-          } else {
-
-            this.avatar_data = {Location: environment.s3PublicUrl + folderKey}
-            this.data_to_update['User'] = {...{'image': file.file_name}} ;
-
-            this.uploading_avatar = false;
-            this.editProfile();
-
-          }
-
-          
-
-          return true
-        });
-
+        this.cover_data = { Location: data.Location }
+        this.data_to_update['Profile'] = { ...{ 'cover': data.file.file_name } };
+        this.uploading_cover = false;
 
       } else {
-        this.cover_data = null
-        this.message = { status: false, text: 'Su archivo supera los 250MB' };//le asigna msj de error al  del input file, cuando supero los 250 megas
-        return false
+
+        this.avatar_data = { Location: data.Location }
+        this.data_to_update['User'] = { ...{ 'image': data.file.file_name } };
+
+        this.uploading_avatar = false;
+        this.editProfile();
+
       }
-    }
+    })
 
     return true
-
   }
 
   fieldEditing(ob, key, value) {
-    this.data_to_update[ob] = {...{[key]: value}};
-
-    console.log(this.data_to_update)
+    this.data_to_update[ob] = { ...{ [key]: value } };
   }
 
 }

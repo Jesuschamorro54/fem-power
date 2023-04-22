@@ -15,11 +15,11 @@ export class ProfilesComponent implements OnInit {
   @ViewChild(UserInfoComponent) __userInfoProfile: UserInfoComponent;
 
   currentTab = {
-    informationTab: false,
+    informationTab: true,
     communityTab: false,
     portfolioTab: false,
     galleryTab: false,
-    eventsTab: true
+    eventsTab: false
   }
 
   constructor(
