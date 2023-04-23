@@ -49,7 +49,11 @@ export class ProfilesComponent implements OnInit {
           const { User, Profile } = print;
 
           /* Si el usuario logueado está visitando su propio perfil, se llena la data del profile con la data que se trajo del auth */
-          if (!this._profileService.restricted) this._profileService.userData = this._authService.userData;
+          if (!this._profileService.restricted) { 
+            this._profileService.userData = this._authService.userData;
+            this._profileService.userDataSubject.next(this._authService.userData)
+
+          } 
 
           this.__userInfoProfile.setUserDataProfile()
         }

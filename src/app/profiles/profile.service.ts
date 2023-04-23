@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppService } from '../app.service';
-import { Observable, catchError, map, of, retry } from 'rxjs';
+import { Observable, Subject, catchError, map, of, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { UserData } from '../models/auth.models';
@@ -13,6 +13,7 @@ export class ProfileService {
 
   /**Contiene la data del usuario que se está visitando el perfil */
   public userData: UserData;
+  public userDataSubject: Subject<UserData> = new Subject();
 
   /**Valida si el perfil que se está visitando será restringido o no*/
   public restricted: Boolean;
@@ -52,6 +53,7 @@ export class ProfileService {
 
         if (status) {
           this.userData = this._appService.formmatDataUser(data[0]);
+          this.userDataSubject.next(this.userData)
         }
 
         return {print: data, valid: status}

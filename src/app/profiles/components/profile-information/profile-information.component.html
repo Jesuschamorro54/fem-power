@@ -3,17 +3,30 @@
     <!-- Description -->
     <section>
 
-        <span>
+        <span class="header">
             <h3 class="title">PERFIL</h3>
+            <i class="icon-pencil" *ngIf="!editionMode" (click)="editionMode = !editionMode"></i>
+
+            <div class="btn-group" *ngIf="editionMode">
+
+                <button (click)="editProfile()">Guardar</button>
+                <button class="outlet" (click)="cancelEdition()">Cancelar</button>
+    
+            </div>
         </span>
 
         <article class="description-box">
 
-            <p>
-                “Hacer del mundo un lugar mejor para que todas las especies convivan”. “Crear historias
-                fantásticas e inspiradoras para otras personas”. “Desarrollar mi lado espiritual al
-                máximo y orientar a otras personas que quieran seguir el mismo camino”
+            <p *ngIf="!editionMode && profile">
+                {{profile.description}}
             </p>
+
+            <textarea 
+                *ngIf="editionMode" 
+                name="profile-info" 
+                [(ngModel)]="profileModel.description"
+                (ngModelChange)="data_to_update.description = $event"
+            ></textarea>
 
         </article>
 
@@ -29,18 +42,18 @@
             <h3 class="title">INFORMACIÓN GENERAL</h3>
         </span>
 
-        <div class="general-info">
+        <div class="general-info" *ngIf="!editionMode && profile">
 
             <div>
 
                 <span>
                     <p class="key">Zona Rural:</p>
-                    <p class="value">Amazonas</p>
+                    <p class="value"> {{profile.rural_zone}} </p>
                 </span>
 
                 <span>
                     <p class="key">Estado Laboral:</p>
-                    <p class="value">Desempleada</p>
+                    <p class="value">{{profile.employment_status}}</p>
                 </span>
 
             </div>
@@ -49,12 +62,12 @@
 
                 <span>
                     <p class="key">Area de desempeño:</p>
-                    <p class="value">Artesanías</p>
+                    <p class="value">{{profile.performance}}</p>
                 </span>
 
                 <span>
                     <p class="key">Lugar de trabajo:</p>
-                    <p class="value">No aplica</p>
+                    <p class="value">{{profile.employment_status ? profile.workplace: 'No aplica' }}</p>
                 </span>
 
             </div>

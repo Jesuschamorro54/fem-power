@@ -56,7 +56,7 @@ export class UserInfoComponent implements OnInit {
           this.model = JSON.parse(JSON.stringify(this._profielService.userData));
 
 
-          console.log("::UserInfo | userdata::", this.userData)
+          // console.log("::UserInfo | userdata::", this.userData)
 
           setTimeout(() => {
             // Si lo que está en la url es un UUID lo remplazo por el username
@@ -67,13 +67,12 @@ export class UserInfoComponent implements OnInit {
         }
       })
     } else {
-      console.log("::is not restricted::")
+      // console.log("::is not restricted::")
       this._profielService.loadingUserInfo = false;
       this.userData = JSON.parse(JSON.stringify(this._profielService.userData));
       this.model = JSON.parse(JSON.stringify(this._profielService.userData));
       this.parseURL();
     }
-    console.log(this.userData)
   }
 
   parseURL() {
