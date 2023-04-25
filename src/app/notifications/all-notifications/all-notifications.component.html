@@ -1,0 +1,51 @@
+<div class="div_all">
+    <div class="div_title">
+        <h3>Notificaciones</h3>
+    </div>
+    <div class="div_list">
+        <ul>
+            <li *ngFor="let notification of array_notifications index let indice=index">
+                <div class="content_without_options" *ngIf="notification.action=='seguir' || notification.action=='integrar' || notification.action=='patrocinar' || notification.action=='gustar' || notification.action=='comentar'">
+                    <img src="{{notification.img}}" alt="img_profile">
+                    <p *ngIf="notification.action=='seguir'">{{notification.name}} lo ha empezado a seguir</p>
+                    <p *ngIf="notification.action=='integrar'">{{notification.name}} se integró a su fundación.</p>
+                    <p *ngIf="notification.action=='patrocinar'">{{notification.name}} quiere patrocinar el proyecto {{notification.associated_content.slice(0,10)}}...</p>
+                    <p *ngIf="notification.action=='gustar'">{{notification.name}} le gusta tu publicación.</p>
+                    <p *ngIf="notification.action=='comentar'">{{notification.name}} comentó tu publicación.</p>
+                </div>
+                <div *ngIf="notification.action=='colaborar_proyecto' || notification.action=='invitar_evento'" class="content_with_options">
+                    <div class="content">
+                        <img src="{{notification.img}}" alt="img_profile">
+                        <p *ngIf="notification.action=='colaborar_proyecto'">{{notification.name}} lo hizo colaborador en su proyecto {{notification.associated_content.slice(0,10)}}...</p>
+                        <p *ngIf="notification.action=='invitar_evento'">{{notification.name}} desea incluirlo como invitado especial de un evento.</p>
+                    </div>
+                    <div class="options" *ngIf="notification.is_accepted==''">
+                        <button (click)="prueba(indice, true)">Aceptar</button>
+                        <button (click)="prueba(indice, false)">Rechazar</button>
+                    </div>
+                    <div class="div_message_is_accepted">
+                        <p class="message_is_accepted" *ngIf="notification.is_accepted==1"><span *ngIf="notification.action=='colaborar_proyecto'">Colaboración</span><span *ngIf="notification.action=='invitar_evento'">Invitación</span> aceptada</p>
+                        <p class="message_is_accepted" *ngIf="notification.is_accepted==-1 && notification.is_accepted!=''"><span *ngIf="notification.action=='colaborar_proyecto'">Colaboración</span><span *ngIf="notification.action=='invitar_evento'">Invitación</span> rechazada</p>
+                    </div>
+                </div>
+                <i class="icon-cancel-circle" (click)="showModal(indice)"></i>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- MODAL DE CONFIRMACION PARA ELIMINAR UNA NOTIFICACION -->
+
+<div class="modal" [ngClass]="{'show': show_delete_modal}">
+    <div class="modal_content" [ngClass]="{'show': show_delete_modal}">
+        <i class="icon-cross" (click)="closeModal()"></i>
+        <div class="div_message">
+            <h3>Eliminación permanentemente</h3>
+            <p>¿Quieres continuar con la elimnación de esta notificación?</p>
+            <div class="options_delete">
+                <button (click)="closeModal()">Cancelar</button>
+                <button (click)="deleteNotification()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

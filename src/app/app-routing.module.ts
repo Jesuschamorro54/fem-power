@@ -10,6 +10,7 @@ const APP_ROUTES: Routes = [
   { path: 'fem', data: { preload: true, loadAfterSeconds: 1 }, loadChildren: () => import('./landing-pages/landin.module').then(mod => mod.LandinModule), canActivate: [] },
   { path: 'feed', data: { preload: true, loadAfterSeconds: 1 }, loadChildren: () => import('./feed/feed.module').then(mod => mod.FeedModule), canActivate: [] },
   { path: 'profile', data: { preload: true, loadAfterSeconds: 1 }, loadChildren: () => import('./profiles/profiles.module').then(mod => mod.ProfilesModule), canActivate: [] },
+  { path: 'notifications', data: { preload: true, loadAfterSeconds: 1 }, loadChildren: () => import('./notifications/notifications.module').then(mod => mod.NotificationsModule), canActivate: [] },
   // { path: '', redirectTo: 'fem', pathMatch: 'full'},
   { path: '**', redirectTo: 'fem', pathMatch: 'full' },
 ];
