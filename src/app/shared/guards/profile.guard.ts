@@ -20,10 +20,10 @@ export class ProfileGuard implements CanActivate {
         return true;
       }
       // User session in -1
-      return this._router.parseUrl('/fem/home');
+      return this._router.parseUrl('/auth/login');
     }
     // Cognito User error
-    return this._router.parseUrl('/user/login');
+    return this._router.parseUrl('/auth/login');
   }
   
 }

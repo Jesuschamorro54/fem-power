@@ -18,12 +18,16 @@
             display: flex;
             width: 100%;
             align-items: center;
+            position: relative;
 
             h3 {
                 width: 100%;
+                text-align-last: center;
             }
 
             i {
+                position: absolute;
+                right: 0;
                 padding: 10px;
                 font-size: 18px;
                 cursor: pointer;   
@@ -37,6 +41,8 @@
             }
 
             .btn-group {
+                position: absolute;
+                right: 0;
                 display: flex;
             }
 
@@ -67,6 +73,7 @@
 
             div span {
                 display: flex;
+                align-items: center;
                 
                 .key {
                     width: 155px;

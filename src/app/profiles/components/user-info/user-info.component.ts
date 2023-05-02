@@ -167,6 +167,7 @@ export class UserInfoComponent implements OnInit {
 
         this.avatar_data = { Location: data.Location }
         this.data_to_update['User'] = { ...{ 'image': data.file.file_name } };
+        this._appService.user_data.picture = data.Location;
 
         this.uploading_avatar = false;
         this.editProfile();

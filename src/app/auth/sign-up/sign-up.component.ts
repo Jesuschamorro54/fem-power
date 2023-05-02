@@ -24,6 +24,7 @@ export class SignUpComponent implements OnInit {
     {label: 'Seleccione el tipo de usuario', value: null},
     {label: 'Mujer rural', value: 'natural'},
     {label: 'Organización', value: 'company'},
+    {label: 'Fundación', value: 'fundation'},
   ]
 
   selectItems = [

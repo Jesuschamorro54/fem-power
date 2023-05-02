@@ -5,13 +5,13 @@
 
         <span class="header">
             <h3 class="title">PERFIL</h3>
-            <i class="icon-pencil" *ngIf="!editionMode" (click)="editionMode = !editionMode"></i>
+            <i class="icon-pencil" *ngIf="!editionMode" (click)="openEdition('editionMode')"></i>
 
             <div class="btn-group" *ngIf="editionMode">
 
                 <button (click)="editProfile()">Guardar</button>
-                <button class="outlet" (click)="cancelEdition()">Cancelar</button>
-    
+                <button class="outlet" (click)="cancelEdition('editionMode')">Cancelar</button>
+
             </div>
         </span>
 
@@ -21,12 +21,8 @@
                 {{profile.description}}
             </p>
 
-            <textarea 
-                *ngIf="editionMode" 
-                name="profile-info" 
-                [(ngModel)]="profileModel.description"
-                (ngModelChange)="data_to_update.description = $event"
-            ></textarea>
+            <textarea *ngIf="editionMode" name="profile-info" [(ngModel)]="profileModel.description"
+                (ngModelChange)="data_to_update.description = $event"></textarea>
 
         </article>
 
@@ -38,22 +34,37 @@
 
     <section>
 
-        <span>
+        <span class="header">
             <h3 class="title">INFORMACIÓN GENERAL</h3>
+            <i class="icon-pencil" *ngIf="!editionInfoMode" (click)="openEdition('editionInfoMode')"></i>
+
+            <div class="btn-group" *ngIf="editionInfoMode">
+
+                <button (click)="editProfile()">Guardar</button>
+                <button class="outlet" (click)="cancelEdition('editionInfoMode')">Cancelar</button>
+
+            </div>
         </span>
 
-        <div class="general-info" *ngIf="!editionMode && profile">
+        <div class="general-info" *ngIf="profile">
 
             <div>
 
                 <span>
                     <p class="key">Zona Rural:</p>
-                    <p class="value"> {{profile.rural_zone}} </p>
+                    <p class="value" *ngIf="!editionInfoMode"> {{profile.rural_zone}} </p>
+
+                    <input type="text" *ngIf="editionInfoMode" name="rural_zone" [(ngModel)]="profileModel.rural_zone"
+                        (ngModelChange)="data_to_update.rural_zone = $event" />
                 </span>
 
                 <span>
                     <p class="key">Estado Laboral:</p>
-                    <p class="value">{{profile.employment_status}}</p>
+                    <p class="value" *ngIf="!editionInfoMode">{{profile.employment_status}}</p>
+
+                    <input type="text" *ngIf="editionInfoMode" name="employment_status"
+                        [(ngModel)]="profileModel.employment_status"
+                        (ngModelChange)="data_to_update.employment_status = $event" />
                 </span>
 
             </div>
@@ -62,12 +73,18 @@
 
                 <span>
                     <p class="key">Area de desempeño:</p>
-                    <p class="value">{{profile.performance}}</p>
+                    <p class="value" *ngIf="!editionInfoMode">{{profile.performance}}</p>
+
+                    <input type="text" *ngIf="editionInfoMode" name="performance" [(ngModel)]="profileModel.performance"
+                        (ngModelChange)="data_to_update.performance = $event" />
                 </span>
 
                 <span>
                     <p class="key">Lugar de trabajo:</p>
-                    <p class="value">{{profile.employment_status ? profile.workplace: 'No aplica' }}</p>
+                    <p class="value" *ngIf="!editionInfoMode">{{profile.employment_status ? profile.workplace: 'No aplica' }}</p>
+
+                    <input type="text" *ngIf="editionInfoMode" name="workplace" [(ngModel)]="profileModel.workplace"
+                        (ngModelChange)="data_to_update.workplace = $event" />
                 </span>
 
             </div>

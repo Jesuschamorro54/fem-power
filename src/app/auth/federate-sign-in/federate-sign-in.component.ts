@@ -22,7 +22,7 @@ export class FederateSignInComponent implements OnInit {
   alert: any = {error: null, sucess: null}
 
   // Auth
-  addUserData: any = { type: null, fundation_code: null, certificate: null };
+  addUserData: any = { type: null, code: null, certificate: null };
 
   constructor(
     private _route: ActivatedRoute,
@@ -53,7 +53,7 @@ export class FederateSignInComponent implements OnInit {
       valid = false
     }
 
-    if (this.addUserData.type == 'natural' && (form.value.fundation_code == '' || form.value.fundation_code == null) ){
+    if (this.addUserData.type == 'natural' && (form.value.code == '' || form.value.code == null) ){
       this.alert.error = "Debe escribir el código proporcionado por la fundación"
       valid = false
       return

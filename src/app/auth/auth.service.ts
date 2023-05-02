@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Amplify, Auth } from 'aws-amplify';
-import { catchError, from, map, Observable, of, retry } from 'rxjs';
+import { catchError, from, map, Observable, of, retry, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppService } from '../app.service';
 import { DataRegister, User, UserData } from '../models/auth.models';
@@ -25,7 +25,9 @@ export class AuthService {
   public token;
 
   /** Contiene los datos del usuario logueado */
-  public userData: UserData
+  public userData: UserData;
+  public loadingUserData: Boolean = true;
+  public userDataSubject: Subject<any> = new Subject();
 
   /** Contiene los datos de la sessión del usuario autenticado */
   public userLogged: any
@@ -165,7 +167,14 @@ export class AuthService {
             // Se le refresca la session
             if (signInUserSession != null) {
               user.refreshSession(currentSession.refreshToken, (err, session) => {
-                this._appService.user_data = JSON.parse(JSON.stringify(session.idToken.payload));
+
+                let user_data = JSON.parse(JSON.stringify(session.idToken.payload));
+        
+                /* aqui hacer el cambio de imagen en caso que el usuario haya subido una*/ 
+                let urlAvatar = `${environment.s3PublicUrl}Users`;        
+                user_data.picture = user_data.image == '' ? user_data.picture : `${urlAvatar}/${user_data.id}/${user_data.image}`
+
+                this._appService.user_data = user_data;
               })
             }
 
@@ -283,6 +292,7 @@ export class AuthService {
 
         if (status) {
           this.userData = this._appService.formmatDataUser(data[0]);
+          this.userDataSubject.next(this.userData)
         }
 
         return { print: data, valid: status }

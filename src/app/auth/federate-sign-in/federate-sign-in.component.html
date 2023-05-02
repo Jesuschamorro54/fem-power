@@ -26,7 +26,7 @@
                 </label>
                 <!-- FIN SELECT -->
 
-                <input type="text" *ngIf="type_select.value == 'natural' " name="fundation_code" placeholder="Escriba su código" [(ngModel)]="addUserData.fundation_code">
+                <input type="text" *ngIf="type_select.value == 'natural' " name="code" placeholder="Escriba su código" [(ngModel)]="addUserData.code">
 
                 <!-- SUBIR DOCUMENTO -->
                 <label class="upload-input" for="certificate-input-file" *ngIf="['fundation', 'company'].includes(addUserData.type)">
