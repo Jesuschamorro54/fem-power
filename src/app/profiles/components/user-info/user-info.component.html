@@ -1,12 +1,12 @@
 <div class="user-info">
 
     <!-- Loading -->
-    <div class="cover-photo" *ngIf="_profielService.loadingUserInfo">
+    <div class="cover-photo" *ngIf="_profileService.loadingUserInfo">
         <div class="user-cover-photo loading-Element"></div>
     </div>
 
 
-    <div class="ph5" *ngIf="_profielService.loadingUserInfo">
+    <div class="ph5" *ngIf="_profileService.loadingUserInfo">
         <div class="user">
             <div>
                 <span class="profile-photo-separator"></span>
@@ -35,7 +35,7 @@
     </div>
 
     <!-- VIEW -->
-    <div class="cover-photo" *ngIf="!_profielService.loadingUserInfo">
+    <div class="cover-photo" *ngIf="!_profileService.loadingUserInfo">
 
         <!-- Edition MODE -->
         <div class="user-cover-photo" *ngIf="editionMode && cover_data">
@@ -81,7 +81,7 @@
 
     </div>
 
-    <div class="ph5" *ngIf="!_profielService.loadingUserInfo">
+    <div class="ph5" *ngIf="!_profileService.loadingUserInfo">
 
         <div class="user">
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../profile.service';
-import { Profile } from 'src/app/models/auth.models';
+import { Profile, UserData } from 'src/app/models/auth.models';
 
 @Component({
   selector: 'app-profile-information',
@@ -23,24 +23,24 @@ export class ProfileInformationComponent implements OnInit {
   data_to_update: Profile = {};
 
   ngOnInit(): void {
-    this.initData().then(data => {
-      this.profile = {...data};
-      this.profileModel = {...data};
+    this._profileService.initUserInfoData().then((user: UserData) => {
+      this.profile = { ...user.Profile };
+      this.profileModel = { ...user.Profile };
     });
   }
 
-  initData(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      if (!this._profileService.userData){
-        this._profileService.userDataSubject.subscribe(data => {
-          resolve(data.Profile)
-        });
-      }
-      else{
-        resolve(this._profileService.userData.Profile)
-      }
-    });
-  }
+  // initData(): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     if (!this._profileService.userData){
+  //       this._profileService.userDataSubject.subscribe(data => {
+  //         resolve(data.Profile)
+  //       });
+  //     }
+  //     else{
+  //       resolve(this._profileService.userData.Profile)
+  //     }
+  //   });
+  // }
 
 
   editProfile() {

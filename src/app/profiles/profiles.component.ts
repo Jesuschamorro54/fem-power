@@ -29,44 +29,7 @@ export class ProfilesComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
-  ngOnInit(): void {
-
-    setTimeout(() => {
-      this._profileService.userIdInRoute = this.route.snapshot.params['id']
-      this._profileService.loadingUserInfo = true;
-
-
-      this._profileService.restricted = Boolean(
-        this._appService.user_data.id != this._profileService.userIdInRoute &&
-        this._appService.user_data.username != this._profileService.userIdInRoute
-      )
-
-      this._authService.getUserData().subscribe(response => {
-
-        const { print, valid } = response;
-
-        if (valid) {
-          const { User, Profile } = print;
-
-          /* Si el usuario logueado está visitando su propio perfil, se llena la data del profile con la data que se trajo del auth */
-          if (!this._profileService.restricted) { 
-            this._profileService.userData = this._authService.userData;
-            this._profileService.userDataSubject.next(this._authService.userData)
-
-          } 
-
-          this.__userInfoProfile.setUserDataProfile()
-        }
-      })
-    }, 500);
-
-    
-
-
-
-
-
-  }
+  ngOnInit(): void { }
 
   toggleTabs(selectedTab) {
     Object.keys(this.currentTab).forEach(tab => this.currentTab[tab] = Boolean(selectedTab == tab))

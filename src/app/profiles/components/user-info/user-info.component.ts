@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { error, log } from 'console';
 import { dataUploadFile } from 'src/app/shared/services/awsS3Models';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-info',
@@ -18,13 +19,13 @@ import { dataUploadFile } from 'src/app/shared/services/awsS3Models';
 })
 export class UserInfoComponent implements OnInit {
 
+  dataSubcription = Subscription
+
   constructor(
     private _awsS3Service: AwsS3Service,
     private _appService: AppService,
-    private _authService: AuthService,
-    public _profielService: ProfileService,
+    public _profileService: ProfileService,
     private _location: Location,
-    private _router: Router,
   ) { }
 
   // Edition 
@@ -39,44 +40,23 @@ export class UserInfoComponent implements OnInit {
   userData: UserData
   photoDefault = imageDefault;
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
 
-  setUserDataProfile() {
-    // console.log("::setUserDataProfile::")
+    this._profileService.initUserInfoData().then((user: UserData) => {
+      
+      this.userData = JSON.parse(JSON.stringify(user));
+      this.model = JSON.parse(JSON.stringify(user));
+      this._profileService.loadingUserInfo = false;
 
-    if (this._profielService.restricted) {
-      // console.log("::is restricted::")
-      this._profielService.getUserData().subscribe(response => {
+      this.parseURL()
 
-        const { print, valid } = response;
-
-        if (valid) {
-
-          this.userData = JSON.parse(JSON.stringify(this._profielService.userData));
-          this.model = JSON.parse(JSON.stringify(this._profielService.userData));
-
-
-          // console.log("::UserInfo | userdata::", this.userData)
-
-          setTimeout(() => {
-            // Si lo que está en la url es un UUID lo remplazo por el username
-            this.parseURL()
-            this._profielService.loadingUserInfo = false;
-
-          }, 300);
-        }
-      })
-    } else {
-      // console.log("::is not restricted::")
-      this._profielService.loadingUserInfo = false;
-      this.userData = JSON.parse(JSON.stringify(this._profielService.userData));
-      this.model = JSON.parse(JSON.stringify(this._profielService.userData));
-      this.parseURL();
-    }
+      console.log("::setUserDataProfile::", this.userData)
+    });
+    
   }
 
   parseURL() {
-    if (this._appService.isUUID(this._profielService.userIdInRoute)) {
+    if (this._appService.isUUID(this._profileService.userIdInRoute)) {
       this._location.go(`/profile/${this.userData.User.username}`);
     }
   }
@@ -94,7 +74,7 @@ export class UserInfoComponent implements OnInit {
 
       if (Object.keys(user).length > 0) {
         console.log("User", user)
-        this._profielService.putUser(user).subscribe(response => {
+        this._profileService.putUser(user).subscribe(response => {
           if (response.valid) {
             this.userData.User = { ...this.model.User }
 
@@ -117,7 +97,7 @@ export class UserInfoComponent implements OnInit {
       if (Object.keys(profile).length > 0) {
 
 
-        this._profielService.putProfile(this.userData.Profile.id, profile).subscribe(response => {
+        this._profileService.putProfile(this.userData.Profile.id, profile).subscribe(response => {
           this.userData.Profile = { ...this.model.Profile }
 
           if (this.cover_data) this.userData.Profile.coverUrl = this.cover_data.Location;

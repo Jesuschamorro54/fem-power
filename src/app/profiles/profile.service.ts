@@ -5,6 +5,7 @@ import { Observable, Subject, catchError, map, of, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { UserData } from '../models/auth.models';
+import { Portfolio, UrlLambdaApi } from '../models/profile.models';
 
 @Injectable({
   providedIn: 'root'
@@ -23,28 +24,48 @@ export class ProfileService {
 
   public loadingUserInfo = true;
 
+  public portfolioData: Array<Portfolio>;
+  public portfolioDataSubject: Subject<any> = new Subject();
 
 
   constructor(
     private http: HttpClient,
-    private _appService: AppService
+    private _appService: AppService,
+    private _authService: AuthService
   ) { }
 
 
   private getHeaders(): any {
     let headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this._appService.token
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this._appService.token
     })
 
     return ({ headers: headers });
+  }
+
+  initUserInfoData(): Promise<UserData> {
+
+    return new Promise(async (resolved, reject) => {
+
+      const requestResolved = ({ print, valid }) => (valid) ? resolved(this.userData) : [];
+
+      if (!this._authService.userData){
+        this._authService.getUserData().subscribe(response => {
+          (!this.restricted) ? resolved(this._authService.userData) : this.getUserData().subscribe(requestResolved);
+        });
+      } else {
+        (!this.restricted) ? resolved(this._authService.userData) : this.getUserData().subscribe(requestResolved);
+      }
+    });
+
   }
 
   getUserData(): Observable<any> {
 
     const id = this.userIdInRoute;
 
-    let url =  `${environment.urlAPI}/users`;
+    let url = `${UrlLambdaApi}/users`;
     url += this._appService.isUUID(id) ? `/"${id}"` : `/username/"${id}"`
 
     return this.http.get(url, this.getHeaders())
@@ -53,28 +74,41 @@ export class ProfileService {
 
         if (status) {
           this.userData = this._appService.formmatDataUser(data[0]);
-          this.userDataSubject.next(this.userData)
         }
 
-        return {print: data, valid: status}
+        return { print: data, valid: status }
       }),
         retry(3),
         catchError(this.handleError<any>('getUserData', []))
       );
   }
 
-  
+  getPortfolio(): Observable<any> {
+    return this.http.get(`${UrlLambdaApi}/${this.userIdInRoute}/portfolio`, this.getHeaders()).pipe(
+      map((user: any) => {
+        const { data, status } = user;
+
+        // 
+
+        return { print: data, valid: status }
+      }),
+      retry(3),
+      catchError(this.handleError<any>('getUserData', []))
+    );
+  }
+
+
 
 
   putProfile(id, data): Observable<any> {
     return this.http.put(`${environment.urlAPI}/users/profile/"${id}"`, { data }, this.getHeaders()).pipe(
-    map((response: any) => {
-      const {status, row_count} = response
+      map((response: any) => {
+        const { status, row_count } = response
 
-      return { valid: status, row_count }
+        return { valid: status, row_count }
 
 
-    }),
+      }),
       catchError((error: any) => {
         this.handleError('putUserAccount');
         return of({ status: false });
@@ -85,13 +119,13 @@ export class ProfileService {
 
   putUser(data): Observable<any> {
     return this.http.put(`${environment.urlAPI}/users/"${this._appService.user_data.id}"`, { data }, this.getHeaders()).pipe(
-    map((response: any) => {
-      const {status, row_count} = response
+      map((response: any) => {
+        const { status, row_count } = response
 
-      return { valid: status, row_count }
+        return { valid: status, row_count }
 
 
-    }),
+      }),
       catchError((error: any) => {
         this.handleError('putUserAccount');
         return of({ status: false });
@@ -108,7 +142,7 @@ export class ProfileService {
 
       // TODO: send the error to remote logging infrastructure
       console.log('%cerror::', 'color:red', error); // log to console instead
-      
+
       return of(result as T);
     };
   }
