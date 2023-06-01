@@ -7,7 +7,7 @@
                 <img src="../../../../favicon.ico" alt="Icon" width="35">
             </span>
             <span class="item">
-                <a class="logo-label" [routerLink]="['/home']">FemPower</a>
+                <a class="logo-label" [routerLink]="['/home']">RuralWom</a>
             </span>
 
             <span *ngIf="_appService.user_session == 1" style="width: 100%;">
@@ -96,7 +96,7 @@
                 <div (clickOutsideDdown)="showProfile=false" class="profile dropdown">
                     <div (click)="toggleProfile()" [ngClass]="{'open':showProfile}" class="item">
                         <img #userAvatar [src]="_appService.user_data.picture"
-                            (error)="userAvatar.src='https://fempower-public.s3.us-east-1.amazonaws.com/Users/photoDefault.jpg' ">
+                            (error)="userAvatar.src='https://RuralWom-public.s3.us-east-1.amazonaws.com/Users/photoDefault.jpg' ">
                     </div>
 
 
@@ -106,7 +106,7 @@
                                 <div class="row">
                                     <img [src]="_appService.user_data.picture" #menuUserAvatar
                                         [className]="_appService.user_data.role | userClassName"
-                                        (error)="menuUserAvatar.src='https://fempower-public.s3.us-east-1.amazonaws.com/Users/photoDefault.jpg'">
+                                        (error)="menuUserAvatar.src='https://RuralWom-public.s3.us-east-1.amazonaws.com/Users/photoDefault.jpg'">
                                     <div class="name">
                                         <h3>{{_appService.user_data.name | cutUserName: '2'}}</h3>
                                         <h4>{{_appService.user_data.role | roleName}}</h4>
