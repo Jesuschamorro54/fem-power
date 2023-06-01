@@ -148,10 +148,7 @@
             
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            // grid-gap: 0px;
-            // padding: 10px;
             margin: 0;
-            // align-content: space-between;
 
             .item {
 
@@ -179,6 +176,13 @@
 
                 .item-data {
                     padding: 5px 8px;
+
+                    &.loadingBar {
+                        height: auto;
+                        padding: 8px 5px;
+                        margin: 5px 0;
+                        width: calc(100% - 40px);
+                    }
 
                     .icon-heart {
                         color: #e72f2f;

@@ -24,10 +24,15 @@ export class PortfolioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    // this._profileService.getPortfolio().subscribe(response => {
-    //   console.log("res: ", response)
-    // });
+    
+    if (!this.portfolioData) {
+      this._profileService.portfolioDataSubject.subscribe(data => {
+        // console.log(data)
+        this.portfolioData = data.Portfolio
+      })
+    }else{
+      this.portfolioData = this._profileService.portfolioData;  
+    }
   }
 
 }

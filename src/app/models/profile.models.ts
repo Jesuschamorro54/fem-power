@@ -10,6 +10,7 @@ export interface Portfolio {
     count_publications: number
     count_sponsors: number
     cover: string
+    likes: number
     created_at: string
     description: string
     fundation_id: string

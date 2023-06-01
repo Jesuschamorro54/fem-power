@@ -16,18 +16,35 @@
 
     <section class="content-grid-box">
 
-        <ul class="grid">
+        <ul class="grid" *ngIf="!portfolioData">
 
-            <li class="item" *ngFor="let i of [0,1,2,3]">
+            <li class="item" *ngFor="let i of  [0,1,2,3]">
+
+                <div class="cover loading-Element" style="height: 82px;"></div>
+
+                <span class="item-data loadingBar loading-Element"></span>
+
+                <span class="item-data loadingBar loading-Element">
+                    
+                </span>
+
+
+            </li>
+
+        </ul>
+
+        <ul class="grid" *ngIf="portfolioData">
+
+            <li class="item" *ngFor="let portfolio of portfolioData">
 
                 <div class="cover">
-                    <img src="https://s1.significados.com/foto/shutterstock-513513718_bg.jpg" alt="">
+                    <img [src]="portfolio.cover" alt="">
                 </div>
 
-                <span class="item-data">Alrtesanías Molis</span>
+                <span class="item-data">{{portfolio.name}}</span>
 
                 <span class="item-data">
-                    <i class="icon-heart"></i> 137
+                    <i class="icon-heart"></i> {{portfolio.likes}}
                 </span>
 
 

@@ -83,12 +83,14 @@ export class ProfileService {
       );
   }
 
-  getPortfolio(): Observable<any> {
-    return this.http.get(`${UrlLambdaApi}/${this.userIdInRoute}/portfolio`, this.getHeaders()).pipe(
-      map((user: any) => {
-        const { data, status } = user;
 
-        // 
+  getPortfolio(): Observable<any> {
+    return this.http.get(`${UrlLambdaApi}/users/"${this.userIdInRoute}"/portfolio`, this.getHeaders()).pipe(
+      map((portfolio: any) => {
+        const { data, status } = portfolio;
+
+        this.portfolioData = data;
+        this.portfolioDataSubject.next(data)
 
         return { print: data, valid: status }
       }),
@@ -96,8 +98,6 @@ export class ProfileService {
       catchError(this.handleError<any>('getUserData', []))
     );
   }
-
-
 
 
   putProfile(id, data): Observable<any> {

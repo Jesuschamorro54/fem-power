@@ -21,8 +21,10 @@
             <li class="item" *ngFor="let item of sponsors">
 
                 <div class="photo">
-                    <img [src]="item.url" alt="imagen">
+                    <img [src]="item.url" alt="imagen"> {{item.name}}
                 </div>
+
+                <span>{{item.name}}</span>
 
             </li>
 

@@ -47,10 +47,19 @@ export class UserInfoComponent implements OnInit {
       this.userData = JSON.parse(JSON.stringify(user));
       this.model = JSON.parse(JSON.stringify(user));
       this._profileService.loadingUserInfo = false;
+      this._profileService.userIdInRoute = user.User.id
 
       this.parseURL()
 
-      console.log("::setUserDataProfile::", this.userData)
+      //Inir other data
+      if (!this._profileService.portfolioData) {
+        // this._profileService.getPortfolio().subscribe()
+      }
+
+      this._profileService.getPortfolio().subscribe()
+      
+
+      // console.log("::setUserDataProfile::", this.userData)
     });
     
   }
