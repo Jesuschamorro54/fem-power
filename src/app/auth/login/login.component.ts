@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit {
     if (!this.federatedLogin[customProvider]) {
       this.federatedLogin[customProvider] = true;
 
+      console.log(customProvider)
       this._authService.federatedSignIn(customProvider).subscribe();
     }
   }

@@ -147,7 +147,6 @@ export class AuthService {
   isUserAuthenticated(): Observable<any> {
 
     return from(Auth.currentAuthenticatedUser().then(user => {
-
       const cognitoUser = JSON.parse(JSON.stringify(user));
 
       this.userLogged = JSON.parse(JSON.stringify(user))
@@ -269,7 +268,6 @@ export class AuthService {
   public federatedSignIn(customProvider) {
 
     return from(Auth.federatedSignIn({ customProvider }).then((response: any) => {
-
       return { status: 'ok', response }
     }).catch(error => {
       return { status: 'error', error }

@@ -23,7 +23,7 @@
 
                 <input-select [data]="user_types" (changeValue)="addUserData.type = $event.value"></input-select>
 
-                <input type="text" *ngIf="addUserData.type == 'natural' " name="fundation_code" placeholder="Escriba su código" [(ngModel)]="addUserData.fundation_code">
+                <input type="text" *ngIf="addUserData.type == 'natural' " name="code" placeholder="Escriba su código" [(ngModel)]="addUserData.code">
 
                 <!-- SUBIR DOCUMENTO -->
                 <label class="upload-input" for="certificate-input-file" *ngIf="['fundation', 'company'].includes(addUserData.type)">

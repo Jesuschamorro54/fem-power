@@ -76,7 +76,7 @@ export class SignUpComponent implements OnInit {
       valid = false
     }
 
-    if (this.addUserData.type == 'natural' && (form.value.fundation_code == '' || form.value.fundation_code == null) ){
+    if (this.addUserData.type == 'natural' && (form.value.code == '' || form.value.code == null) ){
       this.alert.error = "Debe escribir el código proporcionado por la fundación"
       valid = false
       return
@@ -91,7 +91,7 @@ export class SignUpComponent implements OnInit {
     this.addUserData.email = form.value.email;
     this.addUserData.password = form.value.password;
     this.addUserData.name = form.value.name;
-    this.addUserData.code = "";
+    // this.addUserData.code = "";
     
     console.log(this.addUserData)
 

@@ -44,7 +44,7 @@ export interface DataRegister {
     password: string;
     name: string;
     code?: string;
-    fundation_code: string;
+    // fundation_code: string;
     type?: string;
     cellphone?: string;
     certificate: string;
