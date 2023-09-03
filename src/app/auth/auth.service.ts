@@ -164,16 +164,27 @@ export class AuthService {
             const { signInUserSession } = cognitoUser;
 
             // Se le refresca la session
-            if (signInUserSession != null) {
+            if (signInUserSession != null && (signInUserSession.idToken.payload.fuente != 'google' && signInUserSession.idToken.payload.fuente != 'facebook')) {
               user.refreshSession(currentSession.refreshToken, (err, session) => {
 
-                let user_data = JSON.parse(JSON.stringify(session.idToken.payload));
-        
-                /* aqui hacer el cambio de imagen en caso que el usuario haya subido una*/ 
-                let urlAvatar = `${environment.s3PublicUrl}Users`;        
-                user_data.picture = user_data.image == '' ? user_data.picture : `${urlAvatar}/${user_data.id}/${user_data.image}`
+                if (err.toString().includes('UserNotFoundException')) {
+                  this.signOut().subscribe();
+                  throw new Error ("UserNotFoundException: User does not exist or was delete from cognito user pool")
+                }
 
-                this._appService.user_data = user_data;
+                if (session && session.idToken != null && session.idToken.payload != null) {
+                  let user_data = JSON.parse(JSON.stringify(session.idToken.payload));
+        
+                  /* aqui hacer el cambio de imagen en caso que el usuario haya subido una*/ 
+                  let urlAvatar = `${environment.s3PublicUrl}Users`;        
+                  if (user_data.image != '' && (!user_data.image.includes('google') && !user_data.image.includes('facebook'))) {
+                    user_data.picture = `${urlAvatar}/${user_data.id}/${user_data.image}`
+                  }
+
+                  this._appService.user_data = user_data;
+                }
+
+                
               })
             }
 
@@ -322,4 +333,6 @@ export class AuthService {
 
 
 }
+
+
 

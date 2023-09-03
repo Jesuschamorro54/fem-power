@@ -77,8 +77,11 @@ export class AppService {
         let user_data = JSON.parse(JSON.stringify(this.cognitoUserAuthenticated.signInUserSession.idToken.payload));
         
         /* aqui hacer el cambio de imagen en caso que el usuario haya subido una*/ 
-        let urlAvatar = `${environment.s3PublicUrl}Users`;        
-        user_data.picture = user_data.image == '' ? user_data.picture : `${urlAvatar}/${user_data.id}/${user_data.image}`
+        let urlAvatar = `${environment.s3PublicUrl}Users`;
+        
+        if (user_data.image != '' && (!user_data.image?.includes('google') && !user_data.image?.includes('facebook'))) {
+          user_data.picture = `${urlAvatar}/${user_data.id}/${user_data.image}`
+        }
 
         this.token = user.signInUserSession.idToken.jwtToken;
         this.user_data = user_data;

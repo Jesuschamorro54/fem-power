@@ -53,7 +53,8 @@ export class LoginComponent implements OnInit {
     this._authService.signIn(user).subscribe(response => {
       const {status, _res} = response;
 
-      console.log("response: ", _res)
+      console.log("response: ", _res.message)
+      console.log("status: ", status)
       
       if (status == 'ok'){
         this._router.navigate(['home'])

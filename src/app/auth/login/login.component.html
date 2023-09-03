@@ -15,6 +15,8 @@
 
                 <span><a>¿Olvidó su contraseña?</a></span>
 
+                <br><span class="message" *ngIf="errormessage != '' ">{{errormessage}}</span><br>
+
                 <div class="separator"><p>o</p></div>
 
                 <button class="button btn-facebook" (click)="federatedSignIn('Facebook')">

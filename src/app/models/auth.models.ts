@@ -84,3 +84,4 @@ export const profile_empty = {
     entity_type: "",
     cover: ""
 }
+
