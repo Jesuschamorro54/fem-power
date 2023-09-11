@@ -19,7 +19,7 @@
     </div>
     <div class="projects_or_photos_videos" *ngIf="publication.publication_type=='projects' || publication.publication_type=='photos_videos'">
         <p class="description" *ngIf="publication.description!=''">{{publication.description}}</p>
-        <img class="img_publication" src="{{publication.img}}" alt="Imagen de la publicación" [ngStyle]="{'margin-top': publication.description!='' ? '10px' : '0px'}">
+        <img class="img_publication" src="{{publication.cover}}" alt="Imagen de la publicación" [ngStyle]="{'margin-top': publication.description!='' ? '10px' : '0px'}">
         <div class="div_recognition">
             <div>
                 <i class="icon-heart"></i>
@@ -68,7 +68,7 @@
                 <p>{{publication.description}}</p>
             </li>
         </ul>
-        <img class="img_front_page" src="{{publication.img}}" alt="Portada del evento">
+        <img class="img_front_page" src="{{publication.cover}}" alt="Portada del evento">
         <div class="div_interact">
             <div>
                 <i class="icon-clubs"></i>

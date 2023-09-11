@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Portfolio } from 'src/app/models/profile.models';
 import { ProfileService } from '../../profile.service';
+import { ModalCreatePostComponent } from 'src/app/shared/components/modal-create-post/modal-create-post.component';
 
 @Component({
   selector: 'app-portfolio',
@@ -9,9 +10,11 @@ import { ProfileService } from '../../profile.service';
 })
 export class PortfolioComponent implements OnInit {
 
+  @ViewChild(ModalCreatePostComponent) _modal: ModalCreatePostComponent;
   @Input() preview: Boolean;
 
   portfolioData: Array<Portfolio>;
+  loading = true;
 
   filters = [
     {label: 'Recientes', value: 'recents'},
@@ -25,14 +28,38 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit(): void {
     
-    if (!this.portfolioData) {
+    console.log('se inició')
+
+    if (!this._profileService.portfolioData) {
       this._profileService.portfolioDataSubject.subscribe(data => {
-        // console.log(data)
+        
         this.portfolioData = data.Portfolio
+        this.loading = false;
       })
     }else{
-      this.portfolioData = this._profileService.portfolioData;  
+      console.log('pre: ', this._profileService.portfolioData)
+      this.portfolioData = this._profileService.portfolioData['Portfolio'];  
+      this.loading = false;
     }
+  }
+
+
+  event_mdoal: any = {}
+  openModalCreatePortfolio() {
+    this.event_mdoal = {'name': 'projects', 'type': 'projects'}
+  }
+
+  createPortfolio(event){
+    console.log("create portfolio", event)
+
+    if(event) {
+
+      this._profileService.postPortfolio(event).subscribe(response => {
+        console.log(response)
+      })
+    }
+
+    this._modal.closeModal()
   }
 
 }

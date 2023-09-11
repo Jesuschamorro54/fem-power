@@ -95,8 +95,19 @@ export class ProfileService {
         return { print: data, valid: status }
       }),
       retry(3),
-      catchError(this.handleError<any>('getUserData', []))
+      catchError(this.handleError<any>('getPortfolio', []))
     );
+  }
+
+  postPortfolio(data): Observable<any> {
+    return this.http.post(`${UrlLambdaApi}/users/"${this._appService.user_data.id}"/portfolio`, { data }, this.getHeaders()).pipe(
+      map((portfolio: any) => {
+        const { data, status } = portfolio;
+        return { print: data, valid: status }
+      }),
+      retry(3),
+      catchError(this.handleError<any>('postPortfolio', []))
+    ); 
   }
 
 

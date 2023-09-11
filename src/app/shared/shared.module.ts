@@ -50,7 +50,7 @@ import { SearchInputComponent } from './components/nav-bar/search-input/search-i
     ClickOutsideDdownDirective,
     InputSelectComponent,
     ModalCreatePostComponent,
-    ScaleResolutionImg
+    ScaleResolutionImg, RoleName
   ],
   providers: [
     AwsS3Service

@@ -1,10 +1,14 @@
 <div class="div_menu">
     <div class="profile">
-        <div class="div_img"><img src="https://storage.contextoganadero.com/s3fs-public/colombia/field_image/2015-05/mujer_rural.jpg" alt="img_profile"></div>
+        <div class="div_img">
+            <img #userAvatar [src]="user?.User?.imageUrl | scaleResolutionImg : 90" 
+            (error)="userAvatar.src='https://storage.contextoganadero.com/s3fs-public/colombia/field_image/2015-05/mujer_rural.jpg'">
+        </div>
+
         <div class="div_info">
             <ul>
-                <li><a href="">PEPITA PEREZ</a></li>
-                <li><p>Mujer Rural</p></li>
+                <li><a href="">{{user?.User?.name}}</a></li>
+                <li><p>{{user.User.role | roleName}}</p></li>
             </ul>
         </div>
     </div>

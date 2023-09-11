@@ -194,6 +194,17 @@
                     border: 1px solid rgba($color: $light, $alpha: 2);
                 }
 
+                &.add-project {
+                    justify-content: center;
+                    align-items: center;
+                    min-width: 150.5px;
+                    min-height: 155.73px;
+
+                    i {
+                        font-size: 50px;
+                    }
+                }
+
             }
 
         }

@@ -1,3 +1,6 @@
+
+<app-modal-create-post (infoChange)="createPortfolio($event)" [showCompleteComponent]="false" [event_modal]="event_mdoal"></app-modal-create-post>
+
 <div class="portfolio" *ngIf="preview" [ngClass]="{'limit': preview}">
 
     <section class="head">
@@ -16,7 +19,7 @@
 
     <section class="content-grid-box">
 
-        <ul class="grid" *ngIf="!portfolioData">
+        <ul class="grid" *ngIf="loading">
 
             <li class="item" *ngFor="let i of  [0,1,2,3]">
 
@@ -33,7 +36,7 @@
 
         </ul>
 
-        <ul class="grid" *ngIf="portfolioData">
+        <ul class="grid" *ngIf="!loading">
 
             <li class="item" *ngFor="let portfolio of portfolioData">
 
@@ -44,10 +47,14 @@
                 <span class="item-data">{{portfolio.name}}</span>
 
                 <span class="item-data">
-                    <i class="icon-heart"></i> {{portfolio.likes}}
+                    <i class="icon-heart"></i> {{portfolio.likes ? portfolio.likes : 0 }}
                 </span>
 
 
+            </li>
+
+            <li class="item add-project" *ngIf="portfolioData?.length < 4 && !loading" (click)="openModalCreatePortfolio()">
+                <i class="icon-folder-plus"></i>
             </li>
 
         </ul>
@@ -100,18 +107,18 @@
 
         <ul class="wraper">
 
-            <li class="item" *ngFor="let i of [0,1,2,3,4,5,6,7,7,7,7,7,7,7,7]">
+            <li class="item" *ngFor="let portfolio of portfolioData">
 
                 <div class="cover">
-                    <img src="https://s1.significados.com/foto/shutterstock-513513718_bg.jpg" alt="">
+                    <img src="{{portfolio.cover}}" alt="">
                 </div>
 
 
                 <div class="info">
-                    <span class="item-title">Artesanías Molis</span>
+                    <span class="item-title">{{portfolio.name}}</span>
 
                     <p>
-                        En un proyecto se tienen en cuenta los aspectos técnicos, económicos y financieros.
+                        {{portfolio.description}}
                     </p>
                 </div>
 
